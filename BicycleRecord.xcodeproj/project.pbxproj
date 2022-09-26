@@ -9,21 +9,80 @@
 /* Begin PBXBuildFile section */
 		C15C0D6C28E21187008DACF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0D6B28E21187008DACF4 /* AppDelegate.swift */; };
 		C15C0D6E28E21187008DACF4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0D6D28E21187008DACF4 /* SceneDelegate.swift */; };
-		C15C0D7028E21187008DACF4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0D6F28E21187008DACF4 /* ViewController.swift */; };
-		C15C0D7328E21187008DACF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C15C0D7128E21187008DACF4 /* Main.storyboard */; };
 		C15C0D7528E21188008DACF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C15C0D7428E21188008DACF4 /* Assets.xcassets */; };
 		C15C0D7828E21188008DACF4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C15C0D7628E21188008DACF4 /* LaunchScreen.storyboard */; };
+		C15C0D8028E2126D008DACF4 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C15C0D7F28E2126D008DACF4 /* .gitignore */; };
+		C15C0D8C28E21371008DACF4 /* ReusableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0D8B28E21371008DACF4 /* ReusableProtocol.swift */; };
+		C15C0D8E28E21396008DACF4 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0D8D28E21396008DACF4 /* FavoriteTableViewCell.swift */; };
+		C15C0D9028E213A2008DACF4 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0D8F28E213A2008DACF4 /* SearchTableViewCell.swift */; };
+		C15C0D9228E213AC008DACF4 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0D9128E213AC008DACF4 /* PopupView.swift */; };
+		C15C0D9628E213BE008DACF4 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0D9528E213BE008DACF4 /* WeatherView.swift */; };
+		C15C0D9828E21402008DACF4 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0D9728E21402008DACF4 /* MapView.swift */; };
+		C15C0D9A28E21414008DACF4 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0D9928E21414008DACF4 /* MapViewController.swift */; };
+		C15C0D9C28E21425008DACF4 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0D9B28E21425008DACF4 /* FavoriteViewController.swift */; };
+		C15C0D9E28E21430008DACF4 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0D9D28E21430008DACF4 /* WeatherViewController.swift */; };
+		C15C0DA028E2143A008DACF4 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0D9F28E2143A008DACF4 /* SearchViewController.swift */; };
+		C15C0DA228E21447008DACF4 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0DA128E21447008DACF4 /* TabBarViewController.swift */; };
+		C15C0DA428E21460008DACF4 /* BicycleAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0DA328E21460008DACF4 /* BicycleAPIManager.swift */; };
+		C15C0DA628E21470008DACF4 /* WeatherAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0DA528E21470008DACF4 /* WeatherAPIManager.swift */; };
+		C15C0DA828E2147E008DACF4 /* MapRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0DA728E2147E008DACF4 /* MapRealm.swift */; };
+		C15C0DAA28E21487008DACF4 /* MapRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0DA928E21487008DACF4 /* MapRepository.swift */; };
+		C15C0DAC28E21493008DACF4 /* WeatherRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0DAB28E21493008DACF4 /* WeatherRealm.swift */; };
+		C15C0DAE28E2149E008DACF4 /* WeatherRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0DAD28E2149E008DACF4 /* WeatherRepository.swift */; };
+		C15C0DB028E214AE008DACF4 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0DAF28E214AE008DACF4 /* BaseTableViewCell.swift */; };
+		C15C0DB228E214B5008DACF4 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0DB128E214B5008DACF4 /* BaseView.swift */; };
+		C15C0DB428E214BD008DACF4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0DB328E214BD008DACF4 /* BaseViewController.swift */; };
+		C15C0DB628E214CD008DACF4 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0DB528E214CD008DACF4 /* CustomView.swift */; };
+		C15C0DB828E214D4008DACF4 /* Bound.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0DB728E214D4008DACF4 /* Bound.swift */; };
+		C15C0DBA28E214E9008DACF4 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0DB928E214E9008DACF4 /* APIKey.swift */; };
+		C15C0DBD28E21654008DACF4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C15C0DBC28E21654008DACF4 /* Alamofire */; };
+		C15C0DC028E2168C008DACF4 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = C15C0DBF28E2168C008DACF4 /* Realm */; };
+		C15C0DC228E2168C008DACF4 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C15C0DC128E2168C008DACF4 /* RealmSwift */; };
+		C15C0DC528E216A2008DACF4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C15C0DC428E216A2008DACF4 /* SnapKit */; };
+		C15C0DC828E216B5008DACF4 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = C15C0DC728E216B5008DACF4 /* Toast */; };
+		C15C0DCB28E216C5008DACF4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C15C0DCA28E216C5008DACF4 /* Kingfisher */; };
+		C15C0DCE28E21757008DACF4 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = C15C0DCD28E21757008DACF4 /* SwiftyJSON */; };
+		C15C0DD728E21BFC008DACF4 /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0DD628E21BFC008DACF4 /* Marker.swift */; };
+		C15C0DDA28E2259C008DACF4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0DD928E2259C008DACF4 /* Colors.swift */; };
+		C241A9FEB709B78CBED178CC /* Pods_BicycleRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA5294F511DE2C17A7D1CB3 /* Pods_BicycleRecord.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2302C2CCA80AA9973C3886BC /* Pods-BicycleRecord.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BicycleRecord.release.xcconfig"; path = "Target Support Files/Pods-BicycleRecord/Pods-BicycleRecord.release.xcconfig"; sourceTree = "<group>"; };
+		3BA5294F511DE2C17A7D1CB3 /* Pods_BicycleRecord.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BicycleRecord.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A58EC6828C7572A5296FC14A /* Pods-BicycleRecord.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BicycleRecord.debug.xcconfig"; path = "Target Support Files/Pods-BicycleRecord/Pods-BicycleRecord.debug.xcconfig"; sourceTree = "<group>"; };
 		C15C0D6828E21187008DACF4 /* BicycleRecord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BicycleRecord.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C15C0D6B28E21187008DACF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C15C0D6D28E21187008DACF4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C15C0D6F28E21187008DACF4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		C15C0D7228E21187008DACF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C15C0D7428E21188008DACF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C15C0D7728E21188008DACF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C15C0D7928E21188008DACF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C15C0D7F28E2126D008DACF4 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		C15C0D8B28E21371008DACF4 /* ReusableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProtocol.swift; sourceTree = "<group>"; };
+		C15C0D8D28E21396008DACF4 /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
+		C15C0D8F28E213A2008DACF4 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		C15C0D9128E213AC008DACF4 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
+		C15C0D9528E213BE008DACF4 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
+		C15C0D9728E21402008DACF4 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		C15C0D9928E21414008DACF4 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		C15C0D9B28E21425008DACF4 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		C15C0D9D28E21430008DACF4 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		C15C0D9F28E2143A008DACF4 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		C15C0DA128E21447008DACF4 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		C15C0DA328E21460008DACF4 /* BicycleAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BicycleAPIManager.swift; sourceTree = "<group>"; };
+		C15C0DA528E21470008DACF4 /* WeatherAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPIManager.swift; sourceTree = "<group>"; };
+		C15C0DA728E2147E008DACF4 /* MapRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRealm.swift; sourceTree = "<group>"; };
+		C15C0DA928E21487008DACF4 /* MapRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRepository.swift; sourceTree = "<group>"; };
+		C15C0DAB28E21493008DACF4 /* WeatherRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRealm.swift; sourceTree = "<group>"; };
+		C15C0DAD28E2149E008DACF4 /* WeatherRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRepository.swift; sourceTree = "<group>"; };
+		C15C0DAF28E214AE008DACF4 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		C15C0DB128E214B5008DACF4 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		C15C0DB328E214BD008DACF4 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		C15C0DB528E214CD008DACF4 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		C15C0DB728E214D4008DACF4 /* Bound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bound.swift; sourceTree = "<group>"; };
+		C15C0DB928E214E9008DACF4 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		C15C0DD628E21BFC008DACF4 /* Marker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
+		C15C0DD928E2259C008DACF4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +90,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C15C0DC828E216B5008DACF4 /* Toast in Frameworks */,
+				C15C0DC228E2168C008DACF4 /* RealmSwift in Frameworks */,
+				C15C0DCE28E21757008DACF4 /* SwiftyJSON in Frameworks */,
+				C15C0DCB28E216C5008DACF4 /* Kingfisher in Frameworks */,
+				C15C0DC028E2168C008DACF4 /* Realm in Frameworks */,
+				C241A9FEB709B78CBED178CC /* Pods_BicycleRecord.framework in Frameworks */,
+				C15C0DBD28E21654008DACF4 /* Alamofire in Frameworks */,
+				C15C0DC528E216A2008DACF4 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,8 +107,11 @@
 		C15C0D5F28E21187008DACF4 = {
 			isa = PBXGroup;
 			children = (
+				C15C0D7F28E2126D008DACF4 /* .gitignore */,
 				C15C0D6A28E21187008DACF4 /* BicycleRecord */,
 				C15C0D6928E21187008DACF4 /* Products */,
+				DFDB191770767D5E4254AB33 /* Pods */,
+				F269D0A8C15C5AB338902D8E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +126,143 @@
 		C15C0D6A28E21187008DACF4 /* BicycleRecord */ = {
 			isa = PBXGroup;
 			children = (
+				C15C0D8228E21297008DACF4 /* Resources */,
+				C15C0D8128E2128C008DACF4 /* Sources */,
 				C15C0D6B28E21187008DACF4 /* AppDelegate.swift */,
 				C15C0D6D28E21187008DACF4 /* SceneDelegate.swift */,
-				C15C0D6F28E21187008DACF4 /* ViewController.swift */,
-				C15C0D7128E21187008DACF4 /* Main.storyboard */,
 				C15C0D7428E21188008DACF4 /* Assets.xcassets */,
 				C15C0D7628E21188008DACF4 /* LaunchScreen.storyboard */,
 				C15C0D7928E21188008DACF4 /* Info.plist */,
+				C15C0DB928E214E9008DACF4 /* APIKey.swift */,
 			);
 			path = BicycleRecord;
+			sourceTree = "<group>";
+		};
+		C15C0D8128E2128C008DACF4 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				C15C0D8A28E2133D008DACF4 /* Database */,
+				C15C0D8728E212CA008DACF4 /* Network */,
+				C15C0D8628E212C2008DACF4 /* Protocols */,
+				C15C0D8528E212B9008DACF4 /* ViewControllers */,
+				C15C0D8428E212B3008DACF4 /* Views */,
+				C15C0D8328E212AE008DACF4 /* Cells */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		C15C0D8228E21297008DACF4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C15C0D8828E212E4008DACF4 /* Constants */,
+				C15C0DD828E22589008DACF4 /* Colors */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C15C0D8328E212AE008DACF4 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C15C0D8D28E21396008DACF4 /* FavoriteTableViewCell.swift */,
+				C15C0D8F28E213A2008DACF4 /* SearchTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		C15C0D8428E212B3008DACF4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C15C0D9728E21402008DACF4 /* MapView.swift */,
+				C15C0D9128E213AC008DACF4 /* PopupView.swift */,
+				C15C0D9528E213BE008DACF4 /* WeatherView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C15C0D8528E212B9008DACF4 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C15C0D9928E21414008DACF4 /* MapViewController.swift */,
+				C15C0D9B28E21425008DACF4 /* FavoriteViewController.swift */,
+				C15C0D9D28E21430008DACF4 /* WeatherViewController.swift */,
+				C15C0D9F28E2143A008DACF4 /* SearchViewController.swift */,
+				C15C0DA128E21447008DACF4 /* TabBarViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C15C0D8628E212C2008DACF4 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				C15C0D8B28E21371008DACF4 /* ReusableProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		C15C0D8728E212CA008DACF4 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				C15C0DA328E21460008DACF4 /* BicycleAPIManager.swift */,
+				C15C0DA528E21470008DACF4 /* WeatherAPIManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		C15C0D8828E212E4008DACF4 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				C15C0DD628E21BFC008DACF4 /* Marker.swift */,
+				C15C0DB728E214D4008DACF4 /* Bound.swift */,
+				C15C0DB528E214CD008DACF4 /* CustomView.swift */,
+				C15C0D8928E212F0008DACF4 /* Base */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		C15C0D8928E212F0008DACF4 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				C15C0DB328E214BD008DACF4 /* BaseViewController.swift */,
+				C15C0DAF28E214AE008DACF4 /* BaseTableViewCell.swift */,
+				C15C0DB128E214B5008DACF4 /* BaseView.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		C15C0D8A28E2133D008DACF4 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				C15C0DA728E2147E008DACF4 /* MapRealm.swift */,
+				C15C0DA928E21487008DACF4 /* MapRepository.swift */,
+				C15C0DAB28E21493008DACF4 /* WeatherRealm.swift */,
+				C15C0DAD28E2149E008DACF4 /* WeatherRepository.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		C15C0DD828E22589008DACF4 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				C15C0DD928E2259C008DACF4 /* Colors.swift */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
+		DFDB191770767D5E4254AB33 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A58EC6828C7572A5296FC14A /* Pods-BicycleRecord.debug.xcconfig */,
+				2302C2CCA80AA9973C3886BC /* Pods-BicycleRecord.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F269D0A8C15C5AB338902D8E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3BA5294F511DE2C17A7D1CB3 /* Pods_BicycleRecord.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,15 +272,26 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C15C0D7C28E21188008DACF4 /* Build configuration list for PBXNativeTarget "BicycleRecord" */;
 			buildPhases = (
+				AEC6D5A313BF764222E2208B /* [CP] Check Pods Manifest.lock */,
 				C15C0D6428E21187008DACF4 /* Sources */,
 				C15C0D6528E21187008DACF4 /* Frameworks */,
 				C15C0D6628E21187008DACF4 /* Resources */,
+				DF6D0E01C8BD24FAE70411B3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = BicycleRecord;
+			packageProductDependencies = (
+				C15C0DBC28E21654008DACF4 /* Alamofire */,
+				C15C0DBF28E2168C008DACF4 /* Realm */,
+				C15C0DC128E2168C008DACF4 /* RealmSwift */,
+				C15C0DC428E216A2008DACF4 /* SnapKit */,
+				C15C0DC728E216B5008DACF4 /* Toast */,
+				C15C0DCA28E216C5008DACF4 /* Kingfisher */,
+				C15C0DCD28E21757008DACF4 /* SwiftyJSON */,
+			);
 			productName = BicycleRecord;
 			productReference = C15C0D6828E21187008DACF4 /* BicycleRecord.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +320,14 @@
 				Base,
 			);
 			mainGroup = C15C0D5F28E21187008DACF4;
+			packageReferences = (
+				C15C0DBB28E21654008DACF4 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				C15C0DBE28E2168C008DACF4 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				C15C0DC328E216A2008DACF4 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				C15C0DC628E216B5008DACF4 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				C15C0DC928E216C5008DACF4 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				C15C0DCC28E21757008DACF4 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+			);
 			productRefGroup = C15C0D6928E21187008DACF4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -125,36 +342,94 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C15C0D8028E2126D008DACF4 /* .gitignore in Resources */,
 				C15C0D7828E21188008DACF4 /* LaunchScreen.storyboard in Resources */,
 				C15C0D7528E21188008DACF4 /* Assets.xcassets in Resources */,
-				C15C0D7328E21187008DACF4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AEC6D5A313BF764222E2208B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BicycleRecord-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DF6D0E01C8BD24FAE70411B3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BicycleRecord/Pods-BicycleRecord-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BicycleRecord/Pods-BicycleRecord-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BicycleRecord/Pods-BicycleRecord-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C15C0D6428E21187008DACF4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C15C0D7028E21187008DACF4 /* ViewController.swift in Sources */,
 				C15C0D6C28E21187008DACF4 /* AppDelegate.swift in Sources */,
+				C15C0D9828E21402008DACF4 /* MapView.swift in Sources */,
+				C15C0D8E28E21396008DACF4 /* FavoriteTableViewCell.swift in Sources */,
+				C15C0DA628E21470008DACF4 /* WeatherAPIManager.swift in Sources */,
 				C15C0D6E28E21187008DACF4 /* SceneDelegate.swift in Sources */,
+				C15C0D9C28E21425008DACF4 /* FavoriteViewController.swift in Sources */,
+				C15C0D9A28E21414008DACF4 /* MapViewController.swift in Sources */,
+				C15C0DA028E2143A008DACF4 /* SearchViewController.swift in Sources */,
+				C15C0DB628E214CD008DACF4 /* CustomView.swift in Sources */,
+				C15C0DD728E21BFC008DACF4 /* Marker.swift in Sources */,
+				C15C0DDA28E2259C008DACF4 /* Colors.swift in Sources */,
+				C15C0DB028E214AE008DACF4 /* BaseTableViewCell.swift in Sources */,
+				C15C0DA828E2147E008DACF4 /* MapRealm.swift in Sources */,
+				C15C0D9228E213AC008DACF4 /* PopupView.swift in Sources */,
+				C15C0DA428E21460008DACF4 /* BicycleAPIManager.swift in Sources */,
+				C15C0D8C28E21371008DACF4 /* ReusableProtocol.swift in Sources */,
+				C15C0DB828E214D4008DACF4 /* Bound.swift in Sources */,
+				C15C0DB428E214BD008DACF4 /* BaseViewController.swift in Sources */,
+				C15C0D9028E213A2008DACF4 /* SearchTableViewCell.swift in Sources */,
+				C15C0DA228E21447008DACF4 /* TabBarViewController.swift in Sources */,
+				C15C0DAE28E2149E008DACF4 /* WeatherRepository.swift in Sources */,
+				C15C0DBA28E214E9008DACF4 /* APIKey.swift in Sources */,
+				C15C0DAA28E21487008DACF4 /* MapRepository.swift in Sources */,
+				C15C0D9628E213BE008DACF4 /* WeatherView.swift in Sources */,
+				C15C0DB228E214B5008DACF4 /* BaseView.swift in Sources */,
+				C15C0DAC28E21493008DACF4 /* WeatherRealm.swift in Sources */,
+				C15C0D9E28E21430008DACF4 /* WeatherViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		C15C0D7128E21187008DACF4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C15C0D7228E21187008DACF4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		C15C0D7628E21188008DACF4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -282,6 +557,7 @@
 		};
 		C15C0D7D28E21188008DACF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A58EC6828C7572A5296FC14A /* Pods-BicycleRecord.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -290,11 +566,15 @@
 				DEVELOPMENT_TEAM = 54R3763M9G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BicycleRecord/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "자전거";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "지도에서 내 위치를 확인하여 길찾기, 주변 편의시설 정보 표시 기능을 이용하기 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -304,12 +584,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		C15C0D7E28E21188008DACF4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2302C2CCA80AA9973C3886BC /* Pods-BicycleRecord.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -318,11 +599,15 @@
 				DEVELOPMENT_TEAM = 54R3763M9G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BicycleRecord/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "자전거";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "지도에서 내 위치를 확인하여 길찾기, 주변 편의시설 정보 표시 기능을 이용하기 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -332,7 +617,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -358,6 +643,95 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C15C0DBB28E21654008DACF4 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		C15C0DBE28E2168C008DACF4 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+		C15C0DC328E216A2008DACF4 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		C15C0DC628E216B5008DACF4 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		C15C0DC928E216C5008DACF4 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		C15C0DCC28E21757008DACF4 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C15C0DBC28E21654008DACF4 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C15C0DBB28E21654008DACF4 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		C15C0DBF28E2168C008DACF4 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C15C0DBE28E2168C008DACF4 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		C15C0DC128E2168C008DACF4 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C15C0DBE28E2168C008DACF4 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		C15C0DC428E216A2008DACF4 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C15C0DC328E216A2008DACF4 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		C15C0DC728E216B5008DACF4 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C15C0DC628E216B5008DACF4 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
+		C15C0DCA28E216C5008DACF4 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C15C0DC928E216C5008DACF4 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		C15C0DCD28E21757008DACF4 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C15C0DCC28E21757008DACF4 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C15C0D6028E21187008DACF4 /* Project object */;
 }
