@@ -43,7 +43,7 @@ class ViewController: BaseViewController {
                 }
                 self.group.leave()
             }
-    
+            
             group.enter()
             BicycleAPIManager.shared.callRequest(startIndex: 1001, endIndex: 2000) { loc, count in
                 for i in loc {
@@ -52,7 +52,7 @@ class ViewController: BaseViewController {
                 }
                 self.group.leave()
             }
-    
+            
             group.notify(queue: .main) {
                 BicycleAPIManager.shared.callRequest(startIndex: 2001, endIndex: UserDefaults.standard.integer(forKey: "cnt")) { loc, count in
                     for i in loc {
@@ -84,6 +84,8 @@ class ViewController: BaseViewController {
         mapView.setLayerGroup(NMF_LAYER_GROUP_BICYCLE, isEnabled: true)
         mapView.isIndoorMapEnabled = true
         
+        markerCluster()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(favoriteDataSend), name: Notification.Name("data"), object: nil)
     }
     
@@ -110,6 +112,21 @@ class ViewController: BaseViewController {
     func markerAdd(markers: [NMFMarker]) {
         for marker in markers {
             marker.mapView = mapView
+        }
+    }
+    
+    func markerCluster() {
+        for i in Marker.markers1 {
+            i.zIndex = -10
+        }
+        for i in Marker.markers2 {
+            i.zIndex = 0
+        }
+        for i in Marker.markers3 {
+            i.zIndex = 10
+        }
+        for i in Marker.markers {
+            i.isHideCollidedMarkers = true
         }
     }
     
@@ -153,6 +170,7 @@ class ViewController: BaseViewController {
         let cameraUpdate = NMFCameraUpdate(scrollTo: locationOverlay.location, zoomTo: 15)
         cameraUpdate.animation = .easeIn
         mapView.moveCamera(cameraUpdate)
+        markerCluster()
     }
     
     @objc func popupSearchButtonClicked() {
@@ -188,13 +206,13 @@ class ViewController: BaseViewController {
             self.popup.isHidden = false
             
             i.favorite ? self.popup.popupFavoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal) : self.popup.popupFavoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
-            self.show {
-                self.popup.lat = i.lat
-                self.popup.lng = i.lng
-                self.popup.popupText.text = i.title
-                self.popup.popupInfo.text = i.info
-                self.popup.id = i.id
-            }
+            
+            self.popup.lat = i.lat
+            self.popup.lng = i.lng
+            self.popup.popupText.text = i.title
+            self.popup.popupInfo.text = i.info
+            self.popup.id = i.id
+            self.show()
         }
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -215,13 +233,12 @@ class ViewController: BaseViewController {
         self.popup.isHidden = false
         
         value.favorite ? self.popup.popupFavoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal) : self.popup.popupFavoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
-        self.show {
-            self.popup.lat = value.lat
-            self.popup.lng = value.lng
-            self.popup.popupText.text = value.title
-            self.popup.popupInfo.text = value.info
-            self.popup.id = value.id
-        }
+        self.popup.lat = value.lat
+        self.popup.lng = value.lng
+        self.popup.popupText.text = value.title
+        self.popup.popupInfo.text = value.info
+        self.popup.id = value.id
+        self.show()
     }
 }
 
@@ -301,10 +318,9 @@ extension ViewController: CLLocationManagerDelegate {
         let southWest = NMGLatLng(lat: lat - lat/4000, lng: lng - lng/4000)
         let northEast = NMGLatLng(lat: lat + lat/4000, lng: lng + lng/4000)
         Bound.shared.bounds = NMGLatLngBounds(southWest: southWest, northEast: northEast)
-        //바운드에 맞게 카메라 움직이기
-        mapView.moveCamera(NMFCameraUpdate(fit: Bound.shared.bounds!))
         //바운드에 맞는 마커들 가져오기
         makeMarker(bound: Bound.shared.bounds!)
+        markerCluster()
     }
     
     //위치 가져오지 못한 경우 실행(권한 거부시)
@@ -333,6 +349,7 @@ extension ViewController: NMFMapViewCameraDelegate, NMFMapViewTouchDelegate {
         let northEast = NMGLatLng(lat: cameraPosition.lat + cameraPosition.lat/4000, lng: cameraPosition.lng + cameraPosition.lng/4000)
         Bound.shared.bounds = NMGLatLngBounds(southWest: southWest, northEast: northEast)
         makeMarker(bound: Bound.shared.bounds!)
+        markerCluster()
     }
     
     //지도 탭하면 실행
@@ -343,6 +360,12 @@ extension ViewController: NMFMapViewCameraDelegate, NMFMapViewTouchDelegate {
             $0.trailing.equalTo(-20)
             $0.height.width.equalTo(44)
         }
+        UIView.animate(
+            withDuration: 0.3,
+            delay: 0,
+            options: .curveEaseInOut,
+            animations: { self.view.layoutIfNeeded() }
+        )
     }
     
     //바운드에 맞게 마커 생성
@@ -360,17 +383,17 @@ extension ViewController: NMFMapViewCameraDelegate, NMFMapViewTouchDelegate {
                 
                 i.favorite ? self.popup.popupFavoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal) : self.popup.popupFavoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
                 
-                self.show {
-                    self.popup.lat = i.lat
-                    self.popup.lng = i.lng
-                    self.popup.popupText.text = i.title
-                    if i.info == "" {
-                        self.popup.popupInfo.text = "24시간"
-                    } else {
-                        self.popup.popupInfo.text = i.info
-                    }
-                    self.popup.id = i.id
+                self.popup.lat = i.lat
+                self.popup.lng = i.lng
+                self.popup.popupText.text = i.title
+                if i.info == "" {
+                    self.popup.popupInfo.text = "24시간"
+                } else {
+                    self.popup.popupInfo.text = i.info
                 }
+                self.popup.id = i.id
+                
+                self.show()
                 return true
             }
             
