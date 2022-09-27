@@ -75,13 +75,13 @@ class MainView: BaseView {
             
             if index == 1 {
                 cell.colorCircles.image = UIImage(systemName: "circle.fill")
-                cell.colorCircles.tintColor = Colors.first
+                cell.colorCircles.tintColor = Colors.green
             } else if index == 2 {
                 cell.colorCircles.image = UIImage(systemName: "circle.fill")
-                cell.colorCircles.tintColor = Colors.second
+                cell.colorCircles.tintColor = Colors.orange
             } else if index == 3 {
                 cell.colorCircles.image = UIImage(systemName: "circle.fill")
-                cell.colorCircles.tintColor = Colors.third
+                cell.colorCircles.tintColor = Colors.red
             }
         }
     }

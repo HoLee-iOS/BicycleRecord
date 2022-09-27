@@ -42,20 +42,21 @@ class CustomView: UIView {
         [iconImage, componentLabel, statusLabel].forEach { self.addSubview($0) }
         
         iconImage.snp.makeConstraints { make in
-            make.leading.top.trailing.equalTo(self)
-            make.height.equalTo(self).multipliedBy(0.5)
+            make.leading.top.equalTo(16)
+            make.trailing.equalTo(-16)
+            make.height.equalTo(self).multipliedBy(0.25)
         }
         
         componentLabel.snp.makeConstraints { make in
             make.leading.trailing.equalTo(self)
-            make.top.equalTo(iconImage.snp.bottom)
-            make.height.equalTo(self).multipliedBy(0.25)
+            make.top.equalTo(iconImage.snp.bottom).offset(8)
+            make.height.equalTo(self).multipliedBy(0.2)
         }
         
         statusLabel.snp.makeConstraints { make in
             make.leading.trailing.equalTo(self)
             make.top.equalTo(componentLabel.snp.bottom)
-            make.height.equalTo(self).multipliedBy(0.25)
+            make.height.equalTo(self).multipliedBy(0.2)            
         }
     }
     

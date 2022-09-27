@@ -8,7 +8,7 @@
 import Foundation
 
 struct Weather {
-    static var wea1: (String, String, String, Double)?
+    static var wea1: (String, String, Double)?
     static var wea2: Int?
     static var wea3: (Double, Double)?
     static var dong: String?

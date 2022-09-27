@@ -19,7 +19,7 @@ class WeatherView: BaseView {
     
     let currentTemp: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = .systemFont(ofSize: 35, weight: .semibold)
         label.textAlignment = .center
         label.textColor = .black
         return label
@@ -27,7 +27,7 @@ class WeatherView: BaseView {
     
     let todayLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 17, weight: .bold)
+        label.font = .systemFont(ofSize: 25, weight: .medium)
         label.textAlignment = .center
         label.textColor = .black
         return label
@@ -35,7 +35,7 @@ class WeatherView: BaseView {
     
     let infoBack: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1)
+        view.backgroundColor = Colors.grey
         view.layer.cornerRadius = 10
         return view
     }()
@@ -44,24 +44,24 @@ class WeatherView: BaseView {
         let view = UIStackView()
         view.distribution = .fillEqually
         view.axis = .horizontal
-        view.spacing = 8
+        view.spacing = 16
         return view
     }()
     
     lazy var mise: CustomView = {
-        makeCustom(icon: "sun.haze", component: "미세")
+        makeCustom(icon: "aqi.medium", component: "미세")
     }()
     
     lazy var choMise: CustomView = {
-        makeCustom(icon: "sun.dust", component: "초미세")
+        makeCustom(icon: "aqi.low", component: "초미세")
     }()
     
     lazy var rainy: CustomView = {
-        makeCustom(icon: "sun.max", component: "강수확률")
+        makeCustom(icon: "drop", component: "강수확률")
     }()
     
     lazy var windy: CustomView = {
-        makeCustom(icon: "drop", component: "바람")
+        makeCustom(icon: "wind", component: "바람")
     }()
     
     override func configure() {
@@ -78,35 +78,32 @@ class WeatherView: BaseView {
         weatherImage.snp.makeConstraints { make in
             make.centerX.equalTo(self)
             make.top.equalTo(self.safeAreaLayoutGuide).offset(20)
-            make.height.width.equalTo(100)
+            make.height.width.equalTo(150)
         }
         
         currentTemp.snp.makeConstraints { make in
             make.centerX.equalTo(self)
-            make.top.equalTo(weatherImage.snp.bottom).offset(20)
-            make.leading.equalTo(60)
-            make.trailing.equalTo(-60)
-            make.height.equalTo(44)
+            make.top.equalTo(weatherImage.snp.bottom).offset(8)
         }
         
         todayLabel.snp.makeConstraints { make in
             make.centerX.equalTo(self)
-            make.top.equalTo(currentTemp.snp.bottom).offset(20)
-            make.leading.equalTo(60)
-            make.trailing.equalTo(-60)
-            make.height.equalTo(44)
+            make.top.equalTo(currentTemp.snp.bottom).offset(16)
         }
         
         infoBack.snp.makeConstraints { make in
             make.centerX.equalTo(self)
             make.top.equalTo(todayLabel.snp.bottom).offset(50)
-            make.leading.equalTo(20)
-            make.trailing.equalTo(-20)
-            make.height.equalTo(200)
+            make.leading.equalTo(30)
+            make.trailing.equalTo(-30)
+            make.height.equalTo(180)
         }
         
         infoStackView.snp.makeConstraints { make in
-            make.edges.equalTo(infoBack).inset(20)
+            make.leading.equalTo(infoBack).inset(25)
+            make.trailing.equalTo(infoBack).inset(25)
+            make.top.equalTo(infoBack).inset(16)
+            make.bottom.equalTo(infoBack).inset(16)
         }
     }
     
@@ -114,11 +111,13 @@ class WeatherView: BaseView {
         let view = CustomView()
         view.iconImage.image = UIImage(systemName: icon)
         view.iconImage.tintColor = .black
+        
         view.componentLabel.text = component
+        view.componentLabel.font = .systemFont(ofSize: 12.5, weight: .semibold)
         view.componentLabel.textColor = .gray
         view.componentLabel.textAlignment = .center
-        view.componentLabel.font = .systemFont(ofSize: 12, weight: .bold)
-        view.statusLabel.font = .systemFont(ofSize: 12, weight: .bold)
+        
+        view.statusLabel.font = .systemFont(ofSize: 12.5, weight: .semibold)
         view.statusLabel.textColor = .black
         view.statusLabel.textAlignment = .center
         return view

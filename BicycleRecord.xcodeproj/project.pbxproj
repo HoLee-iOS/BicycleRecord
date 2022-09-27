@@ -136,9 +136,9 @@
 			children = (
 				C15C0D8228E21297008DACF4 /* Resources */,
 				C15C0D8128E2128C008DACF4 /* Sources */,
-				C1431D1728E3416D00197820 /* Main.storyboard */,
 				C15C0D6B28E21187008DACF4 /* AppDelegate.swift */,
 				C15C0D6D28E21187008DACF4 /* SceneDelegate.swift */,
+				C1431D1728E3416D00197820 /* Main.storyboard */,
 				C15C0D7428E21188008DACF4 /* Assets.xcassets */,
 				C15C0D7628E21188008DACF4 /* LaunchScreen.storyboard */,
 				C15C0D7928E21188008DACF4 /* Info.plist */,

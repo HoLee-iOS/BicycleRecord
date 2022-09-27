@@ -31,7 +31,7 @@ class PopUpView: BaseView {
     
     let popupLine: UIView = {
         let view = UIView()
-        view.backgroundColor = .black
+        view.backgroundColor = .lightGray
         return view
     }()
     
@@ -54,7 +54,7 @@ class PopUpView: BaseView {
     override func configure() {
         self.backgroundColor = .white
         self.layer.cornerRadius = 10
-        self.layer.borderWidth = 3
+        self.layer.borderWidth = 1
         
         [popupText, popupInfo, popupLine, popupFavoriteButton, popupSearchButton].forEach {
             self.addSubview($0)
@@ -78,7 +78,7 @@ class PopUpView: BaseView {
             make.top.equalTo(popupInfo.snp.bottom).offset(8)
             make.leading.equalTo(20)
             make.trailing.equalTo(-20)
-            make.height.equalTo(1)
+            make.height.equalTo(0.3)
         }
         
         popupFavoriteButton.snp.makeConstraints { make in

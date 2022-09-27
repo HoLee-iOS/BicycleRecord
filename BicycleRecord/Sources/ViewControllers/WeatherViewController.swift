@@ -67,12 +67,12 @@ class WeatherViewController: BaseViewController {
             
             group.enter()
             //날씨 종류, 현재 기온, 풍속에 대한 정보 호출
-            WeatherAPIManager.shared.callWeather(lat: loc.coordinate.latitude, lon: loc.coordinate.longitude) { main, icon, temp, windPower in
+            WeatherAPIManager.shared.callWeather(lat: loc.coordinate.latitude, lon: loc.coordinate.longitude) { main, temp, windPower in
                 
-                Weather.wea1 = (main, icon, temp, windPower)
+                Weather.wea1 = (main, temp, windPower)
                 
                 //날씨 아이콘
-                self.main.weatherImage.kf.setImage(with: URL(string: "https://openweathermap.org/img/wn/\(icon)@2x.png"))
+                self.main.weatherImage.image = UIImage(named: main)
                 //날씨 종류
                 self.typeSwitch(main)
                 //현재 기온
@@ -113,10 +113,8 @@ class WeatherViewController: BaseViewController {
                 guard let wea1 = Weather.wea1 else { return }
                 guard let wea2 = Weather.wea2 else { return }
                 guard let wea3 = Weather.wea3 else { return }
-
-                print("🍏", wea1, wea2, wea3)
                 
-                let item = UserWeather(main: wea1.0, icon: wea1.1, temp: wea1.2, windPower: wea1.3, rain: wea2, mise: wea3.0, choMise: wea3.1, time: Date())
+                let item = UserWeather(main: wea1.0, temp: wea1.1, windPower: wea1.2, rain: wea2, mise: wea3.0, choMise: wea3.1, time: Date())
                 WeatherRepository.shared.saveRealm(item: item)
             }
         }
@@ -124,8 +122,9 @@ class WeatherViewController: BaseViewController {
     
     func setValue() {
         guard let task = WeatherRepository.shared.tasks.first else { return }
-        main.weatherImage.kf.setImage(with: URL(string: "https://openweathermap.org/img/wn/\(task.icon)@2x.png"))
-        main.currentTemp.text = task.temp
+        print(task.main)
+        main.weatherImage.image = UIImage(named: task.main)
+        main.currentTemp.text = "\(task.temp)º"
         typeSwitch(task.main)
         miseSwitch(task.mise)
         choMiseSwitch(task.choMise)

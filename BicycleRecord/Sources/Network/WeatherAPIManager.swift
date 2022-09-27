@@ -17,7 +17,7 @@ class WeatherAPIManager {
     
     private init() {}
     
-    func callWeather(lat: CLLocationDegrees, lon: CLLocationDegrees, completion: @escaping ((String, String, String, Double)->())) {
+    func callWeather(lat: CLLocationDegrees, lon: CLLocationDegrees, completion: @escaping ((String, String, Double)->())) {
         let url = "https://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=\(APIKey.weather)&lang=kr"
         
         AF.request(url, method: .get).validate().responseData { response in
@@ -30,14 +30,12 @@ class WeatherAPIManager {
                 
                 //날씨 종류
                 let main = json["weather"][0]["main"].stringValue
-                //날씨 아이콘
-                let icon = json["weather"][0]["icon"].stringValue
                 //현재 기온
                 let temp = String(format: "%.1f", (json["main"]["temp"].doubleValue - 273.15))
                 //풍속
                 let windPower = json["wind"]["speed"].doubleValue
                 
-                completion(main, icon, temp, windPower)
+                completion(main, temp, windPower)
                 
                 //실패케이스에 대한 설정
             case .failure(let error):
