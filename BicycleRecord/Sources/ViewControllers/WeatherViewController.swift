@@ -20,10 +20,6 @@ class WeatherViewController: BaseViewController {
         return loc
     }()
     
-    var wea1: (String, String, String, Double)?
-    var wea2: Int?
-    var wea3: (Double, Double)?
-    
     let group = DispatchGroup()
     
     override func loadView() {
@@ -36,6 +32,7 @@ class WeatherViewController: BaseViewController {
         view.backgroundColor = .white
         
         WeatherRepository.shared.fetch()
+        setValue()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,16 +40,24 @@ class WeatherViewController: BaseViewController {
         location.startUpdatingLocation()
         guard let loc = location.location else { return }
         location.stopUpdatingLocation()
+        print(loc)
         
 
         //내 위치 네비게이션 바에 표시
         loc.fetchCityAndCountry { city, locality, error in
             guard let city = city, let locality = locality, error == nil else { return }
             self.navigationItem.title = "\(city), \(locality)"
+            Weather.dong = locality
         }
-
-        //앱이 처음 실행될때 날씨정보 값이 없거나 3시간에 한번씩 날씨정보 업데이트
-        if WeatherRepository.shared.tasks.isEmpty || Date() >= WeatherRepository.shared.tasks[0].time + 10800 {
+        
+        
+        //앱이 처음 실행될때 날씨정보 값이 없거나
+        //업데이트후 3시간이 지났거나
+        //현 위치가 동 단위로 바뀔 경우 업데이트
+        if WeatherRepository.shared.tasks.isEmpty || Date() >= WeatherRepository.shared.tasks[0].time + 10800 || Weather.dong != UserDefaults.standard.string(forKey: "dong") {
+            
+            //현 위치를 동 단위로 저장
+            UserDefaults.standard.set(Weather.dong, forKey: "dong")
             
             //기존 데이터가 있을 경우
             if !WeatherRepository.shared.tasks.isEmpty {
@@ -64,7 +69,7 @@ class WeatherViewController: BaseViewController {
             //날씨 종류, 현재 기온, 풍속에 대한 정보 호출
             WeatherAPIManager.shared.callWeather(lat: loc.coordinate.latitude, lon: loc.coordinate.longitude) { main, icon, temp, windPower in
                 
-                self.wea1 = (main, icon, temp, windPower)
+                Weather.wea1 = (main, icon, temp, windPower)
                 
                 //날씨 아이콘
                 self.main.weatherImage.kf.setImage(with: URL(string: "https://openweathermap.org/img/wn/\(icon)@2x.png"))
@@ -82,7 +87,7 @@ class WeatherViewController: BaseViewController {
             //강수 확률에 대한 정보 호출
             WeatherAPIManager.shared.callDaily(lat: loc.coordinate.latitude, lon: loc.coordinate.longitude) { pop in
                 
-                self.wea2 = pop
+                Weather.wea2 = pop
                 
                 //강수 확률
                 self.main.rainy.statusLabel.text = "\(pop)%"
@@ -93,7 +98,7 @@ class WeatherViewController: BaseViewController {
             //미세먼지, 초미세먼지에 대한 정보 호출
             WeatherAPIManager.shared.callAir(lat: loc.coordinate.latitude, lon: loc.coordinate.longitude) { mise, choMise in
                 
-                self.wea3 = (mise, choMise)
+                Weather.wea3 = (mise, choMise)
                 
                 //미세먼지 분기처리
                 self.miseSwitch(mise)
@@ -105,14 +110,27 @@ class WeatherViewController: BaseViewController {
             
             group.notify(queue: .main) {
                 
-                guard let wea1 = self.wea1 else { return }
-                guard let wea2 = self.wea2 else { return }
-                guard let wea3 = self.wea3 else { return }
+                guard let wea1 = Weather.wea1 else { return }
+                guard let wea2 = Weather.wea2 else { return }
+                guard let wea3 = Weather.wea3 else { return }
 
+                print("🍏", wea1, wea2, wea3)
+                
                 let item = UserWeather(main: wea1.0, icon: wea1.1, temp: wea1.2, windPower: wea1.3, rain: wea2, mise: wea3.0, choMise: wea3.1, time: Date())
                 WeatherRepository.shared.saveRealm(item: item)
             }
         }
+    }
+    
+    func setValue() {
+        guard let task = WeatherRepository.shared.tasks.first else { return }
+        main.weatherImage.kf.setImage(with: URL(string: "https://openweathermap.org/img/wn/\(task.icon)@2x.png"))
+        main.currentTemp.text = task.temp
+        typeSwitch(task.main)
+        miseSwitch(task.mise)
+        choMiseSwitch(task.choMise)
+        main.rainy.statusLabel.text = "\(task.rain)%"
+        main.windy.statusLabel.text = "\(task.windPower)m/s"
     }
 }
 

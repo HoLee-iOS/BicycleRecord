@@ -7,6 +7,9 @@
 
 import UIKit
 
+import Kingfisher
+import RealmSwift
+
 class WeatherView: BaseView {
     
     let weatherImage: UIImageView = {
@@ -25,7 +28,6 @@ class WeatherView: BaseView {
     let todayLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17, weight: .bold)
-        label.text = "라이딩하기 좋은 날씨네요"
         label.textAlignment = .center
         label.textColor = .black
         return label

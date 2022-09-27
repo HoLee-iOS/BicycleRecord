@@ -10,6 +10,7 @@
 		C1431D1528E33D1600197820 /* DropCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1431D1328E33D1600197820 /* DropCell.swift */; };
 		C1431D1628E33D1600197820 /* DropCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1431D1428E33D1600197820 /* DropCell.xib */; };
 		C1431D1828E3416D00197820 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1431D1728E3416D00197820 /* Main.storyboard */; };
+		C1431D1A28E346A600197820 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1431D1928E346A600197820 /* Weather.swift */; };
 		C15C0D6C28E21187008DACF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0D6B28E21187008DACF4 /* AppDelegate.swift */; };
 		C15C0D6E28E21187008DACF4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0D6D28E21187008DACF4 /* SceneDelegate.swift */; };
 		C15C0D7528E21188008DACF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C15C0D7428E21188008DACF4 /* Assets.xcassets */; };
@@ -57,6 +58,7 @@
 		C1431D1328E33D1600197820 /* DropCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropCell.swift; sourceTree = "<group>"; };
 		C1431D1428E33D1600197820 /* DropCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropCell.xib; sourceTree = "<group>"; };
 		C1431D1728E3416D00197820 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		C1431D1928E346A600197820 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		C15C0D6828E21187008DACF4 /* BicycleRecord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BicycleRecord.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C15C0D6B28E21187008DACF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C15C0D6D28E21187008DACF4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 		C15C0D8828E212E4008DACF4 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				C1431D1928E346A600197820 /* Weather.swift */,
 				C15C0DD628E21BFC008DACF4 /* Marker.swift */,
 				C15C0DB728E214D4008DACF4 /* Bound.swift */,
 				C15C0DB528E214CD008DACF4 /* CustomView.swift */,
@@ -416,6 +419,7 @@
 				C15C0D9C28E21425008DACF4 /* FavoriteViewController.swift in Sources */,
 				C15C0D9A28E21414008DACF4 /* MapViewController.swift in Sources */,
 				C15C0DA028E2143A008DACF4 /* SearchViewController.swift in Sources */,
+				C1431D1A28E346A600197820 /* Weather.swift in Sources */,
 				C15C0DB628E214CD008DACF4 /* CustomView.swift in Sources */,
 				C15C0DD728E21BFC008DACF4 /* Marker.swift in Sources */,
 				C1431D1528E33D1600197820 /* DropCell.swift in Sources */,

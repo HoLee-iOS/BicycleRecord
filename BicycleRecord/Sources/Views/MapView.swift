@@ -20,9 +20,9 @@ class MainView: BaseView {
         let button = UIButton()
         button.setTitle("모든 편의시설", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
+        button.titleLabel?.font = .systemFont(ofSize: 14.5, weight: .medium)
         button.backgroundColor = .white
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = 15
         //shadow 설정
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.5
@@ -45,7 +45,7 @@ class MainView: BaseView {
         drop.width = 120
         drop.dataSource = ["모든 편의시설", "공기주입기", "자전거 거치대", "자전거 수리시설"]
         drop.anchorView = downButton
-        drop.cornerRadius = 10
+        drop.cornerRadius = 15
         drop.textFont = .systemFont(ofSize: 12)
         //shadow 설정
         drop.layer.shadowColor = UIColor.black.cgColor
@@ -95,6 +95,7 @@ class MainView: BaseView {
             make.centerX.equalTo(mapview)
             make.top.equalTo(mapview).inset(20)
             make.width.equalTo(120)
+            make.height.equalTo(35)
         }
         
         locationButton.snp.makeConstraints { make in
