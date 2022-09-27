@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C1431D1528E33D1600197820 /* DropCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1431D1328E33D1600197820 /* DropCell.swift */; };
+		C1431D1628E33D1600197820 /* DropCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1431D1428E33D1600197820 /* DropCell.xib */; };
+		C1431D1828E3416D00197820 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1431D1728E3416D00197820 /* Main.storyboard */; };
 		C15C0D6C28E21187008DACF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0D6B28E21187008DACF4 /* AppDelegate.swift */; };
 		C15C0D6E28E21187008DACF4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0D6D28E21187008DACF4 /* SceneDelegate.swift */; };
 		C15C0D7528E21188008DACF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C15C0D7428E21188008DACF4 /* Assets.xcassets */; };
@@ -51,6 +54,9 @@
 		2302C2CCA80AA9973C3886BC /* Pods-BicycleRecord.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BicycleRecord.release.xcconfig"; path = "Target Support Files/Pods-BicycleRecord/Pods-BicycleRecord.release.xcconfig"; sourceTree = "<group>"; };
 		3BA5294F511DE2C17A7D1CB3 /* Pods_BicycleRecord.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BicycleRecord.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A58EC6828C7572A5296FC14A /* Pods-BicycleRecord.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BicycleRecord.debug.xcconfig"; path = "Target Support Files/Pods-BicycleRecord/Pods-BicycleRecord.debug.xcconfig"; sourceTree = "<group>"; };
+		C1431D1328E33D1600197820 /* DropCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropCell.swift; sourceTree = "<group>"; };
+		C1431D1428E33D1600197820 /* DropCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropCell.xib; sourceTree = "<group>"; };
+		C1431D1728E3416D00197820 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		C15C0D6828E21187008DACF4 /* BicycleRecord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BicycleRecord.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C15C0D6B28E21187008DACF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C15C0D6D28E21187008DACF4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +134,7 @@
 			children = (
 				C15C0D8228E21297008DACF4 /* Resources */,
 				C15C0D8128E2128C008DACF4 /* Sources */,
+				C1431D1728E3416D00197820 /* Main.storyboard */,
 				C15C0D6B28E21187008DACF4 /* AppDelegate.swift */,
 				C15C0D6D28E21187008DACF4 /* SceneDelegate.swift */,
 				C15C0D7428E21188008DACF4 /* Assets.xcassets */,
@@ -165,6 +172,8 @@
 			children = (
 				C15C0D8D28E21396008DACF4 /* FavoriteTableViewCell.swift */,
 				C15C0D8F28E213A2008DACF4 /* SearchTableViewCell.swift */,
+				C1431D1328E33D1600197820 /* DropCell.swift */,
+				C1431D1428E33D1600197820 /* DropCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -343,7 +352,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C15C0D8028E2126D008DACF4 /* .gitignore in Resources */,
+				C1431D1828E3416D00197820 /* Main.storyboard in Resources */,
 				C15C0D7828E21188008DACF4 /* LaunchScreen.storyboard in Resources */,
+				C1431D1628E33D1600197820 /* DropCell.xib in Resources */,
 				C15C0D7528E21188008DACF4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,6 +418,7 @@
 				C15C0DA028E2143A008DACF4 /* SearchViewController.swift in Sources */,
 				C15C0DB628E214CD008DACF4 /* CustomView.swift in Sources */,
 				C15C0DD728E21BFC008DACF4 /* Marker.swift in Sources */,
+				C1431D1528E33D1600197820 /* DropCell.swift in Sources */,
 				C15C0DDA28E2259C008DACF4 /* Colors.swift in Sources */,
 				C15C0DB028E214AE008DACF4 /* BaseTableViewCell.swift in Sources */,
 				C15C0DA828E2147E008DACF4 /* MapRealm.swift in Sources */,
@@ -570,6 +582,7 @@
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "지도에서 내 위치를 확인하여 길찾기, 주변 편의시설 정보 표시 기능을 이용하기 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -603,6 +616,7 @@
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "지도에서 내 위치를 확인하여 길찾기, 주변 편의시설 정보 표시 기능을 이용하기 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
