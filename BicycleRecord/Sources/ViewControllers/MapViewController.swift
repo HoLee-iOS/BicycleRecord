@@ -399,30 +399,30 @@ extension ViewController: NMFMapViewCameraDelegate, NMFMapViewTouchDelegate {
             
             marker.touchHandler = markerHandler
             
+            marker.width = 44
+            marker.height = 44
+            
             if i.title.contains("공기") || i.title.contains("주입기") {
-                marker.iconImage = NMF_MARKER_IMAGE_BLACK
-                marker.iconTintColor = Colors.first
+                marker.iconImage = NMFOverlayImage(name: "loc1")
                 Marker.markers1.append(marker)
             } else if i.title.contains("주차") || i.title.contains("거치") || i.title.contains("보관") {
-                marker.iconImage = NMF_MARKER_IMAGE_BLACK
-                marker.iconTintColor = Colors.second
+                marker.iconImage = NMFOverlayImage(name: "loc2")
                 Marker.markers2.append(marker)
             } else {
-                marker.iconImage = NMF_MARKER_IMAGE_BLACK
-                marker.iconTintColor = Colors.third
+                marker.iconImage = NMFOverlayImage(name: "loc3")
                 Marker.markers3.append(marker)
             }
             Marker.markers.append(marker)
         }
         
         DispatchQueue.main.async {
-            if self.main.downButton.currentTitle == " 공기주입기 " {
+            if self.main.downButton.currentTitle == "공기주입기" {
                 self.markerDelete()
                 self.markerAdd(markers: Marker.markers1)
-            } else if self.main.downButton.currentTitle == " 자전거 거치대 " {
+            } else if self.main.downButton.currentTitle == "자전거 거치대" {
                 self.markerDelete()
                 self.markerAdd(markers: Marker.markers2)
-            } else if self.main.downButton.currentTitle == " 자전거 수리시설 " {
+            } else if self.main.downButton.currentTitle == "자전거 수리시설" {
                 self.markerDelete()
                 self.markerAdd(markers: Marker.markers3)
             } else {
