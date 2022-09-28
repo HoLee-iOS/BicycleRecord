@@ -11,7 +11,7 @@ import CoreLocation
 import Kingfisher
 
 class WeatherViewController: BaseViewController {
-    
+
     let main = WeatherView()
     
     let location: CLLocationManager = {

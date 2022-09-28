@@ -32,6 +32,8 @@ class ViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        NotificationCenter.default.addObserver(self, selector: #selector(updateNetwork), name: Notification.Name("network"), object: nil)
+        
         //앱 초기설정 및 Realm 업데이트 시 실행
         if MapRepository.shared.tasks.isEmpty || MapRepository.shared.tasks.count > UserDefaults.standard.integer(forKey: "cnt") {
             group.enter()
@@ -148,6 +150,10 @@ class ViewController: BaseViewController {
             animations: { self.view.layoutIfNeeded() },
             completion: { _ in completion() }
         )
+    }
+    
+    @objc func updateNetwork(_ notification: Notification) {
+        mapView.authorize()
     }
     
     @objc func downButtonClicked() {

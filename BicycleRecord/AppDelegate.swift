@@ -7,12 +7,19 @@
 
 import UIKit
 
-@UIApplicationMain
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        //앱 실행시 네트워크 상태 확인
+        NetworkMonitor.shared.startMonitoring()
+        
+        if !NetworkMonitor.shared.isConnected {
+            self.window?.rootViewController?.present(NetworkMonitor.shared.showAlert(), animated: true)
+        }
         
         window = UIWindow()
         window?.rootViewController = TabBarViewController()

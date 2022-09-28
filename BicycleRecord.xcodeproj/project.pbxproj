@@ -48,6 +48,7 @@
 		C15C0DCE28E21757008DACF4 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = C15C0DCD28E21757008DACF4 /* SwiftyJSON */; };
 		C15C0DD728E21BFC008DACF4 /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0DD628E21BFC008DACF4 /* Marker.swift */; };
 		C15C0DDA28E2259C008DACF4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0DD928E2259C008DACF4 /* Colors.swift */; };
+		C1D330E128E3EEF400092E4E /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D330E028E3EEF400092E4E /* NetworkMonitor.swift */; };
 		C241A9FEB709B78CBED178CC /* Pods_BicycleRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA5294F511DE2C17A7D1CB3 /* Pods_BicycleRecord.framework */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +92,7 @@
 		C15C0DB928E214E9008DACF4 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		C15C0DD628E21BFC008DACF4 /* Marker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
 		C15C0DD928E2259C008DACF4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		C1D330E028E3EEF400092E4E /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,8 +215,8 @@
 		C15C0D8728E212CA008DACF4 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				C15C0DA328E21460008DACF4 /* BicycleAPIManager.swift */,
-				C15C0DA528E21470008DACF4 /* WeatherAPIManager.swift */,
+				C1D330E028E3EEF400092E4E /* NetworkMonitor.swift */,
+				C1D330E228E3F0A500092E4E /* APIManager */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -258,6 +260,15 @@
 				C15C0DD928E2259C008DACF4 /* Colors.swift */,
 			);
 			path = Colors;
+			sourceTree = "<group>";
+		};
+		C1D330E228E3F0A500092E4E /* APIManager */ = {
+			isa = PBXGroup;
+			children = (
+				C15C0DA328E21460008DACF4 /* BicycleAPIManager.swift */,
+				C15C0DA528E21470008DACF4 /* WeatherAPIManager.swift */,
+			);
+			path = APIManager;
 			sourceTree = "<group>";
 		};
 		DFDB191770767D5E4254AB33 /* Pods */ = {
@@ -418,6 +429,7 @@
 				C15C0D6E28E21187008DACF4 /* SceneDelegate.swift in Sources */,
 				C15C0D9C28E21425008DACF4 /* FavoriteViewController.swift in Sources */,
 				C15C0D9A28E21414008DACF4 /* MapViewController.swift in Sources */,
+				C1D330E128E3EEF400092E4E /* NetworkMonitor.swift in Sources */,
 				C15C0DA028E2143A008DACF4 /* SearchViewController.swift in Sources */,
 				C1431D1A28E346A600197820 /* Weather.swift in Sources */,
 				C15C0DB628E214CD008DACF4 /* CustomView.swift in Sources */,
@@ -582,7 +594,7 @@
 				DEVELOPMENT_TEAM = 54R3763M9G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BicycleRecord/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "자전거";
+				INFOPLIST_KEY_CFBundleDisplayName = Ricle;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "지도에서 내 위치를 확인하여 길찾기, 주변 편의시설 정보 표시 기능을 이용하기 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -616,7 +628,7 @@
 				DEVELOPMENT_TEAM = 54R3763M9G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BicycleRecord/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "자전거";
+				INFOPLIST_KEY_CFBundleDisplayName = Ricle;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "지도에서 내 위치를 확인하여 길찾기, 주변 편의시설 정보 표시 기능을 이용하기 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
