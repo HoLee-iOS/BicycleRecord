@@ -50,11 +50,10 @@ class WeatherViewController: BaseViewController {
             Weather.dong = locality
         }
         
-        
         //앱이 처음 실행될때 날씨정보 값이 없거나
         //업데이트후 3시간이 지났거나
         //현 위치가 동 단위로 바뀔 경우 업데이트
-        if WeatherRepository.shared.tasks.isEmpty || Date() >= WeatherRepository.shared.tasks[0].time + 10800 || Weather.dong != UserDefaults.standard.string(forKey: "dong") {
+        if WeatherRepository.shared.tasks.isEmpty || Date() > WeatherRepository.shared.tasks[0].time + 10800 || Weather.dong != UserDefaults.standard.string(forKey: "dong") {
             
             //현 위치를 동 단위로 저장
             UserDefaults.standard.set(Weather.dong, forKey: "dong")
