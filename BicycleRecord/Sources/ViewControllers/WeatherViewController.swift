@@ -40,8 +40,6 @@ class WeatherViewController: BaseViewController {
         location.startUpdatingLocation()
         guard let loc = location.location else { return }
         location.stopUpdatingLocation()
-        print(loc)
-        
 
         //내 위치 네비게이션 바에 표시
         loc.fetchCityAndCountry { city, locality, error in
@@ -70,8 +68,9 @@ class WeatherViewController: BaseViewController {
                 
                 Weather.wea1 = (main, temp, windPower)
                 
+                print("🍏", main)
                 //날씨 아이콘
-                self.main.weatherImage.image = UIImage(named: main)
+                self.main.weatherImage.image = UIImage(named: self.iconType(main))
                 //날씨 종류
                 self.typeSwitch(main)
                 //현재 기온
@@ -121,8 +120,7 @@ class WeatherViewController: BaseViewController {
     
     func setValue() {
         guard let task = WeatherRepository.shared.tasks.first else { return }
-        print(task.main)
-        main.weatherImage.image = UIImage(named: task.main)
+        main.weatherImage.image = UIImage(named: iconType(task.main))
         main.currentTemp.text = "\(task.temp)º"
         typeSwitch(task.main)
         miseSwitch(task.mise)
@@ -163,12 +161,25 @@ extension WeatherViewController {
         switch type {
         case "Clear": self.main.todayLabel.text = "라이딩하기 너무 좋은 날이에요"
         case "Clouds": self.main.todayLabel.text = "라이딩하기 너무 좋은 날이에요"
-        case "Atmosphere": self.main.todayLabel.text = "라이딩 하실 때 잘 살피며 조심하셔야 하는 날이에요"
+        case "Atmosphere": self.main.todayLabel.text = "라이딩 하실 때 조심하셔야 하는 날이에요"
         case "Snow": self.main.todayLabel.text = "길이 많이 미끄러울 수 있으니 주의해야해요"
         case "Rain": self.main.todayLabel.text = "길이 많이 미끄러울 수 있으니 주의해야해요"
         case "Drizzle": self.main.todayLabel.text = "길이 많이 미끄러울 수 있으니 주의해야해요"
         case "Thunderstorm": self.main.todayLabel.text = "오늘 라이딩은 위험해요"
-        default: print("에러")
+        default: self.main.todayLabel.text = "라이딩 하실 때 조심하셔야 하는 날이에요"
+        }
+    }
+    
+    func iconType(_ type: String) -> String {
+        switch type {
+        case "Clear": return "Clear"
+        case "Clouds": return "Clouds"
+        case "Mist": return "Atmosphere"
+        case "Snow": return "Snow"
+        case "Rain": return "Rain"
+        case "Drizzle": return "Drizzle"
+        case "Thunderstorm": return "Thunderstorm"
+        default: return "Atmosphere"
         }
     }
 }

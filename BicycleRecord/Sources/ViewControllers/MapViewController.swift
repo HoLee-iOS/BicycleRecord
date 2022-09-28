@@ -20,11 +20,17 @@ class ViewController: BaseViewController {
     
     let popup = PopUpView()
     
-    var locationManager = CLLocationManager()
+    var locationManager: CLLocationManager = {
+        let loc = CLLocationManager()
+        loc.distanceFilter = 10000
+        return loc
+    }()
     
     lazy var mapView = main.mapview
     
     let group = DispatchGroup()
+    
+    var mark: NMFMarker?
     
     override func loadView() {
         self.view = main
@@ -39,27 +45,51 @@ class ViewController: BaseViewController {
             group.enter()
             BicycleAPIManager.shared.callRequest(startIndex: 1, endIndex: 1000) { loc, count  in
                 UserDefaults.standard.set(count, forKey: "cnt")
-                for i in loc {
-                    let task = UserMap(lat: i.0, lng: i.1, title: i.2, info: i.3, id: i.4, address: i.5)
-                    MapRepository.shared.saveRealm(item: task)
+                loc.forEach {
+                    if $0.2.contains("공기") || $0.2.contains("주입기") {
+                        let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 0)
+                        MapRepository.shared.saveRealm(item: task)
+                    } else if $0.2.contains("주차") || $0.2.contains("거치") || $0.2.contains("보관") {
+                        let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 1)
+                        MapRepository.shared.saveRealm(item: task)
+                    } else {
+                        let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 2)
+                        MapRepository.shared.saveRealm(item: task)
+                    }
                 }
                 self.group.leave()
             }
             
             group.enter()
             BicycleAPIManager.shared.callRequest(startIndex: 1001, endIndex: 2000) { loc, count in
-                for i in loc {
-                    let task = UserMap(lat: i.0, lng: i.1, title: i.2, info: i.3, id: i.4, address: i.5)
-                    MapRepository.shared.saveRealm(item: task)
+                loc.forEach {
+                    if $0.2.contains("공기") || $0.2.contains("주입기") {
+                        let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 0)
+                        MapRepository.shared.saveRealm(item: task)
+                    } else if $0.2.contains("주차") || $0.2.contains("거치") || $0.2.contains("보관") {
+                        let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 1)
+                        MapRepository.shared.saveRealm(item: task)
+                    } else {
+                        let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 2)
+                        MapRepository.shared.saveRealm(item: task)
+                    }
                 }
                 self.group.leave()
             }
             
             group.notify(queue: .main) {
                 BicycleAPIManager.shared.callRequest(startIndex: 2001, endIndex: UserDefaults.standard.integer(forKey: "cnt")) { loc, count in
-                    for i in loc {
-                        let task = UserMap(lat: i.0, lng: i.1, title: i.2, info: i.3, id: i.4, address: i.5)
-                        MapRepository.shared.saveRealm(item: task)
+                    loc.forEach {
+                        if $0.2.contains("공기") || $0.2.contains("주입기") {
+                            let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 0)
+                            MapRepository.shared.saveRealm(item: task)
+                        } else if $0.2.contains("주차") || $0.2.contains("거치") || $0.2.contains("보관") {
+                            let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 1)
+                            MapRepository.shared.saveRealm(item: task)
+                        } else {
+                            let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 2)
+                            MapRepository.shared.saveRealm(item: task)
+                        }
                     }
                 }
             }
@@ -76,6 +106,7 @@ class ViewController: BaseViewController {
         locationManager.requestWhenInUseAuthorization()
         mapView.touchDelegate = self
         mapView.addCameraDelegate(delegate: self)
+        mapView.addOptionDelegate(delegate: self)
         
         view.backgroundColor = .white
         
@@ -106,29 +137,32 @@ class ViewController: BaseViewController {
     }
     
     func markerDelete() {
-        for marker in Marker.markers {
-            marker.mapView = nil
+        Marker.markers.forEach {
+            $0.mapView = nil
         }
     }
     
-    func markerAdd(markers: [NMFMarker]) {
-        for marker in markers {
-            marker.mapView = mapView
+    func markerAdd(_ type: Int) {
+        if type == 3 {
+            Marker.markers.forEach {
+                $0.mapView = mapView
+            }
+        }
+        Marker.markers.filter { $0.userInfo["type"] as! Int == type }.forEach {
+            $0.mapView = mapView
         }
     }
     
     func markerCluster() {
-        for i in Marker.markers1 {
-            i.zIndex = -10
-        }
-        for i in Marker.markers2 {
-            i.zIndex = 0
-        }
-        for i in Marker.markers3 {
-            i.zIndex = 10
-        }
-        for i in Marker.markers {
-            i.isHideCollidedMarkers = true
+        Marker.markers.forEach {
+            if $0.userInfo["type"] as! Int == 0 {
+                $0.zIndex = -10
+            } else if $0.userInfo["type"] as! Int == 1 {
+                $0.zIndex = 0
+            } else {
+                $0.zIndex = 10
+            }
+            $0.isHideCollidedMarkers = true
         }
     }
     
@@ -136,7 +170,7 @@ class ViewController: BaseViewController {
         self.popup.snp.makeConstraints {
             $0.leading.equalTo(self.view.safeAreaLayoutGuide).offset(20)
             $0.trailing.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-20)
-            $0.height.equalTo(self.view).multipliedBy(0.2)
+            $0.height.equalTo(self.view.safeAreaLayoutGuide).multipliedBy(0.21)
         }
         self.main.locationButton.snp.remakeConstraints {
             $0.bottom.equalTo(popup.snp.top).offset(-20)
@@ -238,11 +272,32 @@ class ViewController: BaseViewController {
         self.view.addSubview(self.popup)
         self.popup.isHidden = false
         
+        if value.type == 0 {
+            self.popup.layer.borderColor = Colors.green.cgColor
+            self.popup.popupLine.backgroundColor = Colors.green
+            self.popup.popupFavoriteButton.tintColor = Colors.green
+            self.popup.popupIcon.tintColor = Colors.green
+        } else if value.type == 1 {
+            self.popup.layer.borderColor = Colors.orange.cgColor
+            self.popup.popupLine.backgroundColor = Colors.orange
+            self.popup.popupFavoriteButton.tintColor = Colors.orange
+            self.popup.popupIcon.tintColor = Colors.orange
+        } else {
+            self.popup.layer.borderColor = Colors.red.cgColor
+            self.popup.popupLine.backgroundColor = Colors.red
+            self.popup.popupFavoriteButton.tintColor = Colors.red
+            self.popup.popupIcon.tintColor = Colors.red
+        }
+        
         value.favorite ? self.popup.popupFavoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal) : self.popup.popupFavoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
         self.popup.lat = value.lat
         self.popup.lng = value.lng
         self.popup.popupText.text = value.title
-        self.popup.popupInfo.text = value.info
+        if value.info == "" {
+            self.popup.popupInfo.text = "24시간"
+        } else {
+            self.popup.popupInfo.text = value.info
+        }
         self.popup.id = value.id
         self.show()
     }
@@ -308,8 +363,6 @@ extension ViewController: CLLocationManagerDelegate {
     //위치를 성공적으로 가지고 온 경우 실행
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        //위치 업데이트가 되려면 하려면 장치가 최소 몇 미터 이동해야하는지
-        locationManager.distanceFilter = 1000
         //내위치 가져오기
         locationManager.startUpdatingLocation()
         guard let lat = locationManager.location?.coordinate.latitude else { return }
@@ -341,22 +394,40 @@ extension ViewController: CLLocationManagerDelegate {
     }
 }
 
-extension ViewController: NMFMapViewCameraDelegate, NMFMapViewTouchDelegate {
+extension ViewController: NMFMapViewCameraDelegate, NMFMapViewTouchDelegate, NMFMapViewOptionDelegate {
+    
+    //지도 옵션 변경시 실행
+    func mapViewOptionChanged(_ mapView: NMFMapView) {
+        print(#function)
+    }
     
     //지도 움직일때마다 자동으로 실행
     func mapViewCameraIdle(_ mapView: NMFMapView) {
+        
         markerDelete()
         Marker.markers.removeAll()
-        Marker.markers1.removeAll()
-        Marker.markers2.removeAll()
-        Marker.markers3.removeAll()
         let cameraPosition = mapView.cameraPosition.target
         let southWest = NMGLatLng(lat: cameraPosition.lat - cameraPosition.lat/4000, lng: cameraPosition.lng - cameraPosition.lng/4000)
         let northEast = NMGLatLng(lat: cameraPosition.lat + cameraPosition.lat/4000, lng: cameraPosition.lng + cameraPosition.lng/4000)
         Bound.shared.bounds = NMGLatLngBounds(southWest: southWest, northEast: northEast)
         makeMarker(bound: Bound.shared.bounds!)
         markerCluster()
+        
+        if let marker = self.mark {
+            print("💚", marker.position)
+            print("🧡", self.popup.lat ?? 0, self.popup.lng ?? 0)
+            if marker.position == NMGLatLng(lat: self.popup.lat ?? 0, lng: self.popup.lng ?? 0) {
+                if marker.userInfo["type"] as! Int == 0 {
+                    marker.iconImage = NMFOverlayImage(name: "loc4")
+                } else if marker.userInfo["type"] as! Int == 1 {
+                    marker.iconImage = NMFOverlayImage(name: "loc5")
+                } else {
+                    marker.iconImage = NMFOverlayImage(name: "loc6")
+                }
+            }
+        }
     }
+    
     
     //지도 탭하면 실행
     func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
@@ -372,6 +443,15 @@ extension ViewController: NMFMapViewCameraDelegate, NMFMapViewTouchDelegate {
             options: .curveEaseInOut,
             animations: { self.view.layoutIfNeeded() }
         )
+        if let marker = self.mark {
+            if marker.userInfo["type"] as! Int == 0 {
+                marker.iconImage = NMFOverlayImage(name: "loc1")
+            } else if marker.userInfo["type"] as! Int == 1 {
+                marker.iconImage = NMFOverlayImage(name: "loc2")
+            } else {
+                marker.iconImage = NMFOverlayImage(name: "loc3")
+            }
+        }
     }
     
     //바운드에 맞게 마커 생성
@@ -382,8 +462,32 @@ extension ViewController: NMFMapViewCameraDelegate, NMFMapViewTouchDelegate {
             if bound.hasPoint(NMGLatLng(lat: i.lat, lng: i.lng)) {
                 marker.position = NMGLatLng(lat: i.lat, lng: i.lng)
             }
-            let markerHandler = { [weak self] (overlay: NMFOverlay) -> Bool in
+            
+            marker.userInfo = ["type":i.type]
+            
+            marker.touchHandler = { [weak self] (overlay: NMFOverlay) -> Bool in
                 guard let self = self else { return false }
+                
+                if let marker = self.mark {
+                    if marker.userInfo["type"] as! Int == 0 {
+                        marker.iconImage = NMFOverlayImage(name: "loc1")
+                    } else if marker.userInfo["type"] as! Int == 1 {
+                        marker.iconImage = NMFOverlayImage(name: "loc2")
+                    } else {
+                        marker.iconImage = NMFOverlayImage(name: "loc3")
+                    }
+                }
+                
+                if marker.userInfo["type"] as! Int == 0 {
+                    marker.iconImage = NMFOverlayImage(name: "loc4")
+                } else if marker.userInfo["type"] as! Int == 1 {
+                    marker.iconImage = NMFOverlayImage(name: "loc5")
+                } else {
+                    marker.iconImage = NMFOverlayImage(name: "loc6")
+                }
+                
+                self.mark = marker
+                
                 self.view.addSubview(self.popup)
                 self.popup.isHidden = false
                 
@@ -391,66 +495,78 @@ extension ViewController: NMFMapViewCameraDelegate, NMFMapViewTouchDelegate {
                 
                 self.popup.lat = i.lat
                 self.popup.lng = i.lng
-                self.popup.popupText.text = i.title
+                self.popup.popupText.text = "\(i.id). \(i.title)"
                 if i.info == "" {
                     self.popup.popupInfo.text = "24시간"
                 } else {
                     self.popup.popupInfo.text = i.info
                 }
+                
                 self.popup.id = i.id
                 
+                if marker.userInfo["type"] as! Int == 0 {
+                    self.popup.layer.borderColor = Colors.green.cgColor
+                    self.popup.popupLine.backgroundColor = Colors.green
+                    self.popup.popupFavoriteButton.tintColor = Colors.green
+                    self.popup.popupIcon.tintColor = Colors.green
+                } else if marker.userInfo["type"] as! Int == 1 {
+                    self.popup.layer.borderColor = Colors.orange.cgColor
+                    self.popup.popupLine.backgroundColor = Colors.orange
+                    self.popup.popupFavoriteButton.tintColor = Colors.orange
+                    self.popup.popupIcon.tintColor = Colors.orange
+                } else {
+                    self.popup.layer.borderColor = Colors.red.cgColor
+                    self.popup.popupLine.backgroundColor = Colors.red
+                    self.popup.popupFavoriteButton.tintColor = Colors.red
+                    self.popup.popupIcon.tintColor = Colors.red
+                }
+                
                 self.show()
+                
                 return true
             }
-            
-            marker.touchHandler = markerHandler
             
             marker.width = 44
             marker.height = 44
             
-            if i.title.contains("공기") || i.title.contains("주입기") {
+            if i.type == 0 {
                 marker.iconImage = NMFOverlayImage(name: "loc1")
-                Marker.markers1.append(marker)
-            } else if i.title.contains("주차") || i.title.contains("거치") || i.title.contains("보관") {
+            } else if i.type == 1 {
                 marker.iconImage = NMFOverlayImage(name: "loc2")
-                Marker.markers2.append(marker)
             } else {
                 marker.iconImage = NMFOverlayImage(name: "loc3")
-                Marker.markers3.append(marker)
             }
             Marker.markers.append(marker)
         }
         
         DispatchQueue.main.async {
+            
             if self.main.downButton.currentTitle == "공기주입기" {
                 self.markerDelete()
-                self.markerAdd(markers: Marker.markers1)
+                self.markerAdd(0)
             } else if self.main.downButton.currentTitle == "자전거 거치대" {
                 self.markerDelete()
-                self.markerAdd(markers: Marker.markers2)
+                self.markerAdd(1)
             } else if self.main.downButton.currentTitle == "자전거 수리시설" {
                 self.markerDelete()
-                self.markerAdd(markers: Marker.markers3)
+                self.markerAdd(2)
             } else {
-                self.markerAdd(markers: Marker.markers)
+                self.markerAdd(3)
             }
             
             self.main.dropDown.selectionAction = { (index, item) in
+                self.main.downButton.setTitle(item, for: .normal)
                 if index == 0 {
-                    self.markerAdd(markers: Marker.markers)
-                    self.main.downButton.setTitle(item, for: .normal)
+                    self.markerAdd(3)
                 } else if index == 1 {
                     self.markerDelete()
-                    self.markerAdd(markers: Marker.markers1)
-                    self.main.downButton.setTitle(item, for: .normal)
+                    self.markerAdd(0)
                 } else if index == 2 {
                     self.markerDelete()
-                    self.markerAdd(markers: Marker.markers2)
-                    self.main.downButton.setTitle(item, for: .normal)
+                    self.markerAdd(1)
                 } else {
                     self.markerDelete()
-                    self.markerAdd(markers: Marker.markers3)
-                    self.main.downButton.setTitle(item, for: .normal)
+                    self.markerAdd(2)
                 }
             }
         }

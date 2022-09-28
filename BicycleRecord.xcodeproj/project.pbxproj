@@ -114,13 +114,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C12FA6B128E444C9006D5402 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		C15C0D5F28E21187008DACF4 = {
 			isa = PBXGroup;
 			children = (
@@ -172,7 +165,6 @@
 		C15C0D8228E21297008DACF4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C12FA6B128E444C9006D5402 /* Extensions */,
 				C15C0D8828E212E4008DACF4 /* Constants */,
 				C15C0DD828E22589008DACF4 /* Colors */,
 			);

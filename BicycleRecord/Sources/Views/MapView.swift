@@ -25,7 +25,7 @@ class MainView: BaseView {
         button.layer.cornerRadius = 15
         //shadow 설정
         button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.5
+        button.layer.shadowOpacity = 0.3
         button.layer.shadowOffset = .zero
         button.layer.shadowRadius = 10
         return button

@@ -80,8 +80,32 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteTableViewCell.reuseIdentifier) as? FavoriteTableViewCell else { return UITableViewCell() }
         
+        print(info)
+        
+        if info?[indexPath.row].type == 0 {
+            cell.popup.layer.borderColor = Colors.green.cgColor
+            cell.popup.popupLine.backgroundColor = Colors.green
+            cell.popup.popupFavoriteButton.tintColor = Colors.green
+            cell.popup.popupIcon.tintColor = Colors.green
+        } else if info?[indexPath.row].type == 1 {
+            cell.popup.layer.borderColor = Colors.orange.cgColor
+            cell.popup.popupLine.backgroundColor = Colors.orange
+            cell.popup.popupFavoriteButton.tintColor = Colors.orange
+            cell.popup.popupIcon.tintColor = Colors.orange
+        } else {
+            cell.popup.layer.borderColor = Colors.red.cgColor
+            cell.popup.popupLine.backgroundColor = Colors.red
+            cell.popup.popupFavoriteButton.tintColor = Colors.red
+            cell.popup.popupIcon.tintColor = Colors.red
+        }
+        
         cell.popup.popupText.text = info?[indexPath.row].title
-        cell.popup.popupInfo.text = info?[indexPath.row].info
+        
+        if info?[indexPath.row].info == "" {
+            cell.popup.popupInfo.text = "24시간"
+        } else {
+            cell.popup.popupInfo.text = info?[indexPath.row].info
+        }
         
         cell.popup.popupSearchButton.tag = indexPath.row
         cell.popup.popupSearchButton.addTarget(self, action: #selector(route), for: .touchUpInside)

@@ -11,7 +11,10 @@ import SnapKit
 
 class FavoriteTableViewCell: BaseTableViewCell {
     
-    let popup = PopUpView()
+    let popup: PopUpView = {
+        let pop = PopUpView()
+        return pop
+    }()
     
     override func configure() {
         self.backgroundColor = .white
@@ -22,7 +25,7 @@ class FavoriteTableViewCell: BaseTableViewCell {
     
     override func setConstraints() {
         popup.snp.makeConstraints { make in
-            make.edges.equalTo(self).inset(10)
+            make.edges.equalTo(self).inset(20)
         }
     }
 }
