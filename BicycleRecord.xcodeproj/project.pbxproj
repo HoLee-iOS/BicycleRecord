@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C12A655828E591AD00C5EB48 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12A655728E591AD00C5EB48 /* SettingTableViewCell.swift */; };
+		C12A655A28E591BD00C5EB48 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12A655928E591BD00C5EB48 /* SettingViewController.swift */; };
+		C12A655C28E5F60300C5EB48 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12A655B28E5F60300C5EB48 /* LaunchViewController.swift */; };
 		C1431D1528E33D1600197820 /* DropCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1431D1328E33D1600197820 /* DropCell.swift */; };
 		C1431D1628E33D1600197820 /* DropCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1431D1428E33D1600197820 /* DropCell.xib */; };
 		C1431D1828E3416D00197820 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1431D1728E3416D00197820 /* Main.storyboard */; };
@@ -56,6 +59,9 @@
 		2302C2CCA80AA9973C3886BC /* Pods-BicycleRecord.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BicycleRecord.release.xcconfig"; path = "Target Support Files/Pods-BicycleRecord/Pods-BicycleRecord.release.xcconfig"; sourceTree = "<group>"; };
 		3BA5294F511DE2C17A7D1CB3 /* Pods_BicycleRecord.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BicycleRecord.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A58EC6828C7572A5296FC14A /* Pods-BicycleRecord.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BicycleRecord.debug.xcconfig"; path = "Target Support Files/Pods-BicycleRecord/Pods-BicycleRecord.debug.xcconfig"; sourceTree = "<group>"; };
+		C12A655728E591AD00C5EB48 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		C12A655928E591BD00C5EB48 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		C12A655B28E5F60300C5EB48 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		C1431D1328E33D1600197820 /* DropCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropCell.swift; sourceTree = "<group>"; };
 		C1431D1428E33D1600197820 /* DropCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropCell.xib; sourceTree = "<group>"; };
 		C1431D1728E3416D00197820 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -176,6 +182,7 @@
 			children = (
 				C15C0D8D28E21396008DACF4 /* FavoriteTableViewCell.swift */,
 				C15C0D8F28E213A2008DACF4 /* SearchTableViewCell.swift */,
+				C12A655728E591AD00C5EB48 /* SettingTableViewCell.swift */,
 				C1431D1328E33D1600197820 /* DropCell.swift */,
 				C1431D1428E33D1600197820 /* DropCell.xib */,
 			);
@@ -199,7 +206,9 @@
 				C15C0D9B28E21425008DACF4 /* FavoriteViewController.swift */,
 				C15C0D9D28E21430008DACF4 /* WeatherViewController.swift */,
 				C15C0D9F28E2143A008DACF4 /* SearchViewController.swift */,
+				C12A655928E591BD00C5EB48 /* SettingViewController.swift */,
 				C15C0DA128E21447008DACF4 /* TabBarViewController.swift */,
+				C12A655B28E5F60300C5EB48 /* LaunchViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -441,12 +450,15 @@
 				C15C0D9228E213AC008DACF4 /* PopupView.swift in Sources */,
 				C15C0DA428E21460008DACF4 /* BicycleAPIManager.swift in Sources */,
 				C15C0D8C28E21371008DACF4 /* ReusableProtocol.swift in Sources */,
+				C12A655C28E5F60300C5EB48 /* LaunchViewController.swift in Sources */,
+				C12A655A28E591BD00C5EB48 /* SettingViewController.swift in Sources */,
 				C15C0DB828E214D4008DACF4 /* Bound.swift in Sources */,
 				C15C0DB428E214BD008DACF4 /* BaseViewController.swift in Sources */,
 				C15C0D9028E213A2008DACF4 /* SearchTableViewCell.swift in Sources */,
 				C15C0DA228E21447008DACF4 /* TabBarViewController.swift in Sources */,
 				C15C0DAE28E2149E008DACF4 /* WeatherRepository.swift in Sources */,
 				C15C0DBA28E214E9008DACF4 /* APIKey.swift in Sources */,
+				C12A655828E591AD00C5EB48 /* SettingTableViewCell.swift in Sources */,
 				C15C0DAA28E21487008DACF4 /* MapRepository.swift in Sources */,
 				C15C0D9628E213BE008DACF4 /* WeatherView.swift in Sources */,
 				C15C0DB228E214B5008DACF4 /* BaseView.swift in Sources */,

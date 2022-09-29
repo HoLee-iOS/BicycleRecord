@@ -15,6 +15,7 @@ class SearchViewController: BaseViewController {
         let bar = UISearchBar()
         bar.placeholder = "편의시설이나 도로명 주소를 입력해 주세요."
         bar.delegate = self
+        bar.searchTextField.backgroundColor = UIColor.clear
         return bar
     }()
     
@@ -67,7 +68,7 @@ class SearchViewController: BaseViewController {
     override func setConstraints() {
         searchBar.snp.makeConstraints { make in
             make.leading.top.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(50)
+            make.height.equalTo(60)
         }
         
         emptyView.snp.makeConstraints { make in

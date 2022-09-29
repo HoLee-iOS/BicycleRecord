@@ -68,7 +68,6 @@ class WeatherViewController: BaseViewController {
                 
                 Weather.wea1 = (main, temp, windPower)
                 
-                print("🍏", main)
                 //날씨 아이콘
                 self.main.weatherImage.image = UIImage(named: self.iconType(main))
                 //날씨 종류

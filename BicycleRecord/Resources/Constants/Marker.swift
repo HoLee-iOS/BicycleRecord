@@ -11,7 +11,4 @@ import NMapsMap
 
 struct Marker {
     static var markers = [NMFMarker]()
-    static var markers1: [NMFMarker] = []
-    static var markers2: [NMFMarker] = []
-    static var markers3: [NMFMarker] = []
 }

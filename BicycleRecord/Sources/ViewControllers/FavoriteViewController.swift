@@ -11,6 +11,20 @@ import RealmSwift
 
 class FavoriteViewController: BaseViewController {
     
+    let emptyView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    let emptyLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.text = "즐겨찾기가 없습니다."
+        label.textColor = .lightGray
+        label.textAlignment = .center
+        return label
+    }()
+    
     lazy var tableView: UITableView = {
         let view = UITableView()
         view.rowHeight = 200
@@ -33,13 +47,25 @@ class FavoriteViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         info = MapRepository.shared.filterFavorite()
         tableView.reloadData()
+        
+        emptyCheck()
     }
     
     override func configure() {
-        view.addSubview(tableView)
+        [emptyView, emptyLabel, tableView].forEach {
+            view.addSubview($0)
+        }        
     }
     
     override func setConstraints() {
+        emptyView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        emptyLabel.snp.makeConstraints { make in
+            make.centerX.centerY.equalTo(emptyView)
+        }
+        
         tableView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
@@ -67,6 +93,17 @@ class FavoriteViewController: BaseViewController {
         MapRepository.shared.updateFavorite(item: (info?[index])!)
         tableView.reloadData()
         showToastMessage("즐겨찾기에서 삭제되었습니다")
+        emptyCheck()
+    }
+    
+    func emptyCheck() {
+        if info?.count ?? 0 == 0 {
+            tableView.isHidden = true
+            emptyView.isHidden = false
+        } else {
+            emptyView.isHidden = true
+            tableView.isHidden = false
+        }
     }
 }
 
@@ -113,6 +150,8 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
         
         let image = info?[indexPath.row].favorite ?? false ? "star.fill" : "star"
         cell.popup.popupFavoriteButton.setImage(UIImage(systemName: image), for: .normal)
+        
+        emptyCheck()
         
         return cell
     }
