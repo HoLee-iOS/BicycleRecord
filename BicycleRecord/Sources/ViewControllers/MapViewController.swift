@@ -106,7 +106,6 @@ class ViewController: BaseViewController {
         locationManager.requestWhenInUseAuthorization()
         mapView.touchDelegate = self
         mapView.addCameraDelegate(delegate: self)
-        mapView.addOptionDelegate(delegate: self)
         
         view.backgroundColor = .white
         
@@ -124,9 +123,15 @@ class ViewController: BaseViewController {
     
     override func configure() {
         self.navigationItem.title = "자전거 편의시설"
+        
+        //바버튼 설정
         let searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchButtonClicked))
         self.navigationItem.rightBarButtonItems = [searchButton]
         self.navigationItem.rightBarButtonItem?.tintColor = .black
+        
+        //백버튼 설정
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        self.navigationItem.backBarButtonItem = backBarButtonItem
     }
     
     func setActions() {
@@ -247,10 +252,32 @@ class ViewController: BaseViewController {
             
             i.favorite ? self.popup.popupFavoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal) : self.popup.popupFavoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
             
+            if i.type == 0 {
+                self.popup.layer.borderColor = Colors.green.cgColor
+                self.popup.popupLine.backgroundColor = Colors.green
+                self.popup.popupFavoriteButton.tintColor = Colors.green
+                self.popup.popupIcon.tintColor = Colors.green
+            } else if i.type == 1 {
+                self.popup.layer.borderColor = Colors.orange.cgColor
+                self.popup.popupLine.backgroundColor = Colors.orange
+                self.popup.popupFavoriteButton.tintColor = Colors.orange
+                self.popup.popupIcon.tintColor = Colors.orange
+            } else {
+                self.popup.layer.borderColor = Colors.red.cgColor
+                self.popup.popupLine.backgroundColor = Colors.red
+                self.popup.popupFavoriteButton.tintColor = Colors.red
+                self.popup.popupIcon.tintColor = Colors.red
+            }
+            
             self.popup.lat = i.lat
             self.popup.lng = i.lng
             self.popup.popupText.text = i.title
-            self.popup.popupInfo.text = i.info
+            
+            if i.info == "" {
+                self.popup.popupInfo.text = "24시간"
+            } else {
+                self.popup.popupInfo.text = i.info
+            }            
             self.popup.id = i.id
             self.show()
         }
@@ -362,7 +389,6 @@ extension ViewController: CLLocationManagerDelegate {
     
     //위치를 성공적으로 가지고 온 경우 실행
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
         //내위치 가져오기
         locationManager.startUpdatingLocation()
         guard let lat = locationManager.location?.coordinate.latitude else { return }
@@ -394,16 +420,9 @@ extension ViewController: CLLocationManagerDelegate {
     }
 }
 
-extension ViewController: NMFMapViewCameraDelegate, NMFMapViewTouchDelegate, NMFMapViewOptionDelegate {
-    
-    //지도 옵션 변경시 실행
-    func mapViewOptionChanged(_ mapView: NMFMapView) {
-        print(#function)
-    }
-    
+extension ViewController: NMFMapViewCameraDelegate, NMFMapViewTouchDelegate {
     //지도 움직일때마다 자동으로 실행
     func mapViewCameraIdle(_ mapView: NMFMapView) {
-        
         markerDelete()
         Marker.markers.removeAll()
         let cameraPosition = mapView.cameraPosition.target
@@ -412,22 +431,7 @@ extension ViewController: NMFMapViewCameraDelegate, NMFMapViewTouchDelegate, NMF
         Bound.shared.bounds = NMGLatLngBounds(southWest: southWest, northEast: northEast)
         makeMarker(bound: Bound.shared.bounds!)
         markerCluster()
-        
-        if let marker = self.mark {
-            print("💚", marker.position)
-            print("🧡", self.popup.lat ?? 0, self.popup.lng ?? 0)
-            if marker.position == NMGLatLng(lat: self.popup.lat ?? 0, lng: self.popup.lng ?? 0) {
-                if marker.userInfo["type"] as! Int == 0 {
-                    marker.iconImage = NMFOverlayImage(name: "loc4")
-                } else if marker.userInfo["type"] as! Int == 1 {
-                    marker.iconImage = NMFOverlayImage(name: "loc5")
-                } else {
-                    marker.iconImage = NMFOverlayImage(name: "loc6")
-                }
-            }
-        }
     }
-    
     
     //지도 탭하면 실행
     func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
@@ -443,6 +447,7 @@ extension ViewController: NMFMapViewCameraDelegate, NMFMapViewTouchDelegate, NMF
             options: .curveEaseInOut,
             animations: { self.view.layoutIfNeeded() }
         )
+        
         if let marker = self.mark {
             if marker.userInfo["type"] as! Int == 0 {
                 marker.iconImage = NMFOverlayImage(name: "loc1")
@@ -540,7 +545,6 @@ extension ViewController: NMFMapViewCameraDelegate, NMFMapViewTouchDelegate, NMF
         }
         
         DispatchQueue.main.async {
-            
             if self.main.downButton.currentTitle == "공기주입기" {
                 self.markerDelete()
                 self.markerAdd(0)

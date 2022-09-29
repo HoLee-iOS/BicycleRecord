@@ -80,8 +80,6 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteTableViewCell.reuseIdentifier) as? FavoriteTableViewCell else { return UITableViewCell() }
         
-        print(info)
-        
         if info?[indexPath.row].type == 0 {
             cell.popup.layer.borderColor = Colors.green.cgColor
             cell.popup.popupLine.backgroundColor = Colors.green

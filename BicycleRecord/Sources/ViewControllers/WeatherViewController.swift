@@ -16,7 +16,7 @@ class WeatherViewController: BaseViewController {
     
     let location: CLLocationManager = {
         let loc = CLLocationManager()
-        loc.distanceFilter = 1000
+        loc.distanceFilter = 10000
         return loc
     }()
     
