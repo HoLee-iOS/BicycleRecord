@@ -73,7 +73,7 @@ class WeatherView: BaseView {
     
     let infoLabel: UILabel = {
         let label = UILabel()
-        label.text = "*날씨 예보 및 데이터 반영주기에 따라 실제 날씨와 \n 상이할 수 있습니다. \n 제공: OpenWeather"
+        label.text = "*날씨 예보 및 데이터 반영주기에 따라 실제 날씨와 \n 상이할 수 있습니다. \n 제공: OpenWeather \n 기준: WHO(세계보건기구)"
         label.textColor = Colors.blue
         label.numberOfLines = 0
         let attrString = NSMutableAttributedString(string: label.text!)
@@ -95,7 +95,7 @@ class WeatherView: BaseView {
             self.addSubview($0)
         }
         
-        colorString(label: infoLabel, colorStr: "제공: OpenWeather", color: .gray)
+        colorString(label: infoLabel, colorStr: "제공: OpenWeather \n 기준: WHO(세계보건기구)", color: .gray)
     }
     
     override func setConstraints() {
@@ -133,7 +133,7 @@ class WeatherView: BaseView {
             make.top.equalTo(infoBack.snp.bottom).offset(16)
             make.leading.equalTo(30)
             make.trailing.equalTo(-30)
-            make.height.equalTo(100)
+            make.height.equalTo(130)
         }
         
         infoLabel.snp.makeConstraints { make in

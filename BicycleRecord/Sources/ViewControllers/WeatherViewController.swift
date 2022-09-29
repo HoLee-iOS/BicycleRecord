@@ -139,21 +139,21 @@ extension CLLocation {
 extension WeatherViewController {
     func miseSwitch(_ mise: Double) {
         switch mise {
-        case 0...50: self.main.mise.statusLabel.text = "좋음"
-        case 51...100: self.main.mise.statusLabel.text = "보통"
-        case 101...250: self.main.mise.statusLabel.text = "나쁨"
-        case 251...500: self.main.mise.statusLabel.text = "매우 나쁨"
-        default: print("값이 잘못되었습니다.")
+        case 0...30: self.main.mise.statusLabel.text = "좋음"
+        case 31...50: self.main.mise.statusLabel.text = "보통"
+        case 51...100: self.main.mise.statusLabel.text = "나쁨"
+        case 101...500: self.main.mise.statusLabel.text = "매우 나쁨"
+        default: self.main.mise.statusLabel.text = "매우 나쁨"
         }
     }
     
     func choMiseSwitch(_ choMise: Double) {
         switch choMise {
-        case 0...50: self.main.choMise.statusLabel.text = "좋음"
-        case 51...100: self.main.choMise.statusLabel.text = "보통"
-        case 101...250: self.main.choMise.statusLabel.text = "나쁨"
-        case 251...500: self.main.choMise.statusLabel.text = "매우 나쁨"
-        default: print("값이 잘못되었습니다.")
+        case 0...15: self.main.choMise.statusLabel.text = "좋음"
+        case 16...25: self.main.choMise.statusLabel.text = "보통"
+        case 26...50: self.main.choMise.statusLabel.text = "나쁨"
+        case 51...500: self.main.choMise.statusLabel.text = "매우 나쁨"
+        default: self.main.choMise.statusLabel.text = "매우 나쁨"
         }
     }
     
