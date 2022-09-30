@@ -33,7 +33,7 @@ class LaunchViewController: UIViewController {
         if UserDefaults.standard.bool(forKey: "First") {
             animationView.loopMode = .playOnce
         } else {
-            animationView.loopMode = .loop
+            animationView.loopMode = .repeat(3)
             let group = DispatchGroup()
             //1회
             group.enter()
@@ -87,7 +87,6 @@ class LaunchViewController: UIViewController {
                         }
                     }
                 }
-                animationView.stop()
             }
         }
     }
