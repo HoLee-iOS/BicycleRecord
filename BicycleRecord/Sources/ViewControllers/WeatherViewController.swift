@@ -8,10 +8,9 @@
 import UIKit
 
 import CoreLocation
-import Kingfisher
 
 class WeatherViewController: BaseViewController {
-
+    
     let main = WeatherView()
     
     let locationManager: CLLocationManager = {
@@ -46,13 +45,80 @@ class WeatherViewController: BaseViewController {
         locationManager.startUpdatingLocation()
         guard let loc = locationManager.location else { return }
         locationManager.stopUpdatingLocation()
-
+        
         //내 위치 네비게이션 바에 표시
         loc.fetchCityAndCountry { city, locality, error in
             guard let city = city, let locality = locality, error == nil else { return }
             self.navigationItem.title = "\(city), \(locality)"
             Weather.dong = locality
-        }        
+        }
+        
+        //앱이 처음 실행될때 날씨정보 값이 없거나
+        //업데이트후 3시간이 지났거나
+        //현 위치가 동 단위로 바뀔 경우 업데이트
+        if WeatherRepository.shared.tasks.isEmpty || Date() > WeatherRepository.shared.tasks[0].time + 10800 || Weather.dong != UserDefaults.standard.string(forKey: "dong") {
+            
+            //현 위치를 동 단위로 저장
+            UserDefaults.standard.set(Weather.dong, forKey: "dong")
+            
+            //기존 데이터가 있을 경우
+            if !WeatherRepository.shared.tasks.isEmpty {
+                guard let task = WeatherRepository.shared.tasks.first else { return }
+                WeatherRepository.shared.deleteItem(item: task)
+            }
+            
+            group.enter()
+            //날씨 종류, 현재 기온, 풍속에 대한 정보 호출
+            WeatherAPIManager.shared.callWeather(lat: loc.coordinate.latitude, lon: loc.coordinate.longitude) { main, temp, windPower in
+                
+                Weather.wea1 = (main, temp, windPower)
+                
+                //날씨 아이콘
+                self.main.weatherImage.image = UIImage(named: self.iconType(main))
+                //날씨 종류
+                self.typeSwitch(main)
+                //현재 기온
+                self.main.currentTemp.text = "\(temp)º"
+                //풍속
+                self.main.windy.statusLabel.text = "\(windPower)m/s"
+                
+                self.group.leave()
+            }
+            
+            group.enter()
+            //강수 확률에 대한 정보 호출
+            WeatherAPIManager.shared.callDaily(lat: loc.coordinate.latitude, lon: loc.coordinate.longitude) { pop in
+                
+                Weather.wea2 = pop
+                
+                //강수 확률
+                self.main.rainy.statusLabel.text = "\(pop)%"
+                self.group.leave()
+            }
+            
+            group.enter()
+            //미세먼지, 초미세먼지에 대한 정보 호출
+            WeatherAPIManager.shared.callAir(lat: loc.coordinate.latitude, lon: loc.coordinate.longitude) { mise, choMise in
+                
+                Weather.wea3 = (mise, choMise)
+                
+                //미세먼지 분기처리
+                self.miseSwitch(mise)
+                //초미세먼지 분기처리
+                self.choMiseSwitch(choMise)
+                
+                self.group.leave()
+            }
+            
+            group.notify(queue: .main) {
+                guard let wea1 = Weather.wea1 else { return }
+                guard let wea2 = Weather.wea2 else { return }
+                guard let wea3 = Weather.wea3 else { return }
+                
+                let item = UserWeather(main: wea1.0, temp: wea1.1, windPower: wea1.2, rain: wea2, mise: wea3.0, choMise: wea3.1, time: Date())
+                WeatherRepository.shared.saveRealm(item: item)
+            }
+        }
     }
     
     func setValue() {

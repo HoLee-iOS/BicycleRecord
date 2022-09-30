@@ -45,7 +45,7 @@ class FavoriteViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        info = MapRepository.shared.filterFavorite()
+        info = MapRepository.shared.filterFavorite()        
         tableView.reloadData()
         
         emptyCheck()
@@ -79,7 +79,7 @@ class FavoriteViewController: BaseViewController {
         let text = info?[index].title.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         let url = URL(string: "nmap://route/walk?dlat=\(lat!)&dlng=\(lng!)&dname=\(text!)&appname=com.skylerLee.Example1")!
         let appStoreURL = URL(string: "http://itunes.apple.com/app/id311867728?mt=8")!
-
+        
         if UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
         } else {

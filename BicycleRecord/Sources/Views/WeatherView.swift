@@ -8,7 +8,6 @@
 import UIKit
 
 import Kingfisher
-import RealmSwift
 
 class WeatherView: BaseView {
     
@@ -102,7 +101,8 @@ class WeatherView: BaseView {
         weatherImage.snp.makeConstraints { make in
             make.centerX.equalTo(self)
             make.top.equalTo(self.safeAreaLayoutGuide).offset(20)
-            make.height.width.equalTo(150)
+            make.height.equalTo(self.safeAreaLayoutGuide).multipliedBy(0.25)
+            make.width.equalTo(weatherImage.snp.height)
         }
         
         currentTemp.snp.makeConstraints { make in
@@ -120,7 +120,7 @@ class WeatherView: BaseView {
             make.top.equalTo(todayLabel.snp.bottom).offset(16)
             make.leading.equalTo(30)
             make.trailing.equalTo(-30)
-            make.height.equalTo(150)
+            make.height.equalTo(self.safeAreaLayoutGuide).multipliedBy(0.2)
         }
         
         infoStackView.snp.makeConstraints { make in
@@ -133,7 +133,7 @@ class WeatherView: BaseView {
             make.top.equalTo(infoBack.snp.bottom).offset(16)
             make.leading.equalTo(30)
             make.trailing.equalTo(-30)
-            make.height.equalTo(130)
+            make.height.equalTo(self.safeAreaLayoutGuide).multipliedBy(0.2)
         }
         
         infoLabel.snp.makeConstraints { make in

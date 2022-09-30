@@ -12,7 +12,6 @@ import NMapsMap
 import SnapKit
 import DropDown
 import RealmSwift
-import Kingfisher
 
 class ViewController: BaseViewController {
     
@@ -41,7 +40,8 @@ class ViewController: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateNetwork), name: Notification.Name("network"), object: nil)
         
         //앱 초기설정 및 Realm 업데이트 시 실행
-        if MapRepository.shared.tasks.isEmpty || MapRepository.shared.tasks.count > UserDefaults.standard.integer(forKey: "cnt") {            
+        if MapRepository.shared.tasks.isEmpty || MapRepository.shared.tasks.count > UserDefaults.standard.integer(forKey: "cnt") {
+            showToastMessage("편의시설 정보를 조회중입니다.")
             group.enter()
             BicycleAPIManager.shared.callRequest(startIndex: 1, endIndex: 1000) { loc, count  in
                 UserDefaults.standard.set(count, forKey: "cnt")

@@ -50,7 +50,6 @@
 		C15C0DC228E2168C008DACF4 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C15C0DC128E2168C008DACF4 /* RealmSwift */; };
 		C15C0DC528E216A2008DACF4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C15C0DC428E216A2008DACF4 /* SnapKit */; };
 		C15C0DC828E216B5008DACF4 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = C15C0DC728E216B5008DACF4 /* Toast */; };
-		C15C0DCB28E216C5008DACF4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C15C0DCA28E216C5008DACF4 /* Kingfisher */; };
 		C15C0DCE28E21757008DACF4 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = C15C0DCD28E21757008DACF4 /* SwiftyJSON */; };
 		C15C0DD728E21BFC008DACF4 /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0DD628E21BFC008DACF4 /* Marker.swift */; };
 		C15C0DDA28E2259C008DACF4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0DD928E2259C008DACF4 /* Colors.swift */; };
@@ -115,7 +114,6 @@
 				C15C0DC228E2168C008DACF4 /* RealmSwift in Frameworks */,
 				C12A655F28E6097C00C5EB48 /* Lottie in Frameworks */,
 				C15C0DCE28E21757008DACF4 /* SwiftyJSON in Frameworks */,
-				C15C0DCB28E216C5008DACF4 /* Kingfisher in Frameworks */,
 				C15C0DC028E2168C008DACF4 /* Realm in Frameworks */,
 				C241A9FEB709B78CBED178CC /* Pods_BicycleRecord.framework in Frameworks */,
 				C15C0DBD28E21654008DACF4 /* Alamofire in Frameworks */,
@@ -329,7 +327,6 @@
 				C15C0DC128E2168C008DACF4 /* RealmSwift */,
 				C15C0DC428E216A2008DACF4 /* SnapKit */,
 				C15C0DC728E216B5008DACF4 /* Toast */,
-				C15C0DCA28E216C5008DACF4 /* Kingfisher */,
 				C15C0DCD28E21757008DACF4 /* SwiftyJSON */,
 				C12A655E28E6097C00C5EB48 /* Lottie */,
 			);
@@ -366,7 +363,6 @@
 				C15C0DBE28E2168C008DACF4 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				C15C0DC328E216A2008DACF4 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				C15C0DC628E216B5008DACF4 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
-				C15C0DC928E216C5008DACF4 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				C15C0DCC28E21757008DACF4 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				C12A655D28E6097C00C5EB48 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
@@ -739,14 +735,6 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		C15C0DC928E216C5008DACF4 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.0.0;
-			};
-		};
 		C15C0DCC28E21757008DACF4 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
@@ -787,11 +775,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C15C0DC628E216B5008DACF4 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
 			productName = Toast;
-		};
-		C15C0DCA28E216C5008DACF4 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C15C0DC928E216C5008DACF4 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
 		};
 		C15C0DCD28E21757008DACF4 /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
