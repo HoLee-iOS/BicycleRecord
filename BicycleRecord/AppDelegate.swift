@@ -17,69 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //앱 실행시 네트워크 상태 확인
         NetworkMonitor.shared.startMonitoring()
         
-        if !NetworkMonitor.shared.isConnected {
-            self.window?.rootViewController?.present(NetworkMonitor.shared.showAlert(), animated: true)
-        }
-        
-        let group = DispatchGroup()
-        
-        if MapRepository.shared.tasks.isEmpty || MapRepository.shared.tasks.count > UserDefaults.standard.integer(forKey: "cnt") {
-            group.enter()
-            BicycleAPIManager.shared.callRequest(startIndex: 1, endIndex: 1000) { loc, count  in
-                UserDefaults.standard.set(count, forKey: "cnt")
-                loc.forEach {
-                    if $0.2.contains("공기") || $0.2.contains("주입기") {
-                        let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 0)
-                        MapRepository.shared.saveRealm(item: task)
-                    } else if $0.2.contains("주차") || $0.2.contains("거치") || $0.2.contains("보관") {
-                        let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 1)
-                        MapRepository.shared.saveRealm(item: task)
-                    } else {
-                        let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 2)
-                        MapRepository.shared.saveRealm(item: task)
-                    }
-                }
-                group.leave()
-            }
-            
-            group.enter()
-            BicycleAPIManager.shared.callRequest(startIndex: 1001, endIndex: 2000) { loc, count in
-                loc.forEach {
-                    if $0.2.contains("공기") || $0.2.contains("주입기") {
-                        let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 0)
-                        MapRepository.shared.saveRealm(item: task)
-                    } else if $0.2.contains("주차") || $0.2.contains("거치") || $0.2.contains("보관") {
-                        let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 1)
-                        MapRepository.shared.saveRealm(item: task)
-                    } else {
-                        let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 2)
-                        MapRepository.shared.saveRealm(item: task)
-                    }
-                }
-                group.leave()
-            }
-            
-            group.notify(queue: .main) {
-                BicycleAPIManager.shared.callRequest(startIndex: 2001, endIndex: UserDefaults.standard.integer(forKey: "cnt")) { loc, count in
-                    loc.forEach {
-                        if $0.2.contains("공기") || $0.2.contains("주입기") {
-                            let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 0)
-                            MapRepository.shared.saveRealm(item: task)
-                        } else if $0.2.contains("주차") || $0.2.contains("거치") || $0.2.contains("보관") {
-                            let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 1)
-                            MapRepository.shared.saveRealm(item: task)
-                        } else {
-                            let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 2)
-                            MapRepository.shared.saveRealm(item: task)
-                        }
-                    }
-                }
-            }
-        }
-        
-        window = UIWindow()
-        window?.rootViewController = TabBarViewController()
-        window?.makeKeyAndVisible()
         return true
     }
     

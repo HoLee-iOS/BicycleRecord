@@ -32,6 +32,5 @@ class UserMap: Object {
         self.address = address
         self.type = type
         self.favorite = false
-    }
-    
+    }    
 }

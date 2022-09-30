@@ -14,7 +14,7 @@ class WeatherViewController: BaseViewController {
 
     let main = WeatherView()
     
-    let location: CLLocationManager = {
+    let locationManager: CLLocationManager = {
         let loc = CLLocationManager()
         loc.distanceFilter = 10000
         return loc
@@ -31,22 +31,106 @@ class WeatherViewController: BaseViewController {
         
         view.backgroundColor = .white
         
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        
+        checkUserDeviceLocationServiceAuthorization()
+        
         WeatherRepository.shared.fetch()
         setValue()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
-        location.startUpdatingLocation()
-        guard let loc = location.location else { return }
-        location.stopUpdatingLocation()
+        locationManager.startUpdatingLocation()
+        guard let loc = locationManager.location else { return }
+        locationManager.stopUpdatingLocation()
 
         //내 위치 네비게이션 바에 표시
         loc.fetchCityAndCountry { city, locality, error in
             guard let city = city, let locality = locality, error == nil else { return }
             self.navigationItem.title = "\(city), \(locality)"
             Weather.dong = locality
+        }        
+    }
+    
+    func setValue() {
+        guard let task = WeatherRepository.shared.tasks.first else { return }
+        main.weatherImage.image = UIImage(named: iconType(task.main))
+        main.currentTemp.text = "\(task.temp)º"
+        typeSwitch(task.main)
+        miseSwitch(task.mise)
+        choMiseSwitch(task.choMise)
+        main.rainy.statusLabel.text = "\(task.rain)%"
+        main.windy.statusLabel.text = "\(task.windPower)m/s"
+    }
+}
+
+extension WeatherViewController {
+    //권한 요청
+    func checkUserDeviceLocationServiceAuthorization() {
+        let authorizationStatus: CLAuthorizationStatus
+        
+        authorizationStatus = locationManager.authorizationStatus
+        
+        if CLLocationManager.locationServicesEnabled() {
+            checkUserCurrentLocationAuthorization(authorizationStatus)
+        } else {
+            print("위치 서비스 꺼짐")
         }
+    }
+    
+    //권한 체크
+    func checkUserCurrentLocationAuthorization(_ authorizationStatus: CLAuthorizationStatus) {
+        switch authorizationStatus {
+        case .notDetermined:
+            //주의점: infoPlist WhenInUse -> request 메서드 OK
+            //kCLLocationAccuracyBest 각각 디바이스에 맞는 정확도로 설정해줌
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            //앱을 사용하는 동안에 권한에 대한 위치 권한 요청
+            locationManager.requestWhenInUseAuthorization()
+        case .restricted ,.denied:
+            print("DENIED")
+            showRequestLocationServiceAlert()
+        case .authorizedWhenInUse:
+            print("WHEN IN USE")
+            //사용자가 위치를 허용해둔 상태라면, startUpdatingLocation을 통해 didUpdateLocations 메서드가 실행
+            locationManager.startUpdatingLocation() //단점: 정확도를 위해서 무한대로 호출됨
+        default: print("디폴트")
+        }
+    }
+    
+    //권한 거부시 경고창
+    func showRequestLocationServiceAlert() {
+        let requestLocationServiceAlert = UIAlertController(title: "위치정보 이용", message: "위치 서비스를 사용할 수 없습니다. 기기의 '설정>개인정보 보호'에서 위치 서비스를 켜주세요.", preferredStyle: .alert)
+        let goSetting = UIAlertAction(title: "설정으로 이동", style: .default) { _ in
+            
+            //설정까지 이동하거나 설정 세부화면까지 이동하거나
+            //한 번도 설정 앱에 들어가지 않았거나, 막 다운받은 앱이거나 - 설정
+            if let appSetting = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(appSetting)
+            }
+        }
+        let cancel = UIAlertAction(title: "취소", style: .destructive) { _ in
+            self.showToastMessage("위치 정보가 없으면 날씨 정보를 불러올 수 없습니다.")
+        }
+        requestLocationServiceAlert.addAction(cancel)
+        requestLocationServiceAlert.addAction(goSetting)
+        
+        present(requestLocationServiceAlert, animated: true, completion: nil)
+    }
+}
+
+extension WeatherViewController: CLLocationManagerDelegate {
+    //위치를 성공적으로 가지고 온 경우 실행
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //내위치 가져오기
+        locationManager.startUpdatingLocation()
+        guard let lat = locationManager.location?.coordinate.latitude else { return }
+        guard let lng = locationManager.location?.coordinate.longitude else { return }
+        print("내위치", lat, lng)
+        locationManager.stopUpdatingLocation()
         
         //앱이 처음 실행될때 날씨정보 값이 없거나
         //업데이트후 3시간이 지났거나
@@ -64,7 +148,7 @@ class WeatherViewController: BaseViewController {
             
             group.enter()
             //날씨 종류, 현재 기온, 풍속에 대한 정보 호출
-            WeatherAPIManager.shared.callWeather(lat: loc.coordinate.latitude, lon: loc.coordinate.longitude) { main, temp, windPower in
+            WeatherAPIManager.shared.callWeather(lat: lat, lon: lng) { main, temp, windPower in
                 
                 Weather.wea1 = (main, temp, windPower)
                 
@@ -82,7 +166,7 @@ class WeatherViewController: BaseViewController {
             
             group.enter()
             //강수 확률에 대한 정보 호출
-            WeatherAPIManager.shared.callDaily(lat: loc.coordinate.latitude, lon: loc.coordinate.longitude) { pop in
+            WeatherAPIManager.shared.callDaily(lat: lat, lon: lng) { pop in
                 
                 Weather.wea2 = pop
                 
@@ -93,7 +177,7 @@ class WeatherViewController: BaseViewController {
             
             group.enter()
             //미세먼지, 초미세먼지에 대한 정보 호출
-            WeatherAPIManager.shared.callAir(lat: loc.coordinate.latitude, lon: loc.coordinate.longitude) { mise, choMise in
+            WeatherAPIManager.shared.callAir(lat: lat, lon: lng) { mise, choMise in
                 
                 Weather.wea3 = (mise, choMise)
                 
@@ -106,7 +190,6 @@ class WeatherViewController: BaseViewController {
             }
             
             group.notify(queue: .main) {
-                
                 guard let wea1 = Weather.wea1 else { return }
                 guard let wea2 = Weather.wea2 else { return }
                 guard let wea3 = Weather.wea3 else { return }
@@ -117,15 +200,15 @@ class WeatherViewController: BaseViewController {
         }
     }
     
-    func setValue() {
-        guard let task = WeatherRepository.shared.tasks.first else { return }
-        main.weatherImage.image = UIImage(named: iconType(task.main))
-        main.currentTemp.text = "\(task.temp)º"
-        typeSwitch(task.main)
-        miseSwitch(task.mise)
-        choMiseSwitch(task.choMise)
-        main.rainy.statusLabel.text = "\(task.rain)%"
-        main.windy.statusLabel.text = "\(task.windPower)m/s"
+    //위치 가져오지 못한 경우 실행(권한 거부시)
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        showRequestLocationServiceAlert()
+    }
+    
+    //앱 실행시 제일 처음 실행
+    //사용자의 위치 권한 상태가 바뀔때 알려줌
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        checkUserDeviceLocationServiceAuthorization()
     }
 }
 

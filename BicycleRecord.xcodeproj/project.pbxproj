@@ -10,6 +10,9 @@
 		C12A655828E591AD00C5EB48 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12A655728E591AD00C5EB48 /* SettingTableViewCell.swift */; };
 		C12A655A28E591BD00C5EB48 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12A655928E591BD00C5EB48 /* SettingViewController.swift */; };
 		C12A655C28E5F60300C5EB48 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12A655B28E5F60300C5EB48 /* LaunchViewController.swift */; };
+		C12A655F28E6097C00C5EB48 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C12A655E28E6097C00C5EB48 /* Lottie */; };
+		C12A656728E6234200C5EB48 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12A656628E6234200C5EB48 /* LocationManager.swift */; };
+		C12A656D28E69A7E00C5EB48 /* ricle.json in Resources */ = {isa = PBXBuildFile; fileRef = C12A656C28E69A7E00C5EB48 /* ricle.json */; };
 		C1431D1528E33D1600197820 /* DropCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1431D1328E33D1600197820 /* DropCell.swift */; };
 		C1431D1628E33D1600197820 /* DropCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1431D1428E33D1600197820 /* DropCell.xib */; };
 		C1431D1828E3416D00197820 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1431D1728E3416D00197820 /* Main.storyboard */; };
@@ -62,6 +65,8 @@
 		C12A655728E591AD00C5EB48 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		C12A655928E591BD00C5EB48 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		C12A655B28E5F60300C5EB48 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		C12A656628E6234200C5EB48 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		C12A656C28E69A7E00C5EB48 /* ricle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = ricle.json; path = ../../../../MyApp/Ricle/ricle.json; sourceTree = "<group>"; };
 		C1431D1328E33D1600197820 /* DropCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropCell.swift; sourceTree = "<group>"; };
 		C1431D1428E33D1600197820 /* DropCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropCell.xib; sourceTree = "<group>"; };
 		C1431D1728E3416D00197820 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -108,6 +113,7 @@
 			files = (
 				C15C0DC828E216B5008DACF4 /* Toast in Frameworks */,
 				C15C0DC228E2168C008DACF4 /* RealmSwift in Frameworks */,
+				C12A655F28E6097C00C5EB48 /* Lottie in Frameworks */,
 				C15C0DCE28E21757008DACF4 /* SwiftyJSON in Frameworks */,
 				C15C0DCB28E216C5008DACF4 /* Kingfisher in Frameworks */,
 				C15C0DC028E2168C008DACF4 /* Realm in Frameworks */,
@@ -233,10 +239,12 @@
 		C15C0D8828E212E4008DACF4 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				C12A656C28E69A7E00C5EB48 /* ricle.json */,
 				C1431D1928E346A600197820 /* Weather.swift */,
 				C15C0DD628E21BFC008DACF4 /* Marker.swift */,
 				C15C0DB728E214D4008DACF4 /* Bound.swift */,
 				C15C0DB528E214CD008DACF4 /* CustomView.swift */,
+				C12A656628E6234200C5EB48 /* LocationManager.swift */,
 				C15C0D8928E212F0008DACF4 /* Base */,
 			);
 			path = Constants;
@@ -323,6 +331,7 @@
 				C15C0DC728E216B5008DACF4 /* Toast */,
 				C15C0DCA28E216C5008DACF4 /* Kingfisher */,
 				C15C0DCD28E21757008DACF4 /* SwiftyJSON */,
+				C12A655E28E6097C00C5EB48 /* Lottie */,
 			);
 			productName = BicycleRecord;
 			productReference = C15C0D6828E21187008DACF4 /* BicycleRecord.app */;
@@ -359,6 +368,7 @@
 				C15C0DC628E216B5008DACF4 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				C15C0DC928E216C5008DACF4 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				C15C0DCC28E21757008DACF4 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				C12A655D28E6097C00C5EB48 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = C15C0D6928E21187008DACF4 /* Products */;
 			projectDirPath = "";
@@ -377,6 +387,7 @@
 				C15C0D8028E2126D008DACF4 /* .gitignore in Resources */,
 				C1431D1828E3416D00197820 /* Main.storyboard in Resources */,
 				C15C0D7828E21188008DACF4 /* LaunchScreen.storyboard in Resources */,
+				C12A656D28E69A7E00C5EB48 /* ricle.json in Resources */,
 				C1431D1628E33D1600197820 /* DropCell.xib in Resources */,
 				C15C0D7528E21188008DACF4 /* Assets.xcassets in Resources */,
 			);
@@ -449,6 +460,7 @@
 				C15C0DA828E2147E008DACF4 /* MapRealm.swift in Sources */,
 				C15C0D9228E213AC008DACF4 /* PopupView.swift in Sources */,
 				C15C0DA428E21460008DACF4 /* BicycleAPIManager.swift in Sources */,
+				C12A656728E6234200C5EB48 /* LocationManager.swift in Sources */,
 				C15C0D8C28E21371008DACF4 /* ReusableProtocol.swift in Sources */,
 				C12A655C28E5F60300C5EB48 /* LaunchViewController.swift in Sources */,
 				C12A655A28E591BD00C5EB48 /* SettingViewController.swift in Sources */,
@@ -687,6 +699,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C12A655D28E6097C00C5EB48 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		C15C0DBB28E21654008DACF4 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -738,6 +758,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C12A655E28E6097C00C5EB48 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C12A655D28E6097C00C5EB48 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
 		C15C0DBC28E21654008DACF4 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C15C0DBB28E21654008DACF4 /* XCRemoteSwiftPackageReference "Alamofire" */;

@@ -30,7 +30,6 @@ class UserWeather: Object {
         self.mise = mise
         self.choMise = choMise
         self.time = time
-    }
-    
+    }    
 }
 

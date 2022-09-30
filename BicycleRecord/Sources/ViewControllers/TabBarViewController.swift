@@ -34,11 +34,9 @@ class TabBarViewController: UITabBarController {
         let navWea = UINavigationController(rootViewController: weatherVC)
         let navSet = UINavigationController(rootViewController: setVC)
         
-        setViewControllers([navWea, navMap, navFav, navSet], animated: false)
+        setViewControllers([navMap, navFav, navWea, navSet], animated: false)
         
         tabBar.tintColor = .black
-        
-        self.selectedIndex = 1
     }
 }
 

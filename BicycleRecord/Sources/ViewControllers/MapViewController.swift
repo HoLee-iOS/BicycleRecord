@@ -41,7 +41,7 @@ class ViewController: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateNetwork), name: Notification.Name("network"), object: nil)
         
         //앱 초기설정 및 Realm 업데이트 시 실행
-        if MapRepository.shared.tasks.isEmpty || MapRepository.shared.tasks.count > UserDefaults.standard.integer(forKey: "cnt") {
+        if MapRepository.shared.tasks.isEmpty || MapRepository.shared.tasks.count > UserDefaults.standard.integer(forKey: "cnt") {            
             group.enter()
             BicycleAPIManager.shared.callRequest(startIndex: 1, endIndex: 1000) { loc, count  in
                 UserDefaults.standard.set(count, forKey: "cnt")
@@ -277,7 +277,7 @@ class ViewController: BaseViewController {
                 self.popup.popupInfo.text = "24시간"
             } else {
                 self.popup.popupInfo.text = i.info
-            }            
+            }
             self.popup.id = i.id
             self.show()
         }
@@ -331,7 +331,6 @@ class ViewController: BaseViewController {
 }
 
 extension ViewController {
-    
     //권한 요청
     func checkUserDeviceLocationServiceAuthorization() {
         let authorizationStatus: CLAuthorizationStatus
@@ -386,7 +385,6 @@ extension ViewController {
 }
 
 extension ViewController: CLLocationManagerDelegate {
-    
     //위치를 성공적으로 가지고 온 경우 실행
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //내위치 가져오기
@@ -421,6 +419,7 @@ extension ViewController: CLLocationManagerDelegate {
 }
 
 extension ViewController: NMFMapViewCameraDelegate, NMFMapViewTouchDelegate {
+    
     //지도 움직일때마다 자동으로 실행
     func mapViewCameraIdle(_ mapView: NMFMapView) {
         markerDelete()

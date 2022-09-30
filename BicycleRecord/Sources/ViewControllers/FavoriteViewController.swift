@@ -159,7 +159,7 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let info = MapRepository.shared.filterFavorite()
         NotificationCenter.default.post(name: Notification.Name("data"), object: info?[indexPath.row])
-        self.tabBarController?.selectedIndex = 1
+        self.tabBarController?.selectedIndex = 0
     }
 }
 

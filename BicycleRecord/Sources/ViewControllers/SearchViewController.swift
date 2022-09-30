@@ -13,9 +13,8 @@ class SearchViewController: BaseViewController {
     
     lazy var searchBar: UISearchBar = {
         let bar = UISearchBar()
-        bar.placeholder = "편의시설이나 도로명 주소를 입력해 주세요."
+        bar.searchTextField.placeholder = "검색어를 입력해주세요"
         bar.delegate = self
-        bar.searchTextField.backgroundColor = UIColor.clear
         return bar
     }()
     
@@ -53,27 +52,22 @@ class SearchViewController: BaseViewController {
         MapRepository.shared.fetch()
         view.backgroundColor = .white
         
-        self.navigationItem.title = "검색"
+        self.navigationItem.titleView = searchBar
         self.navigationController?.navigationBar.tintColor = .black
         
         emptyCheck()
     }
     
     override func configure() {
-        [searchBar, emptyView, emptyLabel, tableView].forEach {
+        [emptyView, emptyLabel, tableView].forEach {
             view.addSubview($0)
         }
     }
     
     override func setConstraints() {
-        searchBar.snp.makeConstraints { make in
-            make.leading.top.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(60)
-        }
         
         emptyView.snp.makeConstraints { make in
-            make.top.equalTo(searchBar.snp.bottom)
-            make.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.edges.equalTo(view.safeAreaLayoutGuide)
         }
         
         emptyLabel.snp.makeConstraints { make in
@@ -81,8 +75,7 @@ class SearchViewController: BaseViewController {
         }
         
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(searchBar.snp.bottom)
-            make.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
     
