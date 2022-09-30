@@ -6,7 +6,9 @@
 //
 
 import UIKit
+
 import Lottie
+import Toast
 
 class LaunchViewController: UIViewController {
     

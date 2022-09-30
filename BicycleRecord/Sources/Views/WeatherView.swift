@@ -7,8 +7,6 @@
 
 import UIKit
 
-import Kingfisher
-
 class WeatherView: BaseView {
     
     let weatherImage: UIImageView = {
