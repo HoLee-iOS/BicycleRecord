@@ -127,6 +127,7 @@ extension WeatherViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //내위치 가져오기
         locationManager.startUpdatingLocation()
+        locationManager.distanceFilter = 10000
         guard let lat = locationManager.location?.coordinate.latitude else { return }
         guard let lng = locationManager.location?.coordinate.longitude else { return }
         print("내위치", lat, lng)
