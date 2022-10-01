@@ -43,7 +43,6 @@
 		C15C0DB228E214B5008DACF4 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0DB128E214B5008DACF4 /* BaseView.swift */; };
 		C15C0DB428E214BD008DACF4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0DB328E214BD008DACF4 /* BaseViewController.swift */; };
 		C15C0DB628E214CD008DACF4 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0DB528E214CD008DACF4 /* CustomView.swift */; };
-		C15C0DB828E214D4008DACF4 /* Bound.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0DB728E214D4008DACF4 /* Bound.swift */; };
 		C15C0DBA28E214E9008DACF4 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0DB928E214E9008DACF4 /* APIKey.swift */; };
 		C15C0DBD28E21654008DACF4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C15C0DBC28E21654008DACF4 /* Alamofire */; };
 		C15C0DC028E2168C008DACF4 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = C15C0DBF28E2168C008DACF4 /* Realm */; };
@@ -98,7 +97,6 @@
 		C15C0DB128E214B5008DACF4 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		C15C0DB328E214BD008DACF4 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C15C0DB528E214CD008DACF4 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
-		C15C0DB728E214D4008DACF4 /* Bound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bound.swift; sourceTree = "<group>"; };
 		C15C0DB928E214E9008DACF4 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		C15C0DD628E21BFC008DACF4 /* Marker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
 		C15C0DD928E2259C008DACF4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -240,7 +238,6 @@
 				C137AC5628E809CE00C082E7 /* ricle.json */,
 				C1431D1928E346A600197820 /* Weather.swift */,
 				C15C0DD628E21BFC008DACF4 /* Marker.swift */,
-				C15C0DB728E214D4008DACF4 /* Bound.swift */,
 				C15C0DB528E214CD008DACF4 /* CustomView.swift */,
 				C12A656628E6234200C5EB48 /* LocationManager.swift */,
 				C15C0D8928E212F0008DACF4 /* Base */,
@@ -460,7 +457,6 @@
 				C15C0D8C28E21371008DACF4 /* ReusableProtocol.swift in Sources */,
 				C12A655C28E5F60300C5EB48 /* LaunchViewController.swift in Sources */,
 				C12A655A28E591BD00C5EB48 /* SettingViewController.swift in Sources */,
-				C15C0DB828E214D4008DACF4 /* Bound.swift in Sources */,
 				C15C0DB428E214BD008DACF4 /* BaseViewController.swift in Sources */,
 				C15C0D9028E213A2008DACF4 /* SearchTableViewCell.swift in Sources */,
 				C15C0DA228E21447008DACF4 /* TabBarViewController.swift in Sources */,

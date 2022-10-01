@@ -13,9 +13,12 @@ class WeatherViewController: BaseViewController {
     
     let main = WeatherView()
     
-    let locationManager: CLLocationManager = {
+    lazy var locationManager: CLLocationManager = {
         let loc = CLLocationManager()
         loc.distanceFilter = 10000
+        loc.desiredAccuracy = kCLLocationAccuracyBest
+        loc.requestWhenInUseAuthorization()
+        loc.delegate = self
         return loc
     }()
     
@@ -29,10 +32,6 @@ class WeatherViewController: BaseViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
         
         checkUserDeviceLocationServiceAuthorization()
         
@@ -59,20 +58,13 @@ extension WeatherViewController {
         
         authorizationStatus = locationManager.authorizationStatus
         
-        if CLLocationManager.locationServicesEnabled() {
-            checkUserCurrentLocationAuthorization(authorizationStatus)
-        } else {
-            print("위치 서비스 꺼짐")
-        }
+        checkUserCurrentLocationAuthorization(authorizationStatus)
     }
     
     //권한 체크
     func checkUserCurrentLocationAuthorization(_ authorizationStatus: CLAuthorizationStatus) {
         switch authorizationStatus {
         case .notDetermined:
-            //주의점: infoPlist WhenInUse -> request 메서드 OK
-            //kCLLocationAccuracyBest 각각 디바이스에 맞는 정확도로 설정해줌
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
             //앱을 사용하는 동안에 권한에 대한 위치 권한 요청
             locationManager.requestWhenInUseAuthorization()
         case .restricted ,.denied:
@@ -98,7 +90,7 @@ extension WeatherViewController {
             }
         }
         let cancel = UIAlertAction(title: "취소", style: .destructive) { _ in
-            self.showToastMessage("위치 정보가 없으면 날씨 정보를 불러올 수 없습니다.")
+            self.showRequestLocationServiceAlert()
         }
         requestLocationServiceAlert.addAction(cancel)
         requestLocationServiceAlert.addAction(goSetting)
@@ -111,12 +103,8 @@ extension WeatherViewController: CLLocationManagerDelegate {
     //위치를 성공적으로 가지고 온 경우 실행
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //내위치 가져오기
-        locationManager.startUpdatingLocation()
-        locationManager.distanceFilter = 10000
         guard let lat = locationManager.location?.coordinate.latitude else { return }
-        guard let lng = locationManager.location?.coordinate.longitude else { return }
-        print("내위치", lat, lng)
-        locationManager.stopUpdatingLocation()
+        guard let lng = locationManager.location?.coordinate.longitude else { return }        
         
         //내 위치 네비게이션 바에 표시
         locationManager.location?.fetchCityAndCountry { city, locality, error in

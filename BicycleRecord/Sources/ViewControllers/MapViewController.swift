@@ -19,9 +19,12 @@ class ViewController: BaseViewController {
     
     let popup = PopUpView()
     
-    var locationManager: CLLocationManager = {
+    lazy var locationManager: CLLocationManager = {
         let loc = CLLocationManager()
         loc.distanceFilter = 10000
+        loc.desiredAccuracy = kCLLocationAccuracyBest
+        loc.requestWhenInUseAuthorization()
+        loc.delegate = self
         return loc
     }()
     
@@ -36,7 +39,7 @@ class ViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        NotificationCenter.default.addObserver(self, selector: #selector(updateNetwork), name: Notification.Name("network"), object: nil)        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateNetwork), name: Notification.Name("network"), object: nil)
     }
     
     override func viewDidLoad() {
@@ -44,22 +47,18 @@ class ViewController: BaseViewController {
         
         MapRepository.shared.fetch()
         
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
         mapView.touchDelegate = self
         mapView.addCameraDelegate(delegate: self)
         
         view.backgroundColor = .white
         
         setActions()
+        setMarkers()
         
         checkUserDeviceLocationServiceAuthorization()
         
         mapView.setLayerGroup(NMF_LAYER_GROUP_BICYCLE, isEnabled: true)
         mapView.isIndoorMapEnabled = true
-
-        markerCluster()
         
         NotificationCenter.default.addObserver(self, selector: #selector(favoriteDataSend), name: Notification.Name("data"), object: nil)
     }
@@ -114,6 +113,17 @@ class ViewController: BaseViewController {
         }
     }
     
+    func setMarkers() {
+        guard let lat = locationManager.location?.coordinate.latitude else { return }
+        guard let lng = locationManager.location?.coordinate.longitude else { return }
+        //내위치를 카메라로 보여주기
+        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: lat, lng: lng))
+        cameraUpdate.animation = .easeIn
+        mapView.moveCamera(cameraUpdate)
+        makeMarker()
+        markerCluster()
+    }
+    
     func show(completion: @escaping () -> Void = {}) {
         self.popup.snp.makeConstraints {
             $0.leading.equalTo(self.view.safeAreaLayoutGuide).offset(20)
@@ -144,10 +154,8 @@ class ViewController: BaseViewController {
     
     @objc func locationButtonClicked() {
         //현위치 불러오기
-        locationManager.startUpdatingLocation()
         guard let lat = locationManager.location?.coordinate.latitude else { return }
         guard let lng = locationManager.location?.coordinate.longitude else { return }
-        locationManager.stopUpdatingLocation()
         //현위치를 표시해줄 오버레이 객체 생성
         let locationOverlay = mapView.locationOverlay
         //오버레이 객체 보이게하기
@@ -158,7 +166,6 @@ class ViewController: BaseViewController {
         let cameraUpdate = NMFCameraUpdate(scrollTo: locationOverlay.location, zoomTo: 15)
         cameraUpdate.animation = .easeIn
         mapView.moveCamera(cameraUpdate)
-        markerCluster()
     }
     
     @objc func popupSearchButtonClicked() {
@@ -229,16 +236,9 @@ class ViewController: BaseViewController {
     
     @objc func favoriteDataSend(_ notification: Notification) {
         let value = notification.object as! UserMap
-        self.markerDelete()
-        Marker.markers.removeAll()
         let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: value.lat, lng: value.lng), zoomTo: 15)
         cameraUpdate.animation = .easeIn
         self.mapView.moveCamera(cameraUpdate)
-
-        let southWest = NMGLatLng(lat: value.lat - value.lat/4000, lng: value.lng - value.lng/4000)
-        let northEast = NMGLatLng(lat: value.lat + value.lat/4000, lng: value.lng + value.lng/4000)
-        Bound.shared.bounds = NMGLatLngBounds(southWest: southWest, northEast: northEast)
-        self.makeMarker(bound: Bound.shared.bounds!)
         self.view.addSubview(self.popup)
         self.popup.isHidden = false
         
@@ -280,20 +280,13 @@ extension ViewController {
         
         authorizationStatus = locationManager.authorizationStatus
         
-        if CLLocationManager.locationServicesEnabled() {
-            checkUserCurrentLocationAuthorization(authorizationStatus)
-        } else {
-            print("위치 서비스 꺼짐")
-        }
+        checkUserCurrentLocationAuthorization(authorizationStatus)
     }
     
     //권한 체크
     func checkUserCurrentLocationAuthorization(_ authorizationStatus: CLAuthorizationStatus) {
         switch authorizationStatus {
         case .notDetermined:
-            //주의점: infoPlist WhenInUse -> request 메서드 OK
-            //kCLLocationAccuracyBest 각각 디바이스에 맞는 정확도로 설정해줌
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
             //앱을 사용하는 동안에 권한에 대한 위치 권한 요청
             locationManager.requestWhenInUseAuthorization()
         case .restricted ,.denied:
@@ -311,70 +304,42 @@ extension ViewController {
     func showRequestLocationServiceAlert() {
         let requestLocationServiceAlert = UIAlertController(title: "위치정보 이용", message: "위치 서비스를 사용할 수 없습니다. 기기의 '설정>개인정보 보호'에서 위치 서비스를 켜주세요.", preferredStyle: .alert)
         let goSetting = UIAlertAction(title: "설정으로 이동", style: .destructive) { _ in
-            
             //설정까지 이동하거나 설정 세부화면까지 이동하거나
             //한 번도 설정 앱에 들어가지 않았거나, 막 다운받은 앱이거나 - 설정
             if let appSetting = URL(string: UIApplication.openSettingsURLString) {
                 UIApplication.shared.open(appSetting)
             }
-            
         }
-        let cancel = UIAlertAction(title: "취소", style: .default)
+        let cancel = UIAlertAction(title: "취소", style: .default) { _ in
+            self.showRequestLocationServiceAlert()
+        }
         requestLocationServiceAlert.addAction(cancel)
         requestLocationServiceAlert.addAction(goSetting)
-        
         present(requestLocationServiceAlert, animated: true, completion: nil)
     }
 }
 
 extension ViewController: CLLocationManagerDelegate {
-    //위치를 성공적으로 가지고 온 경우 실행
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //내위치 가져오기
-        locationManager.startUpdatingLocation()
-        locationManager.distanceFilter = 10000
-        guard let lat = locationManager.location?.coordinate.latitude else { return }
-        guard let lng = locationManager.location?.coordinate.longitude else { return }
-        print("내위치", lat, lng)
-        locationManager.stopUpdatingLocation()
-        //내위치를 카메라로 보여주기
-        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: lat, lng: lng))
-        cameraUpdate.animation = .easeIn
-        mapView.moveCamera(cameraUpdate)
-        //내위치 중심으로 바운더리 설정
-        let southWest = NMGLatLng(lat: lat - lat/4000, lng: lng - lng/4000)
-        let northEast = NMGLatLng(lat: lat + lat/4000, lng: lng + lng/4000)
-        Bound.shared.bounds = NMGLatLngBounds(southWest: southWest, northEast: northEast)
-        //바운드에 맞는 마커들 가져오기
-        makeMarker(bound: Bound.shared.bounds!)
-        markerCluster()
-    }
-    
-    //위치 가져오지 못한 경우 실행(권한 거부시)
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        showRequestLocationServiceAlert()
-    }
     
     //앱 실행시 제일 처음 실행
     //사용자의 위치 권한 상태가 바뀔때 알려줌
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         checkUserDeviceLocationServiceAuthorization()
     }
+    
+    //위치를 성공적으로 가지고 온 경우 실행
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        dump(locations)
+        setMarkers()
+    }
+    
+    //위치 가져오지 못한 경우 실행(권한 거부시)
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        showRequestLocationServiceAlert()
+    }
 }
 
 extension ViewController: NMFMapViewCameraDelegate, NMFMapViewTouchDelegate {
-    
-    //지도 움직일때마다 자동으로 실행
-    func mapViewCameraIdle(_ mapView: NMFMapView) {
-        markerDelete()
-        Marker.markers.removeAll()
-        let cameraPosition = mapView.cameraPosition.target
-        let southWest = NMGLatLng(lat: cameraPosition.lat - cameraPosition.lat/4000, lng: cameraPosition.lng - cameraPosition.lng/4000)
-        let northEast = NMGLatLng(lat: cameraPosition.lat + cameraPosition.lat/4000, lng: cameraPosition.lng + cameraPosition.lng/4000)
-        Bound.shared.bounds = NMGLatLngBounds(southWest: southWest, northEast: northEast)
-        makeMarker(bound: Bound.shared.bounds!)
-        markerCluster()
-    }
     
     //지도 탭하면 실행
     func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
@@ -403,13 +368,11 @@ extension ViewController: NMFMapViewCameraDelegate, NMFMapViewTouchDelegate {
     }
     
     //바운드에 맞게 마커 생성
-    func makeMarker(bound: NMGLatLngBounds) {
-        
+    func makeMarker() {
         for i in MapRepository.shared.tasks {
             let marker = NMFMarker()
-            if bound.hasPoint(NMGLatLng(lat: i.lat, lng: i.lng)) {
-                marker.position = NMGLatLng(lat: i.lat, lng: i.lng)
-            }
+            
+            marker.position = NMGLatLng(lat: i.lat, lng: i.lng)
             
             marker.userInfo = ["type":i.type]
             
