@@ -12,7 +12,7 @@
 		C12A655C28E5F60300C5EB48 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12A655B28E5F60300C5EB48 /* LaunchViewController.swift */; };
 		C12A655F28E6097C00C5EB48 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C12A655E28E6097C00C5EB48 /* Lottie */; };
 		C12A656728E6234200C5EB48 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12A656628E6234200C5EB48 /* LocationManager.swift */; };
-		C12A656D28E69A7E00C5EB48 /* ricle.json in Resources */ = {isa = PBXBuildFile; fileRef = C12A656C28E69A7E00C5EB48 /* ricle.json */; };
+		C137AC5728E809CE00C082E7 /* ricle.json in Resources */ = {isa = PBXBuildFile; fileRef = C137AC5628E809CE00C082E7 /* ricle.json */; };
 		C1431D1528E33D1600197820 /* DropCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1431D1328E33D1600197820 /* DropCell.swift */; };
 		C1431D1628E33D1600197820 /* DropCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1431D1428E33D1600197820 /* DropCell.xib */; };
 		C1431D1828E3416D00197820 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1431D1728E3416D00197820 /* Main.storyboard */; };
@@ -65,7 +65,7 @@
 		C12A655928E591BD00C5EB48 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		C12A655B28E5F60300C5EB48 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		C12A656628E6234200C5EB48 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		C12A656C28E69A7E00C5EB48 /* ricle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = ricle.json; path = ../../../../MyApp/Ricle/ricle.json; sourceTree = "<group>"; };
+		C137AC5628E809CE00C082E7 /* ricle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = ricle.json; path = ../../../../RicleAsset/ricle.json; sourceTree = "<group>"; };
 		C1431D1328E33D1600197820 /* DropCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropCell.swift; sourceTree = "<group>"; };
 		C1431D1428E33D1600197820 /* DropCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropCell.xib; sourceTree = "<group>"; };
 		C1431D1728E3416D00197820 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -237,7 +237,7 @@
 		C15C0D8828E212E4008DACF4 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				C12A656C28E69A7E00C5EB48 /* ricle.json */,
+				C137AC5628E809CE00C082E7 /* ricle.json */,
 				C1431D1928E346A600197820 /* Weather.swift */,
 				C15C0DD628E21BFC008DACF4 /* Marker.swift */,
 				C15C0DB728E214D4008DACF4 /* Bound.swift */,
@@ -383,7 +383,7 @@
 				C15C0D8028E2126D008DACF4 /* .gitignore in Resources */,
 				C1431D1828E3416D00197820 /* Main.storyboard in Resources */,
 				C15C0D7828E21188008DACF4 /* LaunchScreen.storyboard in Resources */,
-				C12A656D28E69A7E00C5EB48 /* ricle.json in Resources */,
+				C137AC5728E809CE00C082E7 /* ricle.json in Resources */,
 				C1431D1628E33D1600197820 /* DropCell.xib in Resources */,
 				C15C0D7528E21188008DACF4 /* Assets.xcassets in Resources */,
 			);
@@ -620,8 +620,8 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -654,8 +654,8 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (

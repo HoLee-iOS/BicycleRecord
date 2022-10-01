@@ -36,63 +36,7 @@ class ViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(updateNetwork), name: Notification.Name("network"), object: nil)
-        
-        //앱 초기설정 및 Realm 업데이트 시 실행
-        if MapRepository.shared.tasks.isEmpty || MapRepository.shared.tasks.count > UserDefaults.standard.integer(forKey: "cnt") {
-            group.enter()
-            BicycleAPIManager.shared.callRequest(startIndex: 1, endIndex: 1000) { loc, count  in
-                UserDefaults.standard.set(count, forKey: "cnt")
-                loc.forEach {
-                    if $0.2.contains("공기") || $0.2.contains("주입기") {
-                        let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 0)
-                        MapRepository.shared.saveRealm(item: task)
-                    } else if $0.2.contains("주차") || $0.2.contains("거치") || $0.2.contains("보관") {
-                        let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 1)
-                        MapRepository.shared.saveRealm(item: task)
-                    } else {
-                        let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 2)
-                        MapRepository.shared.saveRealm(item: task)
-                    }
-                }
-                self.group.leave()
-            }
-            
-            group.enter()
-            BicycleAPIManager.shared.callRequest(startIndex: 1001, endIndex: 2000) { loc, count in
-                loc.forEach {
-                    if $0.2.contains("공기") || $0.2.contains("주입기") {
-                        let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 0)
-                        MapRepository.shared.saveRealm(item: task)
-                    } else if $0.2.contains("주차") || $0.2.contains("거치") || $0.2.contains("보관") {
-                        let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 1)
-                        MapRepository.shared.saveRealm(item: task)
-                    } else {
-                        let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 2)
-                        MapRepository.shared.saveRealm(item: task)
-                    }
-                }
-                self.group.leave()
-            }
-            
-            group.notify(queue: .main) {
-                BicycleAPIManager.shared.callRequest(startIndex: 2001, endIndex: UserDefaults.standard.integer(forKey: "cnt")) { loc, count in
-                    loc.forEach {
-                        if $0.2.contains("공기") || $0.2.contains("주입기") {
-                            let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 0)
-                            MapRepository.shared.saveRealm(item: task)
-                        } else if $0.2.contains("주차") || $0.2.contains("거치") || $0.2.contains("보관") {
-                            let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 1)
-                            MapRepository.shared.saveRealm(item: task)
-                        } else {
-                            let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 2)
-                            MapRepository.shared.saveRealm(item: task)
-                        }
-                    }
-                }
-            }
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(updateNetwork), name: Notification.Name("network"), object: nil)        
     }
     
     override func viewDidLoad() {
@@ -114,7 +58,7 @@ class ViewController: BaseViewController {
         
         mapView.setLayerGroup(NMF_LAYER_GROUP_BICYCLE, isEnabled: true)
         mapView.isIndoorMapEnabled = true
-        
+
         markerCluster()
         
         NotificationCenter.default.addObserver(self, selector: #selector(favoriteDataSend), name: Notification.Name("data"), object: nil)
@@ -290,7 +234,7 @@ class ViewController: BaseViewController {
         let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: value.lat, lng: value.lng), zoomTo: 15)
         cameraUpdate.animation = .easeIn
         self.mapView.moveCamera(cameraUpdate)
-        
+
         let southWest = NMGLatLng(lat: value.lat - value.lat/4000, lng: value.lng - value.lng/4000)
         let northEast = NMGLatLng(lat: value.lat + value.lat/4000, lng: value.lng + value.lng/4000)
         Bound.shared.bounds = NMGLatLngBounds(southWest: southWest, northEast: northEast)
@@ -524,7 +468,6 @@ extension ViewController: NMFMapViewCameraDelegate, NMFMapViewTouchDelegate {
                     self.popup.popupFavoriteButton.tintColor = Colors.red
                     self.popup.popupIcon.tintColor = Colors.red
                 }
-                
                 self.show()
                 
                 return true

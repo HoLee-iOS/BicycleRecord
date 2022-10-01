@@ -26,7 +26,6 @@ class WeatherAPIManager {
             case .success(let value):
                 
                 let json = JSON(value)
-                print(json)
                 
                 //날씨 종류
                 let main = json["weather"][0]["main"].stringValue
@@ -46,7 +45,7 @@ class WeatherAPIManager {
     }
     
     func callDaily(lat: CLLocationDegrees, lon: CLLocationDegrees, completion: @escaping ((Int)->())) {
-        let url = "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&cnt=1&appid=\(APIKey.weather)"
+        let url = "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&cnt=1&appid=\(APIKey.daily)"
         
         AF.request(url, method: .get).validate().responseData { response in
             switch response.result {
@@ -54,7 +53,6 @@ class WeatherAPIManager {
             case .success(let value):
                 
                 let json = JSON(value)
-                print(json)
                 
                 //강수 확률
                 let pop = json["list"]["pop"].intValue * 100
@@ -69,7 +67,7 @@ class WeatherAPIManager {
     }
     
     func callAir(lat: CLLocationDegrees, lon: CLLocationDegrees, completion: @escaping ((Double, Double) -> ())) {
-        let url = "https://api.openweathermap.org/data/2.5/air_pollution?lat=\(lat)&lon=\(lon)&appid=\(APIKey.weather)&lang=kr"
+        let url = "https://api.openweathermap.org/data/2.5/air_pollution?lat=\(lat)&lon=\(lon)&appid=\(APIKey.air)&lang=kr"
         
         AF.request(url, method: .get).validate().responseData { response in
             switch response.result {
@@ -77,7 +75,6 @@ class WeatherAPIManager {
             case .success(let value):
                 
                 let json = JSON(value)
-                print(json)
                 
                 //미세먼지
                 let mise = json["list"][0]["components"]["pm10"].doubleValue
