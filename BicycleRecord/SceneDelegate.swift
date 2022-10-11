@@ -31,6 +31,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        
+        //씬이 엑티브로 변경되면
+        //뱃지 0으로 없애줌
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        //와있던 알림을 다 지워줌
+        //UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        
         if !NetworkMonitor.shared.isConnected {
             self.window?.rootViewController?.present(NetworkMonitor.shared.showAlert(), animated: true)
         } else {

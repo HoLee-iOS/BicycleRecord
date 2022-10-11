@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreLocation
+import FirebaseAnalytics
 
 import Toast
 

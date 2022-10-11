@@ -328,9 +328,9 @@ extension ViewController: CLLocationManagerDelegate {
     }
     
     //위치를 성공적으로 가지고 온 경우 실행
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        dump(locations)
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {        
         setMarkers()
+        locationManager.stopUpdatingLocation()
     }
     
     //위치 가져오지 못한 경우 실행(권한 거부시)

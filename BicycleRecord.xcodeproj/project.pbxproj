@@ -52,6 +52,10 @@
 		C15C0DCE28E21757008DACF4 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = C15C0DCD28E21757008DACF4 /* SwiftyJSON */; };
 		C15C0DD728E21BFC008DACF4 /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0DD628E21BFC008DACF4 /* Marker.swift */; };
 		C15C0DDA28E2259C008DACF4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15C0DD928E2259C008DACF4 /* Colors.swift */; };
+		C19B740E28F550F7009408A9 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = C19B740D28F550F7009408A9 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		C19B741028F550F7009408A9 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C19B740F28F550F7009408A9 /* FirebaseCrashlytics */; };
+		C19B741228F550F7009408A9 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = C19B741128F550F7009408A9 /* FirebaseMessaging */; };
+		C19B741528F56702009408A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C19B741428F56702009408A9 /* GoogleService-Info.plist */; };
 		C1D330E128E3EEF400092E4E /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D330E028E3EEF400092E4E /* NetworkMonitor.swift */; };
 		C241A9FEB709B78CBED178CC /* Pods_BicycleRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA5294F511DE2C17A7D1CB3 /* Pods_BicycleRecord.framework */; };
 /* End PBXBuildFile section */
@@ -100,6 +104,8 @@
 		C15C0DB928E214E9008DACF4 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		C15C0DD628E21BFC008DACF4 /* Marker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
 		C15C0DD928E2259C008DACF4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		C19B741428F56702009408A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C19B741628F567DC009408A9 /* BicycleRecord.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BicycleRecord.entitlements; sourceTree = "<group>"; };
 		C1D330E028E3EEF400092E4E /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +121,9 @@
 				C15C0DC028E2168C008DACF4 /* Realm in Frameworks */,
 				C241A9FEB709B78CBED178CC /* Pods_BicycleRecord.framework in Frameworks */,
 				C15C0DBD28E21654008DACF4 /* Alamofire in Frameworks */,
+				C19B741028F550F7009408A9 /* FirebaseCrashlytics in Frameworks */,
+				C19B740E28F550F7009408A9 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				C19B741228F550F7009408A9 /* FirebaseMessaging in Frameworks */,
 				C15C0DC528E216A2008DACF4 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,6 +153,7 @@
 		C15C0D6A28E21187008DACF4 /* BicycleRecord */ = {
 			isa = PBXGroup;
 			children = (
+				C19B741628F567DC009408A9 /* BicycleRecord.entitlements */,
 				C15C0D8228E21297008DACF4 /* Resources */,
 				C15C0D8128E2128C008DACF4 /* Sources */,
 				C15C0D6B28E21187008DACF4 /* AppDelegate.swift */,
@@ -153,6 +163,7 @@
 				C15C0D7628E21188008DACF4 /* LaunchScreen.storyboard */,
 				C15C0D7928E21188008DACF4 /* Info.plist */,
 				C15C0DB928E214E9008DACF4 /* APIKey.swift */,
+				C19B741428F56702009408A9 /* GoogleService-Info.plist */,
 			);
 			path = BicycleRecord;
 			sourceTree = "<group>";
@@ -312,6 +323,7 @@
 				C15C0D6528E21187008DACF4 /* Frameworks */,
 				C15C0D6628E21187008DACF4 /* Resources */,
 				DF6D0E01C8BD24FAE70411B3 /* [CP] Embed Pods Frameworks */,
+				C19B741328F5565F009408A9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -326,6 +338,9 @@
 				C15C0DC728E216B5008DACF4 /* Toast */,
 				C15C0DCD28E21757008DACF4 /* SwiftyJSON */,
 				C12A655E28E6097C00C5EB48 /* Lottie */,
+				C19B740D28F550F7009408A9 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				C19B740F28F550F7009408A9 /* FirebaseCrashlytics */,
+				C19B741128F550F7009408A9 /* FirebaseMessaging */,
 			);
 			productName = BicycleRecord;
 			productReference = C15C0D6828E21187008DACF4 /* BicycleRecord.app */;
@@ -362,6 +377,7 @@
 				C15C0DC628E216B5008DACF4 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				C15C0DCC28E21757008DACF4 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				C12A655D28E6097C00C5EB48 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				C19B740C28F550F7009408A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = C15C0D6928E21187008DACF4 /* Products */;
 			projectDirPath = "";
@@ -383,6 +399,7 @@
 				C137AC5728E809CE00C082E7 /* ricle.json in Resources */,
 				C1431D1628E33D1600197820 /* DropCell.xib in Resources */,
 				C15C0D7528E21188008DACF4 /* Assets.xcassets in Resources */,
+				C19B741528F56702009408A9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +427,25 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		C19B741328F5565F009408A9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
 		};
 		DF6D0E01C8BD24FAE70411B3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -605,8 +641,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BicycleRecord/BicycleRecord.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 54R3763M9G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BicycleRecord/Info.plist;
@@ -639,6 +677,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BicycleRecord/BicycleRecord.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 54R3763M9G;
@@ -739,6 +778,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		C19B740C28F550F7009408A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -776,6 +823,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C15C0DCC28E21757008DACF4 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
+		};
+		C19B740D28F550F7009408A9 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C19B740C28F550F7009408A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		C19B740F28F550F7009408A9 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C19B740C28F550F7009408A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		C19B741128F550F7009408A9 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C19B740C28F550F7009408A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

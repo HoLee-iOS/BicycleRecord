@@ -102,9 +102,10 @@ extension WeatherViewController {
 extension WeatherViewController: CLLocationManagerDelegate {
     //위치를 성공적으로 가지고 온 경우 실행
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //내위치 가져오기
+        //내위치 가져오기        
         guard let lat = locationManager.location?.coordinate.latitude else { return }
-        guard let lng = locationManager.location?.coordinate.longitude else { return }        
+        guard let lng = locationManager.location?.coordinate.longitude else { return }
+        locationManager.stopUpdatingLocation()
         
         //내 위치 네비게이션 바에 표시
         locationManager.location?.fetchCityAndCountry { city, locality, error in
@@ -147,7 +148,7 @@ extension WeatherViewController: CLLocationManagerDelegate {
             
             group.enter()
             //강수 확률에 대한 정보 호출
-            WeatherAPIManager.shared.callDaily(lat: lat, lon: lng) { pop in
+            WeatherAPIManager.shared.callDaily(lat: lat, lon: lng) { pop in                
                 
                 Weather.wea2 = pop
                 

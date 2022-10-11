@@ -16,12 +16,12 @@ class UserWeather: Object {
     @Persisted var main: String //날씨 종류
     @Persisted var temp: String //현재 기온
     @Persisted var windPower: Double //풍속
-    @Persisted var rain: Int //깅수 확률
+    @Persisted var rain: Double //깅수 확률
     @Persisted var mise: Double //미세먼지
     @Persisted var choMise: Double //초미세먼지
     @Persisted var time = Date() //시간
     
-    convenience init(main: String, temp: String, windPower: Double, rain: Int, mise: Double, choMise: Double, time: Date) {
+    convenience init(main: String, temp: String, windPower: Double, rain: Double, mise: Double, choMise: Double, time: Date) {
         self.init()
         self.main = main
         self.temp = temp

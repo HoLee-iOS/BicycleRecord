@@ -31,7 +31,7 @@ class SettingViewController: BaseViewController {
         return view
     }()
     
-    let titles = ["서비스 이용 약관", "문의하기", "개발자 정보", "오픈소스 라이선스 보기", "앱 버전"]
+    let titles = ["문의하기", "개발자 정보", "오픈소스 라이선스 보기", "앱 버전"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,14 +128,14 @@ extension SettingViewController: MFMailComposeViewControllerDelegate {
 
 extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.reuseIdentifier) as? SettingTableViewCell else { return UITableViewCell() }
         cell.selectionStyle = .none
         cell.setTitle.text = titles[indexPath.row]
-        if indexPath.row == 4 {
+        if indexPath.row == 3 {
             setVersion.sizeToFit()
             cell.accessoryView = setVersion
         }
@@ -144,8 +144,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
-        case 0, 2, 3: openNotion()
-        case 1: sendMail()
+        case 1, 2: openNotion()
+        case 0: sendMail()
         default: break
         }
     }

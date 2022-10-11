@@ -44,7 +44,7 @@ class WeatherAPIManager {
         
     }
     
-    func callDaily(lat: CLLocationDegrees, lon: CLLocationDegrees, completion: @escaping ((Int)->())) {
+    func callDaily(lat: CLLocationDegrees, lon: CLLocationDegrees, completion: @escaping ((Double)->())) {
         let url = "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&cnt=1&appid=\(APIKey.daily)"
         
         AF.request(url, method: .get).validate().responseData { response in
@@ -53,9 +53,11 @@ class WeatherAPIManager {
             case .success(let value):
                 
                 let json = JSON(value)
+                print(json)
                 
                 //강수 확률
-                let pop = json["list"]["pop"].intValue * 100
+                let pop = json["list"]["pop"].doubleValue
+                print(pop)
                 
                 completion(pop)
                 
