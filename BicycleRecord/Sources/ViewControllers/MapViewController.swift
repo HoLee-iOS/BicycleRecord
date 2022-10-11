@@ -221,7 +221,7 @@ class ViewController: BaseViewController {
             
             self.popup.lat = i.lat
             self.popup.lng = i.lng
-            self.popup.popupText.text = i.title
+            self.popup.popupText.text = "\(i.id). \(i.title)"
             
             if i.info == "" {
                 self.popup.popupInfo.text = "24시간"
@@ -262,7 +262,7 @@ class ViewController: BaseViewController {
         value.favorite ? self.popup.popupFavoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal) : self.popup.popupFavoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
         self.popup.lat = value.lat
         self.popup.lng = value.lng
-        self.popup.popupText.text = value.title
+        self.popup.popupText.text = "\(value.id). \(value.title)"
         if value.info == "" {
             self.popup.popupInfo.text = "24시간"
         } else {
@@ -367,7 +367,6 @@ extension ViewController: NMFMapViewCameraDelegate, NMFMapViewTouchDelegate {
         }
     }
     
-    //바운드에 맞게 마커 생성
     func makeMarker() {
         for i in MapRepository.shared.tasks {
             let marker = NMFMarker()
