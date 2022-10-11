@@ -154,7 +154,7 @@ extension WeatherViewController: CLLocationManagerDelegate {
                 
                 //강수 확률
                 //소수점 아예 지워줌
-                self.main.rainy.statusLabel.text = "\(String(format: "%.f", pop))%"
+                self.main.rainy.statusLabel.text = "\(Int(pop))%"
                 self.group.leave()
             }
             
