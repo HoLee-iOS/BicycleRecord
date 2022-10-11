@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
     
-    //포그라운드 알림 수신: 로컬/푸시 동일    
+    //포그라운드 알림 수신: 로컬/푸시 동일
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
         //.banner, .list: iOS14+
