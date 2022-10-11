@@ -14,7 +14,7 @@ class SettingViewController: BaseViewController {
     
     lazy var setVersion: UILabel = {
         let label = UILabel()
-        label.text = "\(currentAppVersion()).0"
+        label.text = "\(currentAppVersion())"
         label.font = .systemFont(ofSize: 15, weight: .semibold)
         label.textColor = .gray
         return label
@@ -31,7 +31,7 @@ class SettingViewController: BaseViewController {
         return view
     }()
     
-    let titles = ["문의하기", "리뷰남기기", "개발자 정보", "오픈소스 라이선스 보기", "앱 버전"]
+    let titles = ["문의하기", "리뷰 남기기", "개발자 정보", "오픈소스 라이선스 보기", "앱 버전"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -46,7 +46,7 @@ class WeatherViewController: BaseViewController {
         typeSwitch(task.main)
         miseSwitch(task.mise)
         choMiseSwitch(task.choMise)
-        main.rainy.statusLabel.text = "\(task.rain)%"
+        main.rainy.statusLabel.text = "\(Int(task.rain))%"
         main.windy.statusLabel.text = "\(task.windPower)m/s"
     }
 }
