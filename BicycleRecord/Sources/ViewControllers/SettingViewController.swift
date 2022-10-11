@@ -31,7 +31,7 @@ class SettingViewController: BaseViewController {
         return view
     }()
     
-    let titles = ["문의하기", "개발자 정보", "오픈소스 라이선스 보기", "앱 버전"]
+    let titles = ["문의하기", "리뷰남기기", "개발자 정보", "오픈소스 라이선스 보기", "앱 버전"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,6 @@ class SettingViewController: BaseViewController {
     
     override func configure() {
         view.addSubview(tableView)
-        
     }
     
     override func setConstraints() {
@@ -72,6 +71,19 @@ class SettingViewController: BaseViewController {
         picker.setSubject("Ricle 문의사항")
         picker.setMessageBody("", isHTML: true)
         present(picker, animated: true, completion: nil)
+    }
+    
+    func openReview() {
+        if let appstoreURL = URL(string: "https://apps.apple.com/kr/app/ricle/id6443554916") {
+            var components = URLComponents(url: appstoreURL, resolvingAgainstBaseURL: false)
+            components?.queryItems = [
+              URLQueryItem(name: "action", value: "write-review")
+            ]
+            guard let writeReviewURL = components?.url else {
+                return
+            }
+            UIApplication.shared.open(writeReviewURL, options: [:], completionHandler: nil)
+        }
     }
 }
 
@@ -128,14 +140,14 @@ extension SettingViewController: MFMailComposeViewControllerDelegate {
 
 extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.reuseIdentifier) as? SettingTableViewCell else { return UITableViewCell() }
         cell.selectionStyle = .none
         cell.setTitle.text = titles[indexPath.row]
-        if indexPath.row == 3 {
+        if indexPath.row == 4 {
             setVersion.sizeToFit()
             cell.accessoryView = setVersion
         }
@@ -144,8 +156,9 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
-        case 1, 2: openNotion()
         case 0: sendMail()
+        case 1: openReview()
+        case 2, 3: openNotion()        
         default: break
         }
     }
