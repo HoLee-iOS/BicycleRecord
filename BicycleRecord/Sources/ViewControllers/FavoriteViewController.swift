@@ -134,7 +134,7 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
             cell.popup.popupIcon.tintColor = Colors.red
         }
         
-        cell.popup.popupText.text = "\(info![indexPath.row].id). \(info![indexPath.row].title)"
+        cell.popup.popupText.text = "\(info?[indexPath.row].id ?? 0). \(info?[indexPath.row].title ?? "")"
         
         if info?[indexPath.row].info == "" {
             cell.popup.popupInfo.text = "24시간"

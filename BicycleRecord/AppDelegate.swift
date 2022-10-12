@@ -29,14 +29,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UNUserNotificationCenter.current().requestAuthorization(
             options: authOptions,
             completionHandler: { _, _ in }
-        )        
+        )
         
         application.registerForRemoteNotifications()
         
         //메시지 대리자 설정
         Messaging.messaging().delegate = self
         
-        //현재 등록된 토큰 가져오기
         Messaging.messaging().token { token, error in
             if let error = error {
                 print("Error fetching FCM registration token: \(error)")
@@ -66,11 +65,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
     
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Messaging.messaging().apnsToken = deviceToken
+    }
+    
     //포그라운드 알림 수신: 로컬/푸시 동일
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
         //.banner, .list: iOS14+
         completionHandler([.badge, .sound, .banner, .list])
+        
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
+        //키 값에 따라서 이벤트 분기처리 가능
+        
+        guard let viewController = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController?.topViewController else { return }
+        
+        let userInfo = response.notification.request.content.userInfo
+        
+        //키값에 따른 화면 전환
+        if userInfo[AnyHashable("Map")] as? String == "0" {
+            viewController.tabBarController?.selectedIndex = 0
+        } else if userInfo[AnyHashable("Weather")] as? String == "2" {
+            viewController.tabBarController?.selectedIndex = 2
+        }
         
     }
     

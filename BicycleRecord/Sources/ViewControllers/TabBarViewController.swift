@@ -37,6 +37,7 @@ class TabBarViewController: UITabBarController {
         setViewControllers([navMap, navFav, navWea, navSet], animated: false)
         
         tabBar.tintColor = .black
+        
     }
 }
 
