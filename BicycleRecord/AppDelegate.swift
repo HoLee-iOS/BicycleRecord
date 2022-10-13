@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseCore
 import FirebaseMessaging
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        aboutRealmMigration()
         
         //앱 실행시 네트워크 상태 확인
         NetworkMonitor.shared.startMonitoring()
@@ -59,6 +62,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+    }
+    
+}
+
+extension AppDelegate {
+    
+    //마이그레이션 적용
+    func aboutRealmMigration() {
+        
+        let config = Realm.Configuration(schemaVersion: 1) { migration, oldSchemaVersion in
+            
+            //이전 버전에 rain 타입이 Int -> Double로 변경되었던것에 대한 마이그레이션
+            if oldSchemaVersion < 1 {
+                migration.enumerateObjects(ofType: UserWeather.className()) { oldObject, newObject in
+                    guard let new = newObject else { return }
+                    guard let old = oldObject else { return }
+                    
+                    new["rain"] = old["rain"]
+                }
+            }
+        }
+        
+        Realm.Configuration.defaultConfiguration = config
+        
     }
     
 }

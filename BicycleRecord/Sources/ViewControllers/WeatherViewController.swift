@@ -8,6 +8,7 @@
 import UIKit
 
 import CoreLocation
+import RealmSwift
 
 class WeatherViewController: BaseViewController {
     
@@ -150,7 +151,7 @@ extension WeatherViewController: CLLocationManagerDelegate {
             //강수 확률에 대한 정보 호출
             WeatherAPIManager.shared.callDaily(lat: lat, lon: lng) { pop in
                 
-                Weather.wea2 = pop
+                Weather.wea2 = pop                
                 
                 //강수 확률
                 //소수점 아예 지워줌
