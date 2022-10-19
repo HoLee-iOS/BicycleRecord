@@ -26,17 +26,20 @@ class SettingViewController: BaseViewController {
         view.backgroundColor = .white
         view.separatorStyle = .none
         view.delegate = self
-        view.dataSource = self
         view.register(SettingTableViewCell.self, forCellReuseIdentifier: SettingTableViewCell.reuseIdentifier)
         return view
     }()
     
     let titles = ["문의하기", "리뷰 남기기", "개발자 정보", "오픈소스 라이선스 보기", "앱 버전"]
     
+    var dataSource: UITableViewDiffableDataSource<Int, String>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        
+        configureDataSource()
     }
     
     override func configure() {
@@ -138,21 +141,7 @@ extension SettingViewController: MFMailComposeViewControllerDelegate {
     }
 }
 
-extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.reuseIdentifier) as? SettingTableViewCell else { return UITableViewCell() }
-        cell.selectionStyle = .none
-        cell.setTitle.text = titles[indexPath.row]
-        if indexPath.row == 4 {
-            setVersion.sizeToFit()
-            cell.accessoryView = setVersion
-        }
-        return cell
-    }
+extension SettingViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
@@ -162,4 +151,28 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         default: break
         }
     }
+}
+
+extension SettingViewController {
+    private func configureDataSource() {
+        
+        dataSource = UITableViewDiffableDataSource(tableView: tableView, cellProvider: { tableView, indexPath, itemIdentifier in
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.reuseIdentifier) as? SettingTableViewCell else { return UITableViewCell() }
+            cell.selectionStyle = .none
+            cell.setTitle.text = self.titles[indexPath.row]
+            if indexPath.row == 4 {
+                self.setVersion.sizeToFit()
+                cell.accessoryView = self.setVersion
+            }
+            return cell
+        })
+        
+        tableView.dataSource = dataSource
+        
+        var snapshot = NSDiffableDataSourceSnapshot<Int, String>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(titles)
+        dataSource.apply(snapshot)
+    }
+    
 }

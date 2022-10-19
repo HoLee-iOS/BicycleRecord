@@ -52,8 +52,7 @@ class WeatherAPIManager {
                 //성공케이스에 대한 설정
             case .success(let value):
                 
-                let json = JSON(value)
-                print(json)
+                let json = JSON(value)                
                 
                 //강수 확률
                 let pop = json["list"][0]["pop"].doubleValue * 100
@@ -81,7 +80,7 @@ class WeatherAPIManager {
                 //미세먼지
                 let mise = json["list"][0]["components"]["pm10"].doubleValue
                 //초미세먼지
-                let choMise = json["list"][0]["components"]["pm2_5"].doubleValue
+                let choMise = json["list"][0]["components"]["pm2_5"].doubleValue                
                 
                 completion(mise, choMise)
                 
