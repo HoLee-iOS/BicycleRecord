@@ -11,7 +11,6 @@
 		C12A655A28E591BD00C5EB48 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12A655928E591BD00C5EB48 /* SettingViewController.swift */; };
 		C12A655C28E5F60300C5EB48 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12A655B28E5F60300C5EB48 /* LaunchViewController.swift */; };
 		C12A655F28E6097C00C5EB48 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C12A655E28E6097C00C5EB48 /* Lottie */; };
-		C12A656728E6234200C5EB48 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12A656628E6234200C5EB48 /* LocationManager.swift */; };
 		C137AC5728E809CE00C082E7 /* ricle.json in Resources */ = {isa = PBXBuildFile; fileRef = C137AC5628E809CE00C082E7 /* ricle.json */; };
 		C1431D1528E33D1600197820 /* DropCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1431D1328E33D1600197820 /* DropCell.swift */; };
 		C1431D1628E33D1600197820 /* DropCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1431D1428E33D1600197820 /* DropCell.xib */; };
@@ -68,7 +67,6 @@
 		C12A655728E591AD00C5EB48 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		C12A655928E591BD00C5EB48 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		C12A655B28E5F60300C5EB48 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
-		C12A656628E6234200C5EB48 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		C137AC5628E809CE00C082E7 /* ricle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = ricle.json; path = ../../../../RicleAsset/ricle.json; sourceTree = "<group>"; };
 		C1431D1328E33D1600197820 /* DropCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropCell.swift; sourceTree = "<group>"; };
 		C1431D1428E33D1600197820 /* DropCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropCell.xib; sourceTree = "<group>"; };
@@ -261,7 +259,6 @@
 				C1431D1928E346A600197820 /* Weather.swift */,
 				C15C0DD628E21BFC008DACF4 /* Marker.swift */,
 				C15C0DB528E214CD008DACF4 /* CustomView.swift */,
-				C12A656628E6234200C5EB48 /* LocationManager.swift */,
 				C15C0D8928E212F0008DACF4 /* Base */,
 			);
 			path = Constants;
@@ -501,7 +498,6 @@
 				C15C0DA828E2147E008DACF4 /* MapRealm.swift in Sources */,
 				C15C0D9228E213AC008DACF4 /* PopupView.swift in Sources */,
 				C15C0DA428E21460008DACF4 /* BicycleAPIManager.swift in Sources */,
-				C12A656728E6234200C5EB48 /* LocationManager.swift in Sources */,
 				C15C0D8C28E21371008DACF4 /* ReusableProtocol.swift in Sources */,
 				C12A655C28E5F60300C5EB48 /* LaunchViewController.swift in Sources */,
 				C12A655A28E591BD00C5EB48 /* SettingViewController.swift in Sources */,
@@ -674,7 +670,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.skylerLee.BicycleRecord;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -709,7 +705,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.skylerLee.BicycleRecord;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
