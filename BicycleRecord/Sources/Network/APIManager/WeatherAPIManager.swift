@@ -56,7 +56,6 @@ class WeatherAPIManager {
                 
                 //강수 확률
                 let pop = json["list"][0]["pop"].doubleValue * 100
-                print(pop)
                 
                 completion(pop)
                 
