@@ -2,7 +2,7 @@
 
 [Ricle - 자전거 편의시설 지도 앱스토어 링크](https://apps.apple.com/kr/app/ricle-%EC%9E%90%EC%A0%84%EA%B1%B0-%ED%8E%B8%EC%9D%98%EC%8B%9C%EC%84%A4-%EC%A7%80%EB%8F%84/id6443554916)
 
-## Overview
+## 개요
 
 서울시 자전거 편의시설의 정보와 자전거 라이딩에 적합한 날씨인지에 대한 정보를 제공해주는 앱입니다.
 <br>주요 기획 의도는 자전거 편의시설에 대한 정보와 날씨를 함께 제공함으로 자전거 라이딩에 있어서 필요한 정보들을 한 앱에서 제공해주는 자전거 라이딩 앱입니다.
@@ -13,7 +13,7 @@
 - Realm 객체 별 종류를 판별해줄 Int 타입의 프로퍼티를 통해 전체 데이터 배열에서 filter 고차함수를 이용한 종류 별 필터 기능
 - Realm 객체 별 즐겨찾기를 판별해줄 Bool 타입의 프로퍼티를 통해 전체 데이터 배열에서 filter 고차함수를 이용한 즐겨찾기 기능
 
-## Demo
+## 스크린샷
 <p>
 <img src="https://user-images.githubusercontent.com/78537078/209093977-4c452162-3fc3-4743-bc4c-32d5d13af5cd.png" width="19%">
 <img src="https://user-images.githubusercontent.com/78537078/209094066-9647e175-e1b5-4c17-87f2-f754ba42e7f5.png" width="19%">
@@ -22,7 +22,7 @@
 <img src="https://user-images.githubusercontent.com/78537078/209094074-d3ce88c2-804d-45c5-9db6-612c16055846.png" width="19%">
 </p>
 
-## Period
+## 제작 기간
 [개발 공수](https://www.notion.so/a3763ffa4aef4f258b7bc5a9cd19feb1?v=ba2e1ce25e90468289919989c552cc3c)
 22.09 ~ 22.10 (4주)
 
