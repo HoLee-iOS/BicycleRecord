@@ -1,17 +1,12 @@
-# 🚲 Ricle - 자전거 편의시설 지도 (출시)
+
+<img src="https://user-images.githubusercontent.com/78537078/209314831-d69d4fcf-cd44-420a-86f1-96c0e6d13d74.png" width="25%">
+
+# Ricle - 자전거 편의시설 지도 (출시)
 
 [Ricle - 자전거 편의시설 지도 앱스토어 링크](https://apps.apple.com/kr/app/ricle-%EC%9E%90%EC%A0%84%EA%B1%B0-%ED%8E%B8%EC%9D%98%EC%8B%9C%EC%84%A4-%EC%A7%80%EB%8F%84/id6443554916)
 
-## 개요
-
 서울시 자전거 편의시설의 정보와 자전거 라이딩에 적합한 날씨인지에 대한 정보를 제공해주는 앱입니다.
 <br>주요 기획 의도는 자전거 편의시설에 대한 정보와 날씨를 함께 제공함으로 자전거 라이딩에 있어서 필요한 정보들을 한 앱에서 제공해주는 자전거 라이딩 앱입니다.
-
-- Alamofire와 SwiftyJSON을 이용하여 편의시설의 데이터를 Realm 데이터베이스에 저장 후에 자전거 편의시설 정보 제공
-- Alamofire와 SwiftyJSON을 이용하여 날씨 데이터를 Realm 데이터베이스에 저장 후에 날씨 정보 제공
-- Realm 편의시설 데이터 배열에서 사용자가 입력한 텍스트를 통해 contains 고차함수를 이용한 검색 기능
-- Realm 객체 별 종류를 판별해줄 Int 타입의 프로퍼티를 통해 전체 데이터 배열에서 filter 고차함수를 이용한 종류 별 필터 기능
-- Realm 객체 별 즐겨찾기를 판별해줄 Bool 타입의 프로퍼티를 통해 전체 데이터 배열에서 filter 고차함수를 이용한 즐겨찾기 기능
 
 ## 스크린샷
 <p>
