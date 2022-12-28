@@ -171,19 +171,20 @@
 ### 4.6 앱 리젝
 - 문제점
 <img width="726" alt="스크린샷 2022-12-28 오후 2 34 18" src="https://user-images.githubusercontent.com/78537078/209763047-24f36702-be20-4ff2-987b-7d6102f6f306.png">
+
 - 해결: 로그인 기능이 없는 앱에서 소개 페이지에 서비스 이용 약관에 대해 기재해놓은 것으로 리젝 받은 것으로 소개페이지에서 이용 약관에 대한 부분 삭제 후 출시
 
 </br>
 
 ## 5. 회고 / 느낀점
-
+[프로젝트 개발에 대한 회고](https://skylert.tistory.com/48)
 
 </br>
 
 ## 6. 업데이트 내역
 |ver|content|
 |---|---|
-|1.1.2|앱 실시간 모니터링을 위한 FirebaseCrashlytics, FirebaseAnalytics 추가 / 원격 알림 전송을 위한 FirebaseMessaging 추가 |
+|1.1.2|앱 실시간 모니터링을 위한 FirebaseCrashlytics, FirebaseAnalytics 추가 </br> 원격 알림 전송을 위한 FirebaseMessaging 추가 |
 |1.1.1|Realm 데이터 타입 변경으로 인한 마이그레이션|
-|1.1.0|강수확률 데이터가 0으로 계속 나오는 버그 수정 / 리뷰 남기기 기능 추가 / 팝업 뷰 버그 수정|
+|1.1.0|강수확률 데이터가 계속 0으로 나오는 버그 수정 </br> 리뷰 남기기 기능 추가 </br> 팝업 뷰 버그 수정|
 |1.0|앱 출시|
