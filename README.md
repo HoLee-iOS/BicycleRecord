@@ -30,18 +30,19 @@
 | kind | stack |
 | ------ | ------ |
 | 아키텍처 | `MVC` |
-| 프레임워크 | `UIKit` `Foundation` `MapKit` `Network` `MessageUI` `SafariServices` `CoreLocation`|
+| 프레임워크 | `UIKit` `Foundation` `Network` `MessageUI` `SafariServices` `CoreLocation`|
 | UI | `Snapkit` `Codebase` |
 | 라이브러리 | `Toast` `SwiftyJSON` `Lottie` `SnapKit` `NaverMapSDK` `DropDown` `Toast` `FirebaseCrashlytics` `FirebaseAnalytics` `FirebaseMessaging` |
 | 데이터베이스 | `Realm` |
 | 네트워크 | `Alamofire` |
-| 의존성관리 | `Cocoapods`, `Swift Package Manager` |
+| 의존성관리 | `Cocoapods` `Swift Package Manager` |
 | Tools | `Git / Github` `Jandi` |
 | ETC | `DiffableDataSource` |
 
 </br>
 
 ## 3. 핵심 기능
+
 이 서비스의 핵심 기능은 자전거 사용자에게 정말 필요하지만 찾기 힘들었던 자전거 편의시설에 대한 정보 제공입니다.
 - 편의시설 정보 제공
 - 검색 기능
