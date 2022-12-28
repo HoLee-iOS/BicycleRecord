@@ -55,7 +55,7 @@
 ### 3.1 편의시설 정보 제공
 
   - 앱 시작화면에서 통신을 통해 편의시설 데이터를 받아와서 Realm에 저장
-  ``` Swift
+  ``` swift
   BicycleAPIManager.shared.callRequest(startIndex: 1, endIndex: 1000) { loc, count  in
                     loc.forEach {
                         if $0.2.contains("공기") || $0.2.contains("주입기") {
@@ -73,7 +73,7 @@
   ```
   
   - Realm에 저장되어 있는 데이터 배열을 통해 마커를 생성하여 네이버 지도에 구현
-  ``` Swift    
+  ``` swift    
   for i in MapRepository.shared.tasks {
             marker.position = NMGLatLng(lat: i.lat, lng: i.lng)
             
@@ -99,7 +99,7 @@
 ### 3.2 검색 기능
 
   - Realm 데이터 배열에 사용자로부터 입력 받은 텍스트를 contains 고차함수를 통해 검색 기능 구현
-  ``` Swift
+  ``` swift
   let text = searchText.lowercased()
   filteredArr = MapRepository.shared.tasks.where { $0.title.contains(text, options: .caseInsensitive) || $0.address.contains(text, options: .caseInsensitive) }
   ```
@@ -109,7 +109,7 @@
 ### 3.3 즐겨찾기 기능
 
   - Realm 객체 별 즐겨찾기를 판별해줄 Bool 타입의 프로퍼티를 통해 전체 데이터 배열에서 filter 고차함수로 즐겨찾기 기능 구현
-  ``` Swift
+  ``` swift
   let arr = MapRepository.shared.tasks.where { $0.id == popup.id! }
   MapRepository.shared.updateFavorite(item: arr[0])
   arr[0].favorite ? popup.popupFavoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal) : popup.popupFavoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
@@ -120,7 +120,7 @@
 ### 3.4 날씨 정보 제공
 
   - Alamofire와 SwiftyJSON을 이용하여 날씨 데이터를 Realm 데이터베이스에 저장한 후에 정보 제공
-  ``` Swift
+  ``` swift
   WeatherAPIManager.shared.callWeather(lat: lat, lon: lng) { main, temp, windPower in
                 
                 Weather.wea1 = (main, temp, windPower)
