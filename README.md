@@ -4,7 +4,8 @@
 # Ricle - 자전거 편의시설 지도 (출시)
 
 - [Ricle - 자전거 편의시설 지도 앱스토어 링크](https://apps.apple.com/kr/app/ricle-%EC%9E%90%EC%A0%84%EA%B1%B0-%ED%8E%B8%EC%9D%98%EC%8B%9C%EC%84%A4-%EC%A7%80%EB%8F%84/id6443554916)</br>
-- [Ricle 소개 페이지](https://elite-pet-b14.notion.site/Ricle-90a18363c595446fa9ae9ae3a5ae9738)</br>
+- [Ricle 소개 페이지](https://elite-pet-b14.notion.site/Ricle-1-1-1-440a2fada68b4fa2aeb40bd933016f18)</br>
+- [Ricle 개인정보처리방침 및 오픈소스 라이선스 페이지](https://elite-pet-b14.notion.site/Ricle-90a18363c595446fa9ae9ae3a5ae9738)</br>
 - 서울시 자전거 편의시설의 정보와 자전거 라이딩에 적합한 날씨인지에 대한 정보를 제공해주는 앱입니다.</br>
 - 주요 기획 의도는 자전거 편의시설에 대한 정보와 날씨를 함께 제공함으로 자전거 라이딩에 필요한 정보들을 한 앱에서 제공해주는 앱입니다.
 
@@ -19,7 +20,7 @@
 </br>
 
 ## 1. 제작 기간 & 참여 인원
-- [개발 공수](https://elite-pet-b14.notion.site/a3763ffa4aef4f258b7bc5a9cd19feb1?v=ba2e1ce25e90468289919989c552cc3c)
+- 개발 공수 : https://elite-pet-b14.notion.site/a3763ffa4aef4f258b7bc5a9cd19feb1?v=ba2e1ce25e90468289919989c552cc3c
 - 2022년 9월 12일 ~ 10월 13일
 - 개인 프로젝트
 
@@ -45,7 +46,7 @@
 - 편의시설 정보 제공
 - 검색 기능
 - 즐겨찾기 기능
-- 그날의 라이딩에 알맞은 날씨인지 확인해 볼 수 있습니다.
+- 날씨 정보 제공
 
 <details>
 <summary><b>핵심 기능 설명 펼치기</b></summary>
@@ -137,7 +138,7 @@
 </br>
 
 ## 4. 트러블슈팅
-[개발 일지](https://www.notion.so/8cac79381a344f69977b169c6d091d82)
+- 개발 일지 : https://www.notion.so/8cac79381a344f69977b169c6d091d82
 
 ### 4.1 자전거 편의시설 마커 표시 구현시 스레드 에러
 - 문제점: 네트워크 통신 내부에서 오버레이 추가를 하려고 했는데 스레드 에러가 발생함
@@ -176,15 +177,15 @@
 
 </br>
 
-## 5. 회고 / 느낀점
-[프로젝트 개발에 대한 회고](https://skylert.tistory.com/48)
+## 5. 회고
+- 프로젝트 개발에 대한 회고 : https://skylert.tistory.com/48
 
 </br>
 
 ## 6. 업데이트 내역
 |ver|content|
 |---|---|
-|1.1.2|앱 실시간 모니터링을 위한 FirebaseCrashlytics, FirebaseAnalytics 추가 </br> 원격 알림 전송을 위한 FirebaseMessaging 추가 |
-|1.1.1|Realm 데이터 타입 변경으로 인한 마이그레이션|
-|1.1.0|강수확률 데이터가 계속 0으로 나오는 버그 수정 </br> 리뷰 남기기 기능 추가 </br> 팝업 뷰 버그 수정|
+|1.1.2| 설정 탭 Diffable Datasource로 수정 |
+|1.1.1|Realm 테이블 구조 변화에 대한 마이그레이션 구현|
+|1.1.0|강수확률 데이터가 계속 0으로 나오는 버그 수정 </br> 리뷰 남기기 기능 추가 </br> 앱 실시간 모니터링을 위한 FirebaseCrashlytics, FirebaseAnalytics 추가 </br> 원격 알림 전송을 위한 FirebaseMessaging 추가|
 |1.0|앱 출시|
