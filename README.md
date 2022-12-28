@@ -31,7 +31,6 @@
 | ------ | ------ |
 | 아키텍처 | `MVC` |
 | 프레임워크 | `UIKit` `Foundation` `Network` `MessageUI` `SafariServices` `CoreLocation`|
-| UI | `Snapkit` `Codebase` |
 | 라이브러리 | `Toast` `SwiftyJSON` `Lottie` `SnapKit` `NaverMapSDK` `DropDown` `Toast` `FirebaseCrashlytics` `FirebaseAnalytics` `FirebaseMessaging` |
 | 데이터베이스 | `Realm` |
 | 네트워크 | `Alamofire` |
