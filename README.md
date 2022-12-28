@@ -5,7 +5,7 @@
 
 >[Ricle - 자전거 편의시설 지도 앱스토어 링크](https://apps.apple.com/kr/app/ricle-%EC%9E%90%EC%A0%84%EA%B1%B0-%ED%8E%B8%EC%9D%98%EC%8B%9C%EC%84%A4-%EC%A7%80%EB%8F%84/id6443554916)</br>
 >서울시 자전거 편의시설의 정보와 자전거 라이딩에 적합한 날씨인지에 대한 정보를 제공해주는 앱입니다.</br>
->주요 기획 의도는 자전거 편의시설에 대한 정보와 날씨를 함께 제공함으로 자전거 라이딩에 있어서 필요한 정보들을 한 앱에서 제공해주는 자전거 라이딩 앱입니다.
+>주요 기획 의도는 자전거 편의시설에 대한 정보와 날씨를 함께 제공함으로 자전거 라이딩에 필요한 정보들을 한 앱에서 제공해주는 앱입니다.
 
 <p>
 <img src="https://user-images.githubusercontent.com/78537078/209093977-4c452162-3fc3-4743-bc4c-32d5d13af5cd.png" width="19%">
@@ -25,64 +25,113 @@
 </br>
 
 ## 2. 사용 기술
-#### `언어`
-  - Swift
-#### `데이터베이스`
-  - Realm
-#### `디자인`
-  - AutoLayout
-#### `네트워크`
-  - Alamofire
-#### `의존성관리`
-  - Cocoapods 
-  - Swift Package Manager
-#### `프레임워크`
-  - Foundation
-  - UIKit
-  - CoreLocation
-  - Network
-  - SafariServices
-  - MessageUI
-#### `라이브러리`
-  - SwiftyJSON
-  - Lottie
-  - SnapKit
-  - NaverMapSDK
-  - DropDown
-  - Toast
-  - FirebaseCrashlytics
-  - FirebaseAnalytics
-  - FirebaseMessaging
-#### `디자인패턴`
-  - MVC
-  - Singleton
-#### `Tools`
-  - Git / Github
-  - Jandi
-#### `ETC`
-  - DiffableDataSource
+|카테고리|내용|
+|---|---|
+|언어|Swift|
+|데이터베이스|Realm|
+|디자인|AutoLayout|
+|네트워크|Alamofire|
+|의존성관리|Cocoapods, Swift Package Manager|
+|프레임워크|Foundation, UIKit, CoreLocation, Network, SafariServices, MessageUI|
+|라이브러리|SwiftyJSON, Lottie, SnapKit, NaverMapSDK, DropDown, Toast, FirebaseCrashlytics, FirebaseAnalytics, FirebaseMessaging|
+|디자인패턴|MVC, Singleton|
+|Tools|Git / Github, Jandi|
+|ETC|DiffableDataSource|
 
 </br>
 
 ## 3. 핵심 기능
+이 서비스의 핵심 기능은 자전거 사용자에게 정말 필요하지만 찾을 수 없었던 자전거 편의시설에 대한 정보 제공입니다.
+- 사용자의 위치 기반으로 주변에 있는 자전거 편의시설에 대한 정보를 제공합니다.
+- 원하는 지역이나 시설이 있다면 검색도 해볼 수 있습니다.
+- 자주 찾는 시설에 대해 즐겨찾기를 설정하여 쉽게 찾아볼 수 있습니다.
+- 그날의 라이딩에 알맞은 날씨인지 확인해 볼 수 있습니다.
 
 <details>
 <summary><b>핵심 기능 설명 펼치기</b></summary>
 
-- Alamofire와 SwiftyJSON을 이용하여 편의시설의 데이터를 Realm 데이터베이스에 저장한 후에 마커 배열을 생성하여 네이버 지도 SDK에 마커 표시
-- Realm 객체 별 종류를 판별해줄 Int 타입의 프로퍼티를 통해 전체 데이터 배열에서 filter 고차함수로 종류 별 필터 기능 구현
-- Realm 편의시설 데이터 배열에서 사용자가 입력한 텍스트를 통해 contains 고차함수로 검색 기능 구현
-- Realm 객체 별 즐겨찾기를 판별해줄 Bool 타입의 프로퍼티를 통해 전체 데이터 배열에서 filter 고차함수로 즐겨찾기 기능 구현
-- Alamofire와 SwiftyJSON을 이용하여 날씨 데이터를 Realm 데이터베이스에 저장한 후 정보 제공
-- 마커는 NMFOverlayImage를 통해 Custom Marker 생성
-- DropDown을 통해 종류 선택 버튼 구현
-- MessageUI framework와 MFMailComposeViewController 객체를 통해 문의하기 기능 구현****
-- CoreLocation의 CLLocationManager를 이용하여 사용자 위치 권한 요청 및 예외 처리 및 위치 정보 수립
-- Network framework를 통한 네트워크 연결 상태에 따른 예외 처리
-- SafariServices framework를 통한 리뷰 남기기 기능 구현
-- Firebase Crashlytics와 Firebase Analytics를 활용한 실시간 모니터링 기능 구현
-- Firebase Messaging을 활용한 원격 알림 기능 구현
+### 3.1 편의시설 정보 제공
+  ``` swift
+  BicycleAPIManager.shared.callRequest(startIndex: 1, endIndex: 1000) { loc, count  in
+                    loc.forEach {
+                        if $0.2.contains("공기") || $0.2.contains("주입기") {
+                            let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 0)
+                            MapRepository.shared.saveRealm(item: task)
+                        } else if $0.2.contains("주차") || $0.2.contains("거치") || $0.2.contains("보관") {
+                            let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 1)
+                            MapRepository.shared.saveRealm(item: task)
+                        } else {
+                            let task = UserMap(lat: $0.0, lng: $0.1, title: $0.2, info: $0.3, id: $0.4, address: $0.5, type: 2)
+                            MapRepository.shared.saveRealm(item: task)
+                        }
+                    }
+                }
+  ```
+  - 앱 시작화면에서 통신을 통해 편의시설 데이터를 받아와서 Realm에 저장
+  
+  ``` swift    
+  for i in MapRepository.shared.tasks {
+            marker.position = NMGLatLng(lat: i.lat, lng: i.lng)
+            
+            marker.userInfo = ["type":i.type]
+            
+            marker.touchHandler = { [weak self] (overlay: NMFOverlay) -> Bool in
+                guard let self = self else { return false }
+                
+                if let marker = self.mark {
+                    if marker.userInfo["type"] as! Int == 0 {
+                        marker.iconImage = NMFOverlayImage(name: "loc1")
+                    } else if marker.userInfo["type"] as! Int == 1 {
+                        marker.iconImage = NMFOverlayImage(name: "loc2")
+                    } else {
+                        marker.iconImage = NMFOverlayImage(name: "loc3")
+                    }
+                }
+  }
+  ```
+  - Realm에 저장되어 있는 데이터 배열을 통해 마커를 생성하여 네이버 지도에 구현
+  
+  </br>
+  
+### 3.2 검색 기능
+  ``` swift
+  let text = searchText.lowercased()
+  filteredArr = MapRepository.shared.tasks.where { $0.title.contains(text, options: .caseInsensitive) || $0.address.contains(text, options: .caseInsensitive) }
+  ```
+  - Realm 데이터 배열에 사용자로부터 입력 받은 텍스트를 contains 고차함수를 통해 검색 기능 구현
+  
+  </br>
+  
+### 3.3 즐겨찾기 기능
 
+  ``` swift
+  let arr = MapRepository.shared.tasks.where { $0.id == popup.id! }
+  MapRepository.shared.updateFavorite(item: arr[0])
+  arr[0].favorite ? popup.popupFavoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal) : popup.popupFavoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
+  ```
+  - Realm 객체 별 즐겨찾기를 판별해줄 Bool 타입의 프로퍼티를 통해 전체 데이터 배열에서 filter 고차함수로 즐겨찾기 기능 구현
+  
+  </br>
+  
+### 3.4 날씨 정보 제공
+
+  ``` swift
+  WeatherAPIManager.shared.callWeather(lat: lat, lon: lng) { main, temp, windPower in
+                
+                Weather.wea1 = (main, temp, windPower)
+                
+                //날씨 아이콘
+                self.main.weatherImage.image = UIImage(named: self.iconType(main))
+                //날씨 종류
+                self.typeSwitch(main)
+                //현재 기온
+                self.main.currentTemp.text = "\(temp)º"
+                //풍속
+                self.main.windy.statusLabel.text = "\(windPower)m/s"
+            }
+            WeatherRepository.shared.saveRealm(item: item)
+  ```
+  - Alamofire와 SwiftyJSON을 이용하여 날씨 데이터를 Realm 데이터베이스에 저장한 후에 정보 제공
 </details>
 
 </br>
@@ -90,6 +139,10 @@
 ## 4. 트러블슈팅
 [개발일지](https://www.notion.so/8cac79381a344f69977b169c6d091d82)
 
-## 회고 / 느낀점
+</br>
 
-## 업데이트 내역
+## 5. 회고 / 느낀점
+
+</br>
+
+## 6. 업데이트 내역
