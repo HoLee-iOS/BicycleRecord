@@ -146,35 +146,35 @@
 ### 4.1 자전거 편의시설 마커 표시 구현시 스레드 에러
 - 문제점: 네트워크 통신 내부에서 오버레이 추가를 하려고 했는데 스레드 에러가 발생함
 - 해결: 지도에 추가된 오버레이의 속성은 메인스레드에서만 접근해야해서 대량의 오버레이를 다룰 경우 객체를 생성하고 초기 옵션을 지정하는 작업은 백그라운드 스레드에서 수행하고 지도에 추가하는 작업만을 메인 스레드에서 수행하면 메인 스레드를 효율적으로 사용할 수 있음
-<img width="584" alt="슈팅1" src="https://user-images.githubusercontent.com/78537078/209756995-3586bc2e-48b7-4d28-802c-d162bcdbf39e.png">
+  <img width="584" alt="슈팅1" src="https://user-images.githubusercontent.com/78537078/209756995-3586bc2e-48b7-4d28-802c-d162bcdbf39e.png">
 
 ### 4.2 날씨 데이터 통신 콜 수 제한
 - 문제점: 화면 들어올때마다 날씨 데이터 통신을 하게 만들었더니 콜 수 제한 때문에 API 계정에 Lock이 걸림
 - 해결: 앱 최초실행, 통신 후 3시간 경과, 현 위치의 구 단위 변경 시에만 데이터 통신이 되도록 조건을 설정함
-<img width="1107" alt="스크린샷 2022-12-28 오후 1 33 25" src="https://user-images.githubusercontent.com/78537078/209757794-83e56c50-9132-4986-9ce2-517eeca8acb9.png">
+  <img width="1107" alt="스크린샷 2022-12-28 오후 1 33 25" src="https://user-images.githubusercontent.com/78537078/209757794-83e56c50-9132-4986-9ce2-517eeca8acb9.png">
 
 ### 4.3 즐겨찾기 탭에서 홈 탭으로 값 전달
 - 문제점: 즐겨찾기 탭에서 셀 선택 시 홈 탭으로 값 전달하여 동작을 해야하는데 UITabBarController에서 탭 간 값전달을 할 수 있는 방법이 떠오르지 않음
 - 해결: NotificationCenter를 이용하면 내가 선택하는 시점에 탭 전환만 해주면 홈 탭에서 원하는 값을 전달 받아서 원하는 동작을 실행할 수 있음!
-<img width="881" alt="스크린샷 2022-12-28 오후 1 46 26" src="https://user-images.githubusercontent.com/78537078/209759920-f6a9ffbe-46f7-4936-9f99-5cb215207850.png">
-<img width="1207" alt="스크린샷 2022-12-28 오후 1 46 47" src="https://user-images.githubusercontent.com/78537078/209759930-6f001dfc-118d-447f-9b6f-1c19ff373e70.png">
-<img width="976" alt="스크린샷 2022-12-28 오후 1 57 50" src="https://user-images.githubusercontent.com/78537078/209759939-058aa8a6-b56a-4d8a-90b0-273a6c8c3b16.png">
+  <img width="881" alt="스크린샷 2022-12-28 오후 1 46 26" src="https://user-images.githubusercontent.com/78537078/209759920-f6a9ffbe-46f7-4936-9f99-5cb215207850.png">
+  <img width="1207" alt="스크린샷 2022-12-28 오후 1 46 47" src="https://user-images.githubusercontent.com/78537078/209759930-6f001dfc-118d-447f-9b6f-1c19ff373e70.png">
+  <img width="976" alt="스크린샷 2022-12-28 오후 1 57 50" src="https://user-images.githubusercontent.com/78537078/209759939-058aa8a6-b56a-4d8a-90b0-273a6c8c3b16.png">
 
 ### 4.4 네트워크 상태에 따른 예외 처리
 - 문제점: 네트워크 상태에 따른 예외 처리 시에 설정으로 이동 후 네트워크 설정 없이 화면으로 돌아오는 경우 경고창이 뜨지 않음
 - 해결: SceneDelegate의 sceneDidBecomeActive 시점에 네트워크가 연결되어있는지를 확인해서 연결되어 있다면 그냥 넘어가고 되어있지않다면 네트워크 연결에 대한 경고창을 띄워서 예외처리함
-<img width="830" alt="슈팅2" src="https://user-images.githubusercontent.com/78537078/209761144-e410a4d9-2ba5-4061-9dfb-3138a098e2fd.png">
+  <img width="830" alt="슈팅2" src="https://user-images.githubusercontent.com/78537078/209761144-e410a4d9-2ba5-4061-9dfb-3138a098e2fd.png">
 
 ### 4.5 날씨 데이터 통신 후 Realm 데이터 저장
 - 문제점: 날씨 데이터 통신이 다 끝나고 Realm 데이터 저장이 되어야하는데 통신이 끝나기 전에 데이터 저장이 되어서 값이 몇개가 빈 상태로 저장됨
 - 해결: API 통신을 끝낸 후에 Realm 데이터에 담아줘야하기 때문에 Dispatch Group을 이용해서 통신이 완전히 끝나면 Realm에 담아주게 처리해줌
-<img width="243" alt="1" src="https://user-images.githubusercontent.com/78537078/209761732-1f40673f-c3a0-4300-8e9b-e33dfb3e7b0d.png">
-<img width="971" alt="2" src="https://user-images.githubusercontent.com/78537078/209761751-087d2dcd-a275-471d-a7da-27e99343f9c9.png">
-<img width="929" alt="3" src="https://user-images.githubusercontent.com/78537078/209761757-36e13dc8-8c46-4df3-a049-7f4522f380f6.png">
+  <img width="243" alt="1" src="https://user-images.githubusercontent.com/78537078/209761732-1f40673f-c3a0-4300-8e9b-e33dfb3e7b0d.png">
+  <img width="971" alt="2" src="https://user-images.githubusercontent.com/78537078/209761751-087d2dcd-a275-471d-a7da-27e99343f9c9.png">
+  <img width="929" alt="3" src="https://user-images.githubusercontent.com/78537078/209761757-36e13dc8-8c46-4df3-a049-7f4522f380f6.png">
 
 ### 4.6 앱 리젝
-- 문제점
-<img width="726" alt="스크린샷 2022-12-28 오후 2 34 18" src="https://user-images.githubusercontent.com/78537078/209763047-24f36702-be20-4ff2-987b-7d6102f6f306.png">
+- 문제점</br>
+  <img width="726" alt="스크린샷 2022-12-28 오후 2 34 18" src="https://user-images.githubusercontent.com/78537078/209763047-24f36702-be20-4ff2-987b-7d6102f6f306.png">
 
 - 해결: 로그인 기능이 없는 앱에서 소개 페이지에 서비스 이용 약관에 대해 기재해놓은 것으로 리젝 받은 것으로 소개페이지에서 이용 약관에 대한 부분 삭제 후 출시
 
