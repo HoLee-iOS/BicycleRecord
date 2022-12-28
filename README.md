@@ -3,9 +3,10 @@
 
 # Ricle - 자전거 편의시설 지도 (출시)
 
->[Ricle - 자전거 편의시설 지도 앱스토어 링크](https://apps.apple.com/kr/app/ricle-%EC%9E%90%EC%A0%84%EA%B1%B0-%ED%8E%B8%EC%9D%98%EC%8B%9C%EC%84%A4-%EC%A7%80%EB%8F%84/id6443554916)</br>
->서울시 자전거 편의시설의 정보와 자전거 라이딩에 적합한 날씨인지에 대한 정보를 제공해주는 앱입니다.</br>
->주요 기획 의도는 자전거 편의시설에 대한 정보와 날씨를 함께 제공함으로 자전거 라이딩에 필요한 정보들을 한 앱에서 제공해주는 앱입니다.
+- [Ricle - 자전거 편의시설 지도 앱스토어 링크](https://apps.apple.com/kr/app/ricle-%EC%9E%90%EC%A0%84%EA%B1%B0-%ED%8E%B8%EC%9D%98%EC%8B%9C%EC%84%A4-%EC%A7%80%EB%8F%84/id6443554916)</br>
+- [Ricle 소개 페이지](https://elite-pet-b14.notion.site/Ricle-90a18363c595446fa9ae9ae3a5ae9738)</br>
+- 서울시 자전거 편의시설의 정보와 자전거 라이딩에 적합한 날씨인지에 대한 정보를 제공해주는 앱입니다.</br>
+- 주요 기획 의도는 자전거 편의시설에 대한 정보와 날씨를 함께 제공함으로 자전거 라이딩에 필요한 정보들을 한 앱에서 제공해주는 앱입니다.
 
 <p>
 <img src="https://user-images.githubusercontent.com/78537078/209093977-4c452162-3fc3-4743-bc4c-32d5d13af5cd.png" width="19%">
@@ -25,26 +26,25 @@
 </br>
 
 ## 2. 사용 기술
-|카테고리|내용|
-|---|---|
-|언어|Swift|
-|데이터베이스|Realm|
-|디자인|AutoLayout|
-|네트워크|Alamofire|
-|의존성관리|Cocoapods, Swift Package Manager|
-|프레임워크|Foundation, UIKit, CoreLocation, Network, SafariServices, MessageUI|
-|라이브러리|SwiftyJSON, Lottie, SnapKit, NaverMapSDK, DropDown, Toast, FirebaseCrashlytics, FirebaseAnalytics, FirebaseMessaging|
-|디자인패턴|MVC, Singleton|
-|Tools|Git / Github, Jandi|
-|ETC|DiffableDataSource|
+| kind | stack |
+| ------ | ------ |
+| 아키텍처 | `MVC` |
+| 프레임워크 | `UIKit` `Foundation` `MapKit` `Network` `MessageUI` `SafariServices` `CoreLocation`|
+| UI | `Snapkit` `Codebase` |
+| 라이브러리 | `Toast` `SwiftyJSON` `Lottie` `SnapKit` `NaverMapSDK` `DropDown` `Toast` `FirebaseCrashlytics` `FirebaseAnalytics` `FirebaseMessaging` |
+| 데이터베이스 | `Realm` |
+| 네트워크 | `Alamofire` |
+| 의존성관리 | `Cocoapods`, `Swift Package Manager` |
+| Tools | `Git / Github` `Jandi` |
+| ETC | `DiffableDataSource` |
 
 </br>
 
 ## 3. 핵심 기능
 이 서비스의 핵심 기능은 자전거 사용자에게 정말 필요하지만 찾을 수 없었던 자전거 편의시설에 대한 정보 제공입니다.
-- 사용자의 위치 기반으로 주변에 있는 자전거 편의시설에 대한 정보를 제공합니다.
-- 원하는 지역이나 시설이 있다면 검색도 해볼 수 있습니다.
-- 자주 찾는 시설에 대해 즐겨찾기를 설정하여 쉽게 찾아볼 수 있습니다.
+- 편의시설 정보 제공
+- 검색 기능
+- 즐겨찾기 기능
 - 그날의 라이딩에 알맞은 날씨인지 확인해 볼 수 있습니다.
 
 <details>
@@ -163,16 +163,27 @@
 
 ### 4.5 날씨 데이터 통신 후 Realm 데이터 저장
 - 문제점: 날씨 데이터 통신이 다 끝나고 Realm 데이터 저장이 되어야하는데 통신이 끝나기 전에 데이터 저장이 되어서 값이 몇개가 빈 상태로 저장됨
-- 해결: API 통신을 끝낸 후에 Realm 데이터에 담아줘야하기 때문에 Dispatch Group을 이용해서 통신이 끝나면 Realm에 담아주게 처리해줌
+- 해결: API 통신을 끝낸 후에 Realm 데이터에 담아줘야하기 때문에 Dispatch Group을 이용해서 통신이 완전히 끝나면 Realm에 담아주게 처리해줌
 <img width="243" alt="1" src="https://user-images.githubusercontent.com/78537078/209761732-1f40673f-c3a0-4300-8e9b-e33dfb3e7b0d.png">
 <img width="971" alt="2" src="https://user-images.githubusercontent.com/78537078/209761751-087d2dcd-a275-471d-a7da-27e99343f9c9.png">
 <img width="929" alt="3" src="https://user-images.githubusercontent.com/78537078/209761757-36e13dc8-8c46-4df3-a049-7f4522f380f6.png">
 
+### 4.6 앱 리젝
+- 문제점
+<img width="726" alt="스크린샷 2022-12-28 오후 2 34 18" src="https://user-images.githubusercontent.com/78537078/209763047-24f36702-be20-4ff2-987b-7d6102f6f306.png">
+- 해결: 로그인 기능이 없는 앱에서 소개 페이지에 서비스 이용 약관에 대해 기재해놓은 것으로 리젝 받은 것으로 소개페이지에서 이용 약관에 대한 부분 삭제 후 출시
 
 </br>
 
 ## 5. 회고 / 느낀점
 
+
 </br>
 
 ## 6. 업데이트 내역
+|ver|content|
+|---|---|
+|1.1.2|앱 실시간 모니터링을 위한 FirebaseCrashlytics, FirebaseAnalytics 추가 / 원격 알림 전송을 위한 FirebaseMessaging 추가 |
+|1.1.1|Realm 데이터 타입 변경으로 인한 마이그레이션|
+|1.1.0|강수확률 데이터가 0으로 계속 나오는 버그 수정 / 리뷰 남기기 기능 추가 / 팝업 뷰 버그 수정|
+|1.0|앱 출시|
