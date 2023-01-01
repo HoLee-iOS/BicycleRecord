@@ -48,9 +48,6 @@
 - 즐겨찾기 기능
 - 날씨 정보 제공
 
-<details>
-<summary><b>핵심 기능 설명 펼치기</b></summary>
-
 ### 3.1 편의시설 정보 제공
 
   - 앱 시작화면에서 통신을 통해 편의시설 데이터를 받아와서 Realm에 저장
@@ -135,7 +132,6 @@
             }
             WeatherRepository.shared.saveRealm(item: item)
   ```
-</details>
 
 </br>
 
