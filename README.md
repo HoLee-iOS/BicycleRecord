@@ -176,7 +176,7 @@
 </br>
 
 ## 5. 회고
-- 프로젝트 개발에 대한 더 자세한 회고 : https://skylert.tistory.com/48
+- 프로젝트 개발에 대한 회고  : https://skylert.tistory.com/48
 
 ### Keep
 
