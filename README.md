@@ -6,8 +6,8 @@
 - [Ricle - 자전거 편의시설 지도 앱스토어 링크](https://apps.apple.com/kr/app/ricle-%EC%9E%90%EC%A0%84%EA%B1%B0-%ED%8E%B8%EC%9D%98%EC%8B%9C%EC%84%A4-%EC%A7%80%EB%8F%84/id6443554916)</br>
 - [Ricle 소개 페이지](https://elite-pet-b14.notion.site/Ricle-1-1-1-440a2fada68b4fa2aeb40bd933016f18)</br>
 - [Ricle 개인정보처리방침 및 오픈소스 라이선스 페이지](https://elite-pet-b14.notion.site/Ricle-90a18363c595446fa9ae9ae3a5ae9738)</br>
-- 서울시 자전거 편의시설의 정보와 자전거 라이딩에 적합한 날씨인지에 대한 정보를 제공해주는 앱입니다.</br>
-- 주요 기획 의도는 자전거 편의시설에 대한 정보와 날씨를 함께 제공함으로 자전거 라이딩에 필요한 정보들을 한 앱에서 제공해주는 앱입니다.
+- 자전거 편의시설에 대한 정보와 날씨를 함께 제공함으로 자전거 라이딩에 있어서 필요한 정보들을 제공하는 서비스입니다.</br>
+- 위치 기반 정보 제공 로직 구현 / 검색 로직 구현 / 마이그레이션 구현 / 원격 알림 로직 구현
 
 <p>
 <img src="https://user-images.githubusercontent.com/78537078/209093977-4c452162-3fc3-4743-bc4c-32d5d13af5cd.png" width="19%">
