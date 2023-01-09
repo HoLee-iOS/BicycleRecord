@@ -170,7 +170,7 @@
 
 ### 4.5 날씨 데이터 통신 후 Realm 데이터 저장
 - 문제점: 날씨 데이터 통신이 다 끝나고 Realm 데이터 저장이 되어야하는데 통신이 끝나기 전에 데이터 저장이 되어서 값이 몇개가 빈 상태로 저장됨
-- 해결: API 통신을 끝낸 후에 Realm 데이터에 담아줘야하기 때문에 Dispatch Group을 이용해서 통신이 완전히 끝나면 Realm에 담아주게 처리해줌
+- 해결: API 통신을 끝낸 후에 Realm 데이터에 담아줘야하기 때문에 Dispatch Group을 이용해서 통신이 완전히 끝나면 Realm에 담아주게 처리해줌</br>
   <img width="243" alt="1" src="https://user-images.githubusercontent.com/78537078/209761732-1f40673f-c3a0-4300-8e9b-e33dfb3e7b0d.png">
   <img width="971" alt="2" src="https://user-images.githubusercontent.com/78537078/209761751-087d2dcd-a275-471d-a7da-27e99343f9c9.png">
   <img width="929" alt="3" src="https://user-images.githubusercontent.com/78537078/209761757-36e13dc8-8c46-4df3-a049-7f4522f380f6.png">
